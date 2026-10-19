@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import math
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
@@ -150,39 +151,46 @@ def _open_meteo_station(station: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _fetch_station(station: dict[str, Any], api_key: str | None) -> dict[str, Any]:
+    try:
+        if api_key:
+            try:
+                return _weatherapi_station(station, api_key)
+            except (requests.RequestException, ValueError, KeyError, TypeError):
+                item = _open_meteo_station(station)
+                item["warnings"].append("WeatherAPI unavailable for this station; Open-Meteo fallback used.")
+                return item
+        item = _open_meteo_station(station)
+        item["warnings"].append("WEATHER_API_KEY is not configured; Open-Meteo fallback used.")
+        return item
+    except (requests.RequestException, ValueError, KeyError, TypeError) as exc:
+        return {
+            "status": "error",
+            "requested_location": station["canonical_location"],
+            "resolved_location": station["display_name"],
+            "station_name": station.get("station_name") or station["display_name"],
+            "latitude": station["latitude"], "longitude": station["longitude"],
+            "requested_latitude": station["latitude"], "requested_longitude": station["longitude"],
+            "aqi": None, "aqi_scale": None, "severity": "unavailable",
+            "pm2_5": None, "pm10": None, "weather": {}, "timestamp": None,
+            "source": None, "data_type": "unavailable",
+            "warnings": [f"Both live data providers failed: {type(exc).__name__}"],
+        }
+
+
 def get_live_hotspots() -> dict[str, Any]:
-    """Fetch each registered station independently; return partial successes."""
+    """Fetch each registered station independently and concurrently."""
     load_dotenv(ROOT / ".env")
     api_key = os.getenv("WEATHER_API_KEY")
-    stations = get_all_pune_stations()
+    stations = [s for s in get_all_pune_stations() if s.get("latitude") is not None and s.get("longitude") is not None]
     results: list[dict[str, Any]] = []
-    for station in stations:
-        if not station.get("latitude") or not station.get("longitude"):
-            continue
-        try:
-            if api_key:
-                try:
-                    item = _weatherapi_station(station, api_key)
-                except (requests.RequestException, ValueError, KeyError, TypeError):
-                    item = _open_meteo_station(station)
-                    item["warnings"].append("WeatherAPI unavailable for this station; Open-Meteo fallback used.")
-            else:
-                item = _open_meteo_station(station)
-                item["warnings"].append("WEATHER_API_KEY is not configured; Open-Meteo fallback used.")
-        except (requests.RequestException, ValueError, KeyError, TypeError) as exc:
-            item = {
-                "status": "error",
-                "requested_location": station["canonical_location"],
-                "resolved_location": station["display_name"],
-                "station_name": station.get("station_name") or station["display_name"],
-                "latitude": station["latitude"], "longitude": station["longitude"],
-                "requested_latitude": station["latitude"], "requested_longitude": station["longitude"],
-                "aqi": None, "aqi_scale": None, "severity": "unavailable",
-                "pm2_5": None, "pm10": None, "weather": {}, "timestamp": None,
-                "source": None, "data_type": "unavailable",
-                "warnings": [f"Both live data providers failed: {type(exc).__name__}"],
-            }
-        results.append(item)
+    # Bound concurrency to avoid long sequential page loads and provider bursts.
+    with ThreadPoolExecutor(max_workers=5) as pool:
+        futures = {pool.submit(_fetch_station, station, api_key): station for station in stations}
+        for future in as_completed(futures):
+            results.append(future.result())
+    order = {s["canonical_location"]: i for i, s in enumerate(stations)}
+    results.sort(key=lambda row: order.get(row.get("requested_location"), 999))
     success = sum(item["status"] == "ok" for item in results)
     return {
         "status": "ok" if success == len(results) and results else "partial" if success else "unavailable",
