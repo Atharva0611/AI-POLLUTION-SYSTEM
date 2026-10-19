@@ -1,0 +1,35 @@
+ORIVA PHASE 2 ? DATA PIPELINE CLOSEOUT
+Generated: 2026-10-15T00:15:42
+Status: PASS ? PHASE 2 AUDIT READY TO CLOSE
+
+CHECK RESULTS:
+[PASS] Producer duplicate-source exclusion: Exclusion present once; canonical output path preserved.
+[PASS] Timestamped producer backup: C:\final year project\AI-POLLUTION-SYSTEM\backend\ml\forecasting\build_pune_all_station_dataset.py.phase2-backup-20261015-000427
+[PASS] Canonical hourly dataset exists: C:\final year project\AI-POLLUTION-SYSTEM\data\processed\pune_cpcb_all_stations_hourly.csv
+[PASS] Fresh candidate dataset exists: C:\final year project\AI-POLLUTION-SYSTEM\data\processed\pune_cpcb_all_stations_hourly.phase2_test_candidate.csv
+[PASS] Fresh rebuild matches canonical: canonical=(175917, 15), candidate=(175917, 15); station-hour keys=valid; numeric mismatches=[]; text mismatches=[]
+[PASS] Duplicate raw-source identification: punepollution.csv.csv SHA256=63eaa4e16a5e08120dfee4412f5bc7a51fc6b9ac5a9d93e44c4648ef75cdad83; sppu.csv SHA256=63eaa4e16a5e08120dfee4412f5bc7a51fc6b9ac5a9d93e44c4648ef75cdad83
+[PASS] Coordinate, DBSCAN and quality audit artifacts: All expected artifacts exist.
+[PASS] Station-coordinate audit coverage: 12 station records; Mhada Colony remains geocoding-unconfirmed.
+[PASS] DBSCAN candidate coverage: 12 unique stations in candidate cluster output.
+[PASS] Full regression suite: 53 passed, 3 warnings in 19.16s
+
+DOCUMENTED DATA-QUALITY LIMITATIONS:
+- The 12-station hourly dataset has 175,917 rows and 15 columns.
+- Previously audited PM2.5 missing/non-finite count: 38,955 (about 22.1%).
+- Previously audited hourly PM2.5 readings above 500: 31; they matched raw same-hour means within 0.01.
+- Source provenance and aggregation consistency do not prove sensor accuracy.
+- Long station-specific missing-value runs remain; do not impute or delete them without a documented policy.
+- Mhada Colony coordinates are supported by the registry and verified-stations file but lack independent geocoding confirmation.
+- DBSCAN clusters indicate spatial proximity only; they do not by themselves establish pollution hotspots.
+- Three previously observed SHAP colormap PendingDeprecationWarnings are warnings, not test failures.
+
+SAFETY:
+- This closeout script does not run the producer or overwrite canonical datasets.
+- The canonical hourly dataset and model artifacts were not intentionally modified by this script.
+
+FAILED CHECKS:
+None
+
+FINAL INTERPRETATION:
+Phase 2 audit checks passed. The data pipeline is reproducible and regression tests are green. Close the phase with the documented data-quality limitations retained as known risks.

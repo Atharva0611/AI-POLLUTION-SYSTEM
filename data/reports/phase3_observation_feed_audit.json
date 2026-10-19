@@ -1,0 +1,8 @@
+{
+  "source": "https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69",
+  "retrieved_at_utc": "2026-10-17T11:23:41.284785+00:00",
+  "freshness_limit_hours": 72,
+  "production_artifacts_modified": false,
+  "status": "failed",
+  "reason": "DATA_GOV_IN_API_KEY is missing. Add a valid data.gov.in API key to the environment or project .env; no fabricated station data was created."
+}

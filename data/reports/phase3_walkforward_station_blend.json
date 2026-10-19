@@ -1,0 +1,337 @@
+{
+  "purpose": "experimental_walk_forward_station_aware_blend",
+  "production_artifacts_modified": false,
+  "production_model_promoted": false,
+  "promotion_rule": "Both MAE and RMSE must strictly improve over persistence in every rolling window.",
+  "validation_fraction": 0.2,
+  "minimum_station_validation_rows": 100,
+  "weight_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5
+  ],
+  "window_results": [
+    {
+      "window": "Window 1",
+      "status": "EVALUATED",
+      "start": "2025-02-06 01:00:00+00:00",
+      "end_exclusive": "2025-05-26 16:00:00+00:00",
+      "train_rows": 71895,
+      "train_core_rows": 55821,
+      "validation_rows": 16074,
+      "test_rows": 23234,
+      "validation_cut": "2024-11-17 15:00:00+00:00",
+      "persistence": {
+        "mae": 4.847745796390347,
+        "rmse": 8.637048006509993,
+        "r2": 0.91853635008587
+      },
+      "residual_xgboost": {
+        "mae": 5.412387883914572,
+        "rmse": 9.391609776725177,
+        "r2": 0.9036807092668978
+      },
+      "station_aware_blend": {
+        "mae": 4.591510865726641,
+        "rmse": 8.21265998958465,
+        "r2": 0.9263452290064915
+      },
+      "gate_pass": true,
+      "station_weights": [
+        {
+          "station": "Alandi, Pune - IITM",
+          "validation_rows": 1555,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 8.826095330941962,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Bhumkar Nagar, Pune - IITM",
+          "validation_rows": 1761,
+          "selected_xgboost_weight": 0.15,
+          "validation_mae": 9.341560006364306,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Dhankawadi, Pune - IITM",
+          "validation_rows": 71,
+          "selected_xgboost_weight": 0.0,
+          "validation_mae": 4.097781690140845,
+          "reason": "fallback_to_persistence_insufficient_validation_rows"
+        },
+        {
+          "station": "Hadapsar, Pune - IITM",
+          "validation_rows": 1138,
+          "selected_xgboost_weight": 0.35,
+          "validation_mae": 4.2737636422514,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Karve Road, Pune - MPCB",
+          "validation_rows": 1725,
+          "selected_xgboost_weight": 0.0,
+          "validation_mae": 8.368841062801932,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Katraj Dairy, Pune - MPCB",
+          "validation_rows": 1365,
+          "selected_xgboost_weight": 0.3,
+          "validation_mae": 4.725687959264938,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Mhada Colony, Pune - IITM",
+          "validation_rows": 1892,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 5.298465394386042,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Panchawati_Pashan, Pune - IITM",
+          "validation_rows": 1533,
+          "selected_xgboost_weight": 0.15,
+          "validation_mae": 2.7047447405898626,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+          "validation_rows": 1859,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 7.105417727954552,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Savitribai Phule Pune University, Pune - MPCB",
+          "validation_rows": 1714,
+          "selected_xgboost_weight": 0.2,
+          "validation_mae": 4.038598417657576,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Transport Nagar-Nigdi, Pune - IITM",
+          "validation_rows": 1461,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 6.576296448916168,
+          "reason": "selected_using_pre_test_validation_mae"
+        }
+      ]
+    },
+    {
+      "window": "Window 2",
+      "status": "EVALUATED",
+      "start": "2025-05-26 16:00:00+00:00",
+      "end_exclusive": "2025-09-13 07:00:00+00:00",
+      "train_rows": 95129,
+      "train_core_rows": 73204,
+      "validation_rows": 21925,
+      "test_rows": 19387,
+      "validation_cut": "2025-02-13 08:00:00+00:00",
+      "persistence": {
+        "mae": 3.690134067502279,
+        "rmse": 9.674044891355647,
+        "r2": 0.42486597827965145
+      },
+      "residual_xgboost": {
+        "mae": 3.6349721844683955,
+        "rmse": 8.464977530014492,
+        "r2": 0.5596434289246068
+      },
+      "station_aware_blend": {
+        "mae": 3.581248723011958,
+        "rmse": 8.833204883392034,
+        "r2": 0.5204990523189015
+      },
+      "gate_pass": true,
+      "station_weights": [
+        {
+          "station": "Bhosari, Pune - IITM",
+          "validation_rows": 1972,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 5.144009015232899,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Bhumkar Nagar, Pune - IITM",
+          "validation_rows": 2196,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 7.111390835447692,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Dhankawadi, Pune - IITM",
+          "validation_rows": 891,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 4.998114521193063,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Hadapsar, Pune - IITM",
+          "validation_rows": 1682,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 5.092998764577496,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Karve Road, Pune - MPCB",
+          "validation_rows": 2201,
+          "selected_xgboost_weight": 0.0,
+          "validation_mae": 1.0856724216265334,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Katraj Dairy, Pune - MPCB",
+          "validation_rows": 1990,
+          "selected_xgboost_weight": 0.2,
+          "validation_mae": 2.9803672816853495,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Mhada Colony, Pune - IITM",
+          "validation_rows": 2102,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 6.283913511712086,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Panchawati_Pashan, Pune - IITM",
+          "validation_rows": 2097,
+          "selected_xgboost_weight": 0.4,
+          "validation_mae": 2.800998681321038,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+          "validation_rows": 2333,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 6.205282392469144,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Savitribai Phule Pune University, Pune - MPCB",
+          "validation_rows": 2383,
+          "selected_xgboost_weight": 0.4,
+          "validation_mae": 1.8017271043468621,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Transport Nagar-Nigdi, Pune - IITM",
+          "validation_rows": 2078,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 5.770080825485639,
+          "reason": "selected_using_pre_test_validation_mae"
+        }
+      ]
+    },
+    {
+      "window": "Window 3",
+      "status": "EVALUATED",
+      "start": "2025-09-13 07:00:00+00:00",
+      "end_exclusive": "2025-12-31 23:00:00+00:00",
+      "train_rows": 114516,
+      "train_core_rows": 92234,
+      "validation_rows": 22282,
+      "test_rows": 19183,
+      "validation_cut": "2025-05-12 01:00:00+00:00",
+      "persistence": {
+        "mae": 7.556292637578411,
+        "rmse": 14.366619099970727,
+        "r2": 0.8997458065223043
+      },
+      "residual_xgboost": {
+        "mae": 7.343288922078913,
+        "rmse": 14.749317588259595,
+        "r2": 0.8943335184324992
+      },
+      "station_aware_blend": {
+        "mae": 7.052943877769755,
+        "rmse": 13.843036816166945,
+        "r2": 0.9069200502141094
+      },
+      "gate_pass": true,
+      "station_weights": [
+        {
+          "station": "Bhosari, Pune - IITM",
+          "validation_rows": 2760,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 3.843424531754091,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Bhumkar Nagar, Pune - IITM",
+          "validation_rows": 2664,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 4.840365752390893,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Dhankawadi, Pune - IITM",
+          "validation_rows": 1359,
+          "selected_xgboost_weight": 0.4,
+          "validation_mae": 2.79899646934936,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Karve Road, Pune - MPCB",
+          "validation_rows": 227,
+          "selected_xgboost_weight": 0.0,
+          "validation_mae": 0.0,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Katraj Dairy, Pune - MPCB",
+          "validation_rows": 2498,
+          "selected_xgboost_weight": 0.05,
+          "validation_mae": 2.6060534511087874,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Mhada Colony, Pune - IITM",
+          "validation_rows": 2818,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 4.284363632131729,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Panchawati_Pashan, Pune - IITM",
+          "validation_rows": 2899,
+          "selected_xgboost_weight": 0.35,
+          "validation_mae": 2.2078452799942596,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+          "validation_rows": 2088,
+          "selected_xgboost_weight": 0.5,
+          "validation_mae": 4.897619758864243,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Savitribai Phule Pune University, Pune - MPCB",
+          "validation_rows": 2601,
+          "selected_xgboost_weight": 0.15,
+          "validation_mae": 2.2920692123249937,
+          "reason": "selected_using_pre_test_validation_mae"
+        },
+        {
+          "station": "Transport Nagar-Nigdi, Pune - IITM",
+          "validation_rows": 2368,
+          "selected_xgboost_weight": 0.45,
+          "validation_mae": 4.602977735392939,
+          "reason": "selected_using_pre_test_validation_mae"
+        }
+      ]
+    }
+  ],
+  "all_three_windows_evaluated": true,
+  "decision": "ELIGIBLE_FOR_INDEPENDENT_REVIEW",
+  "note": "A passing benchmark requires independent review; it does not automatically authorize promotion."
+}

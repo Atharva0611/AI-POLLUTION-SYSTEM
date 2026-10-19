@@ -1,0 +1,15 @@
+city,station,latitude,longitude,observation_time_ist,pm10,pm25,data_type
+Pimpri-Chinchwad,"Thergaon, Pimpri Chinchwad - MPCB",18.616318,73.765797,2026-10-12 23:00:00,112.0,73.0,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Gavalinagar, Pimpri Chinchwad - MPCB",18.63673,73.82487,2026-10-12 23:00:00,122.0,100.0,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Bhosari, Pune - IITM",18.640051,73.848956,2026-10-12 23:00:00,160.0,134.0,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Savta Mali Nagar, Pimpri-Chinchwad - IITM",18.614767,73.799516,2026-10-12 23:00:00,122.0,,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Bhumkar Nagar, Pune - IITM",18.60577,73.749976,2026-10-12 23:00:00,176.0,115.0,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Transport Nagar-Nigdi, Pune - IITM",18.664282,73.763966,2026-10-12 23:00:00,149.0,151.0,OGD current snapshot; not historical time series
+Pimpri-Chinchwad,"Park Street Wakad, Pimpri Chinchwad - MPCB",18.59051,73.77946,2026-10-12 23:00:00,,,OGD current snapshot; not historical time series
+Pune,"Savitribai Phule Pune University, Pune - MPCB",18.547056,73.826908,2026-10-12 23:00:00,132.0,72.0,OGD current snapshot; not historical time series
+Pune,"Revenue Colony-Shivajinagar, Pune - IITM",18.530085,73.849598,2026-10-12 23:00:00,130.0,118.0,OGD current snapshot; not historical time series
+Pune,"Katraj Dairy, Pune - MPCB",18.45445,73.854155,2026-10-12 23:00:00,88.0,47.0,OGD current snapshot; not historical time series
+Pune,"Panchawati_Pashan, Pune - IITM",18.536457,73.805454,2026-10-12 23:00:00,115.0,98.0,OGD current snapshot; not historical time series
+Pune,"Dhankawadi, Pune - IITM",18.459883,73.852193,2026-10-12 23:00:00,,101.0,OGD current snapshot; not historical time series
+Pune,"Mhada Colony, Pune - IITM",18.57304,73.927715,2026-10-12 23:00:00,115.0,107.0,OGD current snapshot; not historical time series
+Pune,"Hadapsar, Pune - IITM",18.501793,73.927532,2026-10-12 23:00:00,129.0,150.0,OGD current snapshot; not historical time series

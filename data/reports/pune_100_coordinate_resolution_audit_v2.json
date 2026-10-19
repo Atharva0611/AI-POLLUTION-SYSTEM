@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-10-17T16:15:47.706944",
+  "source_rows": 99,
+  "unique_location_names": 99,
+  "candidate_rows": 99,
+  "status_counts": {
+    "UNRESOLVED": 78,
+    "CANDIDATE_MATCH_REVIEW_REQUIRED": 21
+  },
+  "backup_directory": "data\\reports\\backups\\pune100_geocode_v2_20261017_161410",
+  "candidate_file": "data\\processed\\pune_100_locations_coordinate_candidate_v2.csv",
+  "audit_file": "data\\reports\\pune_100_coordinate_resolution_audit_v2.json",
+  "note": "Candidate coordinates require review; not approved for prediction.",
+  "production_artifacts_modified": false
+}

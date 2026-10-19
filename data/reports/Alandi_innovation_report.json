@@ -1,0 +1,115 @@
+{
+  "innovation_layer": "Pollution Decision Intelligence",
+  "location": {
+    "name": "Alandi",
+    "region": "Maharashtra",
+    "country": "India",
+    "latitude": 18.6667,
+    "longitude": 73.9,
+    "timezone": "Asia/Kolkata",
+    "local_time": "2026-09-19 13:05"
+  },
+  "baseline": {
+    "pm25": 6.8,
+    "next_hour_pm25": 116.46
+  },
+  "why_engine": {
+    "summary": [
+      {
+        "factor": "Combustion indicator",
+        "reason": "CO = 157.00.",
+        "weight": 1.0
+      }
+    ],
+    "note": "WHY explanations combine observed environmental conditions and, when available, existing SHAP outputs. They indicate associations and model drivers; they are not causal proof."
+  },
+  "source_fingerprint": {
+    "indicators": [
+      {
+        "source": "Combustion influence",
+        "score": 1.0
+      },
+      {
+        "source": "Road / resuspended dust",
+        "score": 0.059
+      },
+      {
+        "source": "Industrial / sulfur-bearing emissions",
+        "score": 0.041
+      },
+      {
+        "source": "Traffic / combustion",
+        "score": 0.022
+      }
+    ],
+    "note": "Statistical/source indicators only. These are not definitive chemical source-apportionment results."
+  },
+  "policy_to_action": {
+    "actions": [
+      {
+        "priority": "HIGH",
+        "window": "0–6 h",
+        "action": "Increase road-dust suppression and clean visibly dusty corridors.",
+        "target": "PM10 / PM2.5",
+        "rationale": "Particulate loading or dust indicators are elevated."
+      },
+      {
+        "priority": "MEDIUM",
+        "window": "6–24 h",
+        "action": "Strengthen construction-site dust controls, covering, wheel-wash and material-handling checks.",
+        "target": "PM10 / PM2.5",
+        "rationale": "Resuspended or construction dust is a plausible contributor."
+      },
+      {
+        "priority": "HIGH",
+        "window": "0–6 h",
+        "action": "Focus enforcement and traffic-management measures on congestion corridors and idling hotspots.",
+        "target": "NO₂ / PM2.5",
+        "rationale": "Traffic/combustion indicators are elevated."
+      },
+      {
+        "priority": "HIGH",
+        "window": "0–24 h",
+        "action": "Prioritize industrial-emission inspections and compliance checks.",
+        "target": "SO₂ / PM2.5",
+        "rationale": "Sulfur-bearing/industrial indicators are elevated."
+      }
+    ],
+    "note": "Policy mapping connects observed conditions with control measures. It does not establish causal policy impacts."
+  },
+  "intervention_simulator": {
+    "available": true,
+    "suggested_scenarios": [
+      {
+        "key": "road_dust_control",
+        "label": "Road-dust suppression"
+      },
+      {
+        "key": "construction_dust_control",
+        "label": "Construction/demolition dust control"
+      },
+      {
+        "key": "traffic_management",
+        "label": "Traffic/emission management"
+      },
+      {
+        "key": "industrial_emission_control",
+        "label": "Industrial emission control"
+      }
+    ],
+    "preview": {
+      "baseline_pm25": 6.8,
+      "selected_interventions": [
+        "road_dust_control"
+      ],
+      "reduction_low_pct": 4.0,
+      "reduction_high_pct": 12.0,
+      "estimated_pm25_low": 5.98,
+      "estimated_pm25_high": 6.53,
+      "confidence": "Moderate",
+      "methodology": "Heuristic scenario range using conservative intervention assumptions; not a causal effect estimate and not a validated policy counterfactual."
+    },
+    "note": "Scenario outputs are heuristic ranges, not causal estimates."
+  },
+  "integration_policy": "Additive only. The Innovation Layer consumes the existing environment report and does not replace RAG, ML, XGBoost, WeatherAPI, LangGraph, SHAP, DBSCAN, or source-analysis modules."
+}

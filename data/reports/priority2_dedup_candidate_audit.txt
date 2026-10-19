@@ -1,0 +1,11 @@
+PRIORITY 2 DEDUPLICATION CANDIDATE AUDIT
+Input: data\processed\pune_cpcb_cleaned_15min.csv
+Candidate: data\processed\pune_cpcb_cleaned_15min.dedup_candidate.csv
+Input rows: 714526
+Duplicate keys removed: 70176
+Candidate rows: 644350
+Rows removed: 70176
+Remaining duplicate keys: 0
+
+Candidate created separately; original dataset was not overwritten.
+Only identical station/timestamp groups were eligible for deduplication.

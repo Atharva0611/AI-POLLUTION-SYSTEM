@@ -1,0 +1,19 @@
+{
+  "model":"Pune All-Station XGBoost",
+  "stations":[
+    "Alandi",
+    "Karve Road",
+    "Mhada Colony",
+    "Panchawati_Pashan",
+    "SPPU"
+  ],
+  "station_count":5,
+  "rows":60145,
+  "train_rows":45418,
+  "validation_rows":7484,
+  "test_rows":7243,
+  "MAE":7.9101035623,
+  "RMSE":17.5353980828,
+  "R2":0.8031919358,
+  "target":"Next-hour PM2.5"
+}

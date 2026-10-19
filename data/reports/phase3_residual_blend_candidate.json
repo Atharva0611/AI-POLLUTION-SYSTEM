@@ -1,0 +1,117 @@
+{
+  "purpose": "isolated_residual_station_blend_candidate",
+  "production_artifacts_modified": false,
+  "production_model_promoted": false,
+  "candidate_artifact_dir": "C:\\final year project\\AI-POLLUTION-SYSTEM\\models\\forecasting\\phase3_residual_blend_candidate",
+  "data_source": "C:\\final year project\\AI-POLLUTION-SYSTEM\\data\\processed\\pune_cpcb_all_stations_hourly.csv",
+  "features_count": 72,
+  "stations": [
+    "Alandi, Pune - IITM",
+    "Bhosari, Pune - IITM",
+    "Bhumkar Nagar, Pune - IITM",
+    "Dhankawadi, Pune - IITM",
+    "Hadapsar, Pune - IITM",
+    "Karve Road, Pune - MPCB",
+    "Katraj Dairy, Pune - MPCB",
+    "Mhada Colony, Pune - IITM",
+    "Panchawati_Pashan, Pune - IITM",
+    "Revenue Colony-Shivajinagar, Pune - IITM",
+    "Savitribai Phule Pune University, Pune - MPCB",
+    "Transport Nagar-Nigdi, Pune - IITM"
+  ],
+  "train_core_rows": 92234,
+  "validation_rows": 22282,
+  "pre_holdout_rows": 114516,
+  "holdout_rows": 19183,
+  "holdout_start": "2025-09-13T07:00:00+00:00",
+  "persistence": {
+    "mae": 7.556292637578411,
+    "rmse": 14.366619099970727,
+    "r2": 0.8997458065223043
+  },
+  "residual_model": {
+    "mae": 7.343288922078913,
+    "rmse": 14.749317588259595,
+    "r2": 0.8943335184324992
+  },
+  "station_aware_blend": {
+    "mae": 7.052943877769755,
+    "rmse": 13.843036816166945,
+    "r2": 0.9069200502141094
+  },
+  "holdout_gate_pass": true,
+  "station_weights": [
+    {
+      "station": "Bhosari, Pune - IITM",
+      "validation_rows": 2760,
+      "selected_xgboost_weight": 0.5,
+      "validation_mae": 3.843424531754091,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "validation_rows": 2664,
+      "selected_xgboost_weight": 0.5,
+      "validation_mae": 4.840365752390893,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "validation_rows": 1359,
+      "selected_xgboost_weight": 0.4,
+      "validation_mae": 2.79899646934936,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "validation_rows": 227,
+      "selected_xgboost_weight": 0.0,
+      "validation_mae": 0.0,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "validation_rows": 2498,
+      "selected_xgboost_weight": 0.05,
+      "validation_mae": 2.6060534511087874,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "validation_rows": 2818,
+      "selected_xgboost_weight": 0.5,
+      "validation_mae": 4.284363632131729,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "validation_rows": 2899,
+      "selected_xgboost_weight": 0.35,
+      "validation_mae": 2.2078452799942596,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "validation_rows": 2088,
+      "selected_xgboost_weight": 0.5,
+      "validation_mae": 4.897619758864243,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "validation_rows": 2601,
+      "selected_xgboost_weight": 0.15,
+      "validation_mae": 2.2920692123249937,
+      "reason": "selected_using_pre_test_validation_mae"
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "validation_rows": 2368,
+      "selected_xgboost_weight": 0.45,
+      "validation_mae": 4.602977735392939,
+      "reason": "selected_using_pre_test_validation_mae"
+    }
+  ],
+  "decision": "ELIGIBLE_FOR_REVIEW",
+  "note": "Experimental candidate only. A passing holdout is not production approval. Historical CPCB inputs and live inference compatibility still require separate verification."
+}

@@ -1,0 +1,584 @@
+{
+  "purpose": "diagnostics_only_not_for_model_selection",
+  "selected_validation_weight": 0.05,
+  "validation_mae": 6.7318,
+  "window1_rows": 23234,
+  "overall": {
+    "persistence_mae": 4.8477,
+    "blend_mae": 4.8668,
+    "mean_mae_change": 0.0191
+  },
+  "by_station": [
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "rows": 2376,
+      "persistence_mae": 1.0057,
+      "blend_mae": 1.7484,
+      "mae_change": 0.7427,
+      "blend_worse_rows_pct": 97.1
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "rows": 2199,
+      "persistence_mae": 2.8802,
+      "blend_mae": 2.8586,
+      "mae_change": -0.0217,
+      "blend_worse_rows_pct": 40.2
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "rows": 2165,
+      "persistence_mae": 3.0087,
+      "blend_mae": 2.9819,
+      "mae_change": -0.0268,
+      "blend_worse_rows_pct": 44.48
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "rows": 2558,
+      "persistence_mae": 1.9575,
+      "blend_mae": 1.9215,
+      "mae_change": -0.036,
+      "blend_worse_rows_pct": 41.4
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "rows": 2198,
+      "persistence_mae": 6.2183,
+      "blend_mae": 6.1807,
+      "mae_change": -0.0377,
+      "blend_worse_rows_pct": 37.99
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "rows": 2142,
+      "persistence_mae": 6.6186,
+      "blend_mae": 6.5669,
+      "mae_change": -0.0518,
+      "blend_worse_rows_pct": 40.1
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "rows": 1972,
+      "persistence_mae": 5.6277,
+      "blend_mae": 5.5685,
+      "mae_change": -0.0592,
+      "blend_worse_rows_pct": 35.45
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "rows": 891,
+      "persistence_mae": 5.5748,
+      "blend_mae": 5.5004,
+      "mae_change": -0.0744,
+      "blend_worse_rows_pct": 36.25
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "rows": 1857,
+      "persistence_mae": 5.9099,
+      "blend_mae": 5.8215,
+      "mae_change": -0.0884,
+      "blend_worse_rows_pct": 33.82
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "rows": 2505,
+      "persistence_mae": 7.1621,
+      "blend_mae": 7.0527,
+      "mae_change": -0.1094,
+      "blend_worse_rows_pct": 34.73
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "rows": 2371,
+      "persistence_mae": 8.2507,
+      "blend_mae": 8.1207,
+      "mae_change": -0.13,
+      "blend_worse_rows_pct": 39.69
+    }
+  ],
+  "by_station_and_pm25_band": [
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "current_pm25_band": ">100",
+      "rows": 440,
+      "persistence_mae": 2.2229,
+      "blend_mae": 3.4922,
+      "mae_change": 1.2692
+    },
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "current_pm25_band": "30-55",
+      "rows": 877,
+      "persistence_mae": 1.0406,
+      "blend_mae": 2.1886,
+      "mae_change": 1.148
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 13,
+      "persistence_mae": 1.6835,
+      "blend_mae": 1.9087,
+      "mae_change": 0.2252
+    },
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "current_pm25_band": "15-30",
+      "rows": 155,
+      "persistence_mae": 0.5356,
+      "blend_mae": 0.7242,
+      "mae_change": 0.1886
+    },
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "current_pm25_band": "55-100",
+      "rows": 904,
+      "persistence_mae": 0.46,
+      "blend_mae": 0.6482,
+      "mae_change": 0.1881
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 2,
+      "persistence_mae": 11.1088,
+      "blend_mae": 11.1654,
+      "mae_change": 0.0566
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 19,
+      "persistence_mae": 4.0789,
+      "blend_mae": 4.1097,
+      "mae_change": 0.0307
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": "<=5",
+      "rows": 16,
+      "persistence_mae": 0.9117,
+      "blend_mae": 0.9151,
+      "mae_change": 0.0034
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": "5-15",
+      "rows": 367,
+      "persistence_mae": 1.6494,
+      "blend_mae": 1.6488,
+      "mae_change": -0.0006
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 22,
+      "persistence_mae": 5.0261,
+      "blend_mae": 5.0181,
+      "mae_change": -0.008
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 229,
+      "persistence_mae": 5.0464,
+      "blend_mae": 5.0344,
+      "mae_change": -0.012
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "current_pm25_band": "5-15",
+      "rows": 617,
+      "persistence_mae": 1.6821,
+      "blend_mae": 1.67,
+      "mae_change": -0.0121
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 676,
+      "persistence_mae": 4.8321,
+      "blend_mae": 4.8191,
+      "mae_change": -0.0131
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 219,
+      "persistence_mae": 3.55,
+      "blend_mae": 3.5343,
+      "mae_change": -0.0157
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 207,
+      "persistence_mae": 3.4203,
+      "blend_mae": 3.4038,
+      "mae_change": -0.0165
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 443,
+      "persistence_mae": 2.0521,
+      "blend_mae": 2.035,
+      "mae_change": -0.0171
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": "15-30",
+      "rows": 598,
+      "persistence_mae": 2.7816,
+      "blend_mae": 2.7641,
+      "mae_change": -0.0175
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 549,
+      "persistence_mae": 4.8746,
+      "blend_mae": 4.8561,
+      "mae_change": -0.0184
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 959,
+      "persistence_mae": 6.084,
+      "blend_mae": 6.0641,
+      "mae_change": -0.02
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 333,
+      "persistence_mae": 2.9155,
+      "blend_mae": 2.8953,
+      "mae_change": -0.0202
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 914,
+      "persistence_mae": 3.1585,
+      "blend_mae": 3.1365,
+      "mae_change": -0.0219
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 299,
+      "persistence_mae": 4.5647,
+      "blend_mae": 4.5423,
+      "mae_change": -0.0224
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 813,
+      "persistence_mae": 2.9626,
+      "blend_mae": 2.9386,
+      "mae_change": -0.0239
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": "55-100",
+      "rows": 369,
+      "persistence_mae": 3.8649,
+      "blend_mae": 3.8393,
+      "mae_change": -0.0256
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 750,
+      "persistence_mae": 5.6901,
+      "blend_mae": 5.6619,
+      "mae_change": -0.0282
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": "15-30",
+      "rows": 730,
+      "persistence_mae": 4.6602,
+      "blend_mae": 4.6318,
+      "mae_change": -0.0284
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 60,
+      "persistence_mae": 4.0829,
+      "blend_mae": 4.0543,
+      "mae_change": -0.0286
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "current_pm25_band": "15-30",
+      "rows": 1285,
+      "persistence_mae": 1.8842,
+      "blend_mae": 1.8501,
+      "mae_change": -0.0341
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 311,
+      "persistence_mae": 4.4789,
+      "blend_mae": 4.4444,
+      "mae_change": -0.0344
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 841,
+      "persistence_mae": 6.6637,
+      "blend_mae": 6.6263,
+      "mae_change": -0.0375
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 826,
+      "persistence_mae": 4.5867,
+      "blend_mae": 4.549,
+      "mae_change": -0.0376
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 16,
+      "persistence_mae": 5.2995,
+      "blend_mae": 5.2613,
+      "mae_change": -0.0382
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 724,
+      "persistence_mae": 6.287,
+      "blend_mae": 6.2463,
+      "mae_change": -0.0407
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 151,
+      "persistence_mae": 3.9808,
+      "blend_mae": 3.9388,
+      "mae_change": -0.042
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": "30-55",
+      "rows": 805,
+      "persistence_mae": 3.3523,
+      "blend_mae": 3.3082,
+      "mae_change": -0.0441
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 7,
+      "persistence_mae": 2.6521,
+      "blend_mae": 2.6015,
+      "mae_change": -0.0507
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "current_pm25_band": "<=5",
+      "rows": 59,
+      "persistence_mae": 1.9292,
+      "blend_mae": 1.8782,
+      "mae_change": -0.051
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 598,
+      "persistence_mae": 5.7203,
+      "blend_mae": 5.6666,
+      "mae_change": -0.0537
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 16,
+      "persistence_mae": 11.6249,
+      "blend_mae": 11.5701,
+      "mae_change": -0.0548
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "current_pm25_band": "30-55",
+      "rows": 588,
+      "persistence_mae": 2.4037,
+      "blend_mae": 2.3409,
+      "mae_change": -0.0628
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "current_pm25_band": "30-55",
+      "rows": 341,
+      "persistence_mae": 5.9088,
+      "blend_mae": 5.844,
+      "mae_change": -0.0648
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 27,
+      "persistence_mae": 4.2939,
+      "blend_mae": 4.2254,
+      "mae_change": -0.0685
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 280,
+      "persistence_mae": 8.233,
+      "blend_mae": 8.1574,
+      "mae_change": -0.0756
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": "5-15",
+      "rows": 24,
+      "persistence_mae": 7.1863,
+      "blend_mae": 7.1081,
+      "mae_change": -0.0782
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "current_pm25_band": "55-100",
+      "rows": 9,
+      "persistence_mae": 2.3363,
+      "blend_mae": 2.2525,
+      "mae_change": -0.0838
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 841,
+      "persistence_mae": 7.2469,
+      "blend_mae": 7.1587,
+      "mae_change": -0.0883
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 1252,
+      "persistence_mae": 7.6238,
+      "blend_mae": 7.5112,
+      "mae_change": -0.1126
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 547,
+      "persistence_mae": 8.346,
+      "blend_mae": 8.205,
+      "mae_change": -0.1411
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 270,
+      "persistence_mae": 7.1275,
+      "blend_mae": 6.9853,
+      "mae_change": -0.1422
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 87,
+      "persistence_mae": 10.3164,
+      "blend_mae": 10.1673,
+      "mae_change": -0.1491
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 702,
+      "persistence_mae": 10.0961,
+      "blend_mae": 9.942,
+      "mae_change": -0.1541
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": "55-100",
+      "rows": 287,
+      "persistence_mae": 8.4742,
+      "blend_mae": 8.3149,
+      "mae_change": -0.1593
+    },
+    {
+      "station": "Bhosari, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 30,
+      "persistence_mae": 12.1781,
+      "blend_mae": 11.9492,
+      "mae_change": -0.2288
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "current_pm25_band": ">100",
+      "rows": 10,
+      "persistence_mae": 10.5835,
+      "blend_mae": 10.3342,
+      "mae_change": -0.2493
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 354,
+      "persistence_mae": 11.965,
+      "blend_mae": 11.6259,
+      "mae_change": -0.3391
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 129,
+      "persistence_mae": 12.0991,
+      "blend_mae": 11.7254,
+      "mae_change": -0.3737
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 1,
+      "persistence_mae": 10.095,
+      "blend_mae": 9.6504,
+      "mae_change": -0.4446
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "current_pm25_band": "<=5",
+      "rows": 3,
+      "persistence_mae": 3.8967,
+      "blend_mae": 3.3735,
+      "mae_change": -0.5232
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 1,
+      "persistence_mae": 5.395,
+      "blend_mae": 4.78,
+      "mae_change": -0.615
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "current_pm25_band": ">100",
+      "rows": 232,
+      "persistence_mae": 19.931,
+      "blend_mae": 19.2542,
+      "mae_change": -0.6768
+    }
+  ],
+  "production_artifacts_modified": false
+}

@@ -1,0 +1,6 @@
+station_name,latitude,longitude,pm25_mean,pm25_max,observations,cluster,is_hotspot_cluster,is_pollution_hotspot,pollution_level,pollution_score,hotspot_score
+Alandi,18.677,73.898,41.79425611357295,849.75,6093,-1,False,False,elevated,0.7961980966752159,0.0
+Karve Road,18.5126,73.8397,45.41492784198618,893.42,10902,0,True,False,elevated,1.0,0.0
+Mhada Colony,18.5528,73.94,43.26482403027436,255.865,15855,-1,False,False,elevated,0.8789740462428551,0.0
+Panchawati_Pashan,18.530614,73.812351,27.649285473851712,199.2725,10893,0,True,False,lower,0.0,0.0
+SPPU,18.552844,73.826644,34.849275168203334,867.255,16052,0,True,False,lower,0.4052760685572485,0.0

@@ -1,0 +1,16 @@
+﻿ORIVA - Phase 3 Model Promotion Decision
+Generated: 2026-10-15 19:20:05 +05:30
+
+Decision: NO-GO: KEEP CURRENT PRODUCTION MODEL
+
+Rule: Candidate must improve both MAE and RMSE in every rolling window.
+This report uses the previously completed benchmark results.
+
+Rolling-window results:
+Window 1: MAE 4.8477 -> 4.9666; RMSE 8.637 -> 8.4563; R2=0.9219; PASS=False
+Window 2: MAE 3.6901 -> 3.5959; RMSE 9.674 -> 8.7671; R2=0.5276; PASS=True
+Window 3: MAE 7.5563 -> 6.973; RMSE 14.3666 -> 13.8459; R2=0.9069; PASS=True
+
+Missing production artifacts: 0
+Production model promotion performed: NO
+Reason: conservative all-window performance gate and no automatic artifact replacement.

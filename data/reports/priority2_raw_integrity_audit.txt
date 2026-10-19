@@ -1,0 +1,117 @@
+========================================================================
+ORIVA PRIORITY 2 ? RAW DATA INTEGRITY AUDIT
+========================================================================
+File: C:\final year project\AI-POLLUTION-SYSTEM\data\processed\pune_cpcb_cleaned_15min.csv
+Rows: 714526
+Stations: 12
+Invalid timestamps: 0
+Missing PM2.5: 119755
+Negative PM2.5: 0
+PM2.5 > 500: 162
+Date range: 2024-01-01 00:00:00+00:00 to 2025-12-31 23:45:00+00:00
+
+--- DUPLICATE STATION/TIMESTAMP KEYS ---
+Rows participating in duplicate keys: 140352
+Extra rows beyond one per key: 70176
+Duplicate keys: 70176
+Duplicate groups with differing PM2.5: 0
+Duplicate groups with identical PM2.5: 70176
+
+Duplicate group-size distribution:
+2    70176
+
+Sample duplicate records:
+                                 station_name                 timestamp   pm25
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:00:00+00:00  92.37
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:00:00+00:00  92.37
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:15:00+00:00  92.37
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:15:00+00:00  92.37
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:30:00+00:00  91.86
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:30:00+00:00  91.86
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:45:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 00:45:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:00:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:00:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:15:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:15:00+00:00  91.19
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:30:00+00:00  96.18
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:30:00+00:00  96.18
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:45:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 01:45:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:00:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:00:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:15:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:15:00+00:00 102.71
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:30:00+00:00 103.64
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:30:00+00:00 103.64
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:45:00+00:00 104.87
+Savitribai Phule Pune University, Pune - MPCB 2024-01-01 02:45:00+00:00 104.87
+
+--- EXACT FULL-ROW DUPLICATES ---
+Exact duplicated full rows beyond first: 0
+
+--- EXTREME PM2.5 VALUES ---
+PM2.5 summary:
+count    594771.000000
+mean         39.467644
+std          33.815143
+min           0.010000
+95%          99.760000
+99%         148.590000
+99.9%       301.823000
+max         994.790000
+
+Highest 25 readings:
+                                 station_name                 timestamp   pm25   pm10    no2   so2   co  ozone  temperature  humidity  wind_speed  wind_direction           source_file Station ID
+     Revenue Colony-Shivajinagar, Pune - IITM 2024-05-16 08:30:00+00:00 994.79    NaN  71.37 23.96 0.77  28.25          NaN       NaN         NaN             NaN      shivajinagar.csv  site_5409
+                      Karve Road, Pune - MPCB 2024-11-15 20:00:00+00:00 990.96    NaN 239.48   NaN 0.03    NaN          NaN       NaN       28.57             NaN        karve_road.csv   site_292
+                      Karve Road, Pune - MPCB 2025-03-06 08:00:00+00:00 936.47    NaN 234.12   NaN 0.03 468.23          NaN       NaN       27.94             NaN        karve_road.csv   site_292
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 21:30:00+00:00 934.45    NaN  13.40  3.00 0.81   2.59        24.20     76.40        0.06          113.23 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 21:30:00+00:00 934.45    NaN  13.40  3.00 0.81   2.59        24.20     76.40        0.06          113.23              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 21:45:00+00:00 934.45    NaN  12.53  3.21 0.81   2.14        23.91     78.03        0.45          158.24 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 21:45:00+00:00 934.45    NaN  12.53  3.21 0.81   2.14        23.91     78.03        0.45          158.24              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 22:00:00+00:00 934.45    NaN  12.23  3.38 0.85   0.81        23.71     79.36        0.45          203.02 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 22:00:00+00:00 934.45    NaN  12.23  3.38 0.85   0.81        23.71     79.36        0.45          203.02              sppu.csv  site_5767
+                    Katraj Dairy, Pune - MPCB 2024-07-14 10:30:00+00:00 916.85    NaN    NaN  0.71 1.37    NaN        27.08     80.25        0.50          234.00      katraj_diary.csv  site_5766
+                    Katraj Dairy, Pune - MPCB 2024-07-14 10:45:00+00:00 916.85    NaN    NaN   NaN 1.10    NaN        27.53     78.57        0.28          210.38      katraj_diary.csv  site_5766
+                    Katraj Dairy, Pune - MPCB 2024-07-14 11:00:00+00:00 916.85    NaN    NaN   NaN 1.00    NaN        27.86     77.41        0.73          218.75      katraj_diary.csv  site_5766
+                      Karve Road, Pune - MPCB 2024-08-24 22:45:00+00:00 893.42    NaN 215.91   NaN 0.03    NaN          NaN       NaN       46.03             NaN        karve_road.csv   site_292
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:30:00+00:00 890.44 983.70  42.69  7.71 1.55    NaN        23.92     80.93        0.33          187.25 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:30:00+00:00 890.44 983.70  42.69  7.71 1.55    NaN        23.92     80.93        0.33          187.25              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:45:00+00:00 890.44 983.70  43.27  7.79 1.47    NaN        23.84     80.92        0.46          172.99 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:45:00+00:00 890.44 983.70  43.27  7.79 1.47    NaN        23.84     80.92        0.46          172.99              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 01:00:00+00:00 890.44 983.70  47.23  8.26 1.66    NaN        23.84     80.97        0.47          158.55 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 01:00:00+00:00 890.44 983.70  47.23  8.26 1.66    NaN        23.84     80.97        0.47          158.55              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:15:00+00:00 878.55 974.48  44.01  7.46 1.58    NaN        24.12     80.56        0.43          164.38 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 00:15:00+00:00 878.55 974.48  44.01  7.46 1.58    NaN        24.12     80.56        0.43          164.38              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 22:15:00+00:00 868.43    NaN  12.42  3.32 0.89    NaN        23.65     79.98        0.46          194.78 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2025-10-10 22:15:00+00:00 868.43    NaN  12.42  3.32 0.89    NaN        23.65     79.98        0.46          194.78              sppu.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 01:15:00+00:00 861.66 900.81  42.20  8.79 1.53    NaN        23.71     81.21        0.47          129.40 punepollution.csv.csv  site_5767
+Savitribai Phule Pune University, Pune - MPCB 2024-11-02 01:15:00+00:00 861.66 900.81  42.20  8.79 1.53    NaN        23.71     81.21        0.47          129.40              sppu.csv  site_5767
+
+--- EXTREME READINGS BY STATION ---
+                                               count  minimum  maximum        mean
+station_name                                                                      
+Savitribai Phule Pune University, Pune - MPCB     82   544.76   934.45  745.674146
+Karve Road, Pune - MPCB                           50   508.08   990.96  661.140200
+Hadapsar, Pune - IITM                              9   506.72   621.89  586.401111
+Katraj Dairy, Pune - MPCB                          6   646.20   916.85  827.491667
+Revenue Colony-Shivajinagar, Pune - IITM           6   514.79   994.79  642.220000
+Bhumkar Nagar, Pune - IITM                         4   530.20   788.08  665.607500
+Alandi, Pune - IITM                                3   537.32   849.75  745.606667
+Bhosari, Pune - IITM                               2   645.20   760.64  702.920000
+
+--- RAW FILE INVENTORY ---
+alandi.csv: 3,833,770 bytes
+bhosri.csv: 5,533,047 bytes
+bhumkarnagar.csv: 11,151,401 bytes
+dhankwadi.csv: 2,596,505 bytes
+hadpsar.csv: 4,356,470 bytes
+karve_road.csv: 10,104,589 bytes
+katraj_diary.csv: 12,392,945 bytes
+mhada_colony.csv: 9,888,920 bytes
+nigdi.csv: 9,483,219 bytes
+panchawati_pashan.csv: 11,280,260 bytes
+punepollution.csv.csv: 14,713,165 bytes
+shivajinagar.csv: 11,224,425 bytes
+sppu.csv: 14,713,165 bytes

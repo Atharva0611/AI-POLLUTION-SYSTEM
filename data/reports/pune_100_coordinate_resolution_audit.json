@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-10-17T16:03:45.894374",
+  "source_master": "data\\processed\\pune_100_locations.csv",
+  "source_rows": 99,
+  "unique_location_names": 99,
+  "candidate_rows": 99,
+  "candidate_match_review_required": 0,
+  "unresolved": 99,
+  "note": "Geocoding candidates are not verified coordinates. No production model or source dataset was modified.",
+  "backup_directory": "data\\reports\\backups\\pune100_before_coordinates_20261017_160207",
+  "candidate_file": "data\\processed\\pune_100_locations_coordinate_candidate.csv"
+}

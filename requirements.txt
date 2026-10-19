@@ -1,0 +1,16 @@
+pandas
+numpy
+scikit-learn
+xgboost
+shap
+requests
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+geoalchemy2
+langchain
+langgraph
+chromadb
+python-dotenv
+joblib

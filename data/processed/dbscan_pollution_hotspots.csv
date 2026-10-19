@@ -1,0 +1,6 @@
+station_name,avg_pm25,max_pm25,median_pm25,observations,cluster,hotspot_type
+Karve Road,45.38335095073203,893.42,38.675,10974,-1,Isolated
+Mhada Colony,43.45990514011846,255.865,35.155,15927,-1,Isolated
+Alandi,42.03474155177075,849.75,31.43,6165,-1,Isolated
+SPPU,35.073736820888115,867.255,27.7625,16124,-1,Isolated
+Panchawati_Pashan,27.509375208998332,199.2725,22.26333333333333,10965,-1,Isolated

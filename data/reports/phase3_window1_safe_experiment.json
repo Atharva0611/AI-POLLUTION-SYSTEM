@@ -1,0 +1,98 @@
+{
+  "experiment": "isolated_window1_validation_selected_blend",
+  "train_rows": 55821,
+  "validation_rows": 16074,
+  "window1_rows": 23234,
+  "train_end": "2024-11-17 14:00:00+00:00",
+  "validation_start": "2024-11-17 15:00:00+00:00",
+  "window1_start": "2025-02-06 01:00:00+00:00",
+  "window1_end": "2025-05-26 15:00:00+00:00",
+  "selected_weight": 0.05,
+  "validation_mae": 6.7318,
+  "metrics": {
+    "persistence": {
+      "mae": 4.8477,
+      "rmse": 8.637,
+      "r2": 0.9185
+    },
+    "residual_xgboost": {
+      "mae": 6.3297,
+      "rmse": 12.1497,
+      "r2": 0.8388
+    },
+    "validation_selected_blend": {
+      "mae": 4.8668,
+      "rmse": 8.5387,
+      "r2": 0.9204
+    }
+  },
+  "per_station": [
+    {
+      "station": "Bhosari, Pune - IITM",
+      "rows": 1972,
+      "persistence_mae": 5.6277,
+      "blend_mae": 5.5685
+    },
+    {
+      "station": "Bhumkar Nagar, Pune - IITM",
+      "rows": 2371,
+      "persistence_mae": 8.2507,
+      "blend_mae": 8.1207
+    },
+    {
+      "station": "Dhankawadi, Pune - IITM",
+      "rows": 891,
+      "persistence_mae": 5.5748,
+      "blend_mae": 5.5004
+    },
+    {
+      "station": "Hadapsar, Pune - IITM",
+      "rows": 1857,
+      "persistence_mae": 5.9099,
+      "blend_mae": 5.8215
+    },
+    {
+      "station": "Karve Road, Pune - MPCB",
+      "rows": 2376,
+      "persistence_mae": 1.0057,
+      "blend_mae": 1.7484
+    },
+    {
+      "station": "Katraj Dairy, Pune - MPCB",
+      "rows": 2165,
+      "persistence_mae": 3.0087,
+      "blend_mae": 2.9819
+    },
+    {
+      "station": "Mhada Colony, Pune - IITM",
+      "rows": 2142,
+      "persistence_mae": 6.6186,
+      "blend_mae": 6.5669
+    },
+    {
+      "station": "Panchawati_Pashan, Pune - IITM",
+      "rows": 2199,
+      "persistence_mae": 2.8802,
+      "blend_mae": 2.8586
+    },
+    {
+      "station": "Revenue Colony-Shivajinagar, Pune - IITM",
+      "rows": 2505,
+      "persistence_mae": 7.1621,
+      "blend_mae": 7.0527
+    },
+    {
+      "station": "Savitribai Phule Pune University, Pune - MPCB",
+      "rows": 2558,
+      "persistence_mae": 1.9575,
+      "blend_mae": 1.9215
+    },
+    {
+      "station": "Transport Nagar-Nigdi, Pune - IITM",
+      "rows": 2198,
+      "persistence_mae": 6.2183,
+      "blend_mae": 6.1807
+    }
+  ],
+  "production_artifacts_modified": false
+}

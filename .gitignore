@@ -1,0 +1,112 @@
+﻿.venv/
+venv/
+env/
+
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+
+.vscode/
+.idea/
+
+.ipynb_checkpoints/
+
+*.log
+*.tmp
+*.bak
+
+Thumbs.db
+.DS_Store
+
+data/vector_store/
+data/processed/shap/
+
+# Local secrets and Python environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# JavaScript dependencies and build output
+node_modules/
+**/node_modules/
+dist/
+build/
+
+# Temporary files and backup copies
+*.backup
+*.bak
+*.backup_*
+*.before_*
+*.phase*-backup*
+*.regression_backup
+.oriva_*.py
+
+# Large generated data and model artifacts
+data/raw/
+models/**/*.pkl
+backend/rag/store/*.pkl
+
+# Large generated CPCB datasets (keep locally; do not push to GitHub)
+data/processed/pune_cpcb_combined_raw.csv
+data/processed/pune_cpcb_cleaned_15min.csv
+
+data/processed/pune_cpcb_combined_raw.csv
+data/processed/pune_cpcb_cleaned_15min.csv
+
+# Local backups and temporary candidates
+*.bak
+*.backup
+*.phase1_backup
+*.pre_*
+*.candidate.csv
+backup_*/
+backups/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+
+# Frontend dependencies and builds
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Large generated datasets
+data/processed/pune_cpcb_combined_raw.csv
+data/processed/pune_cpcb_cleaned_15min.csv
+
+# ORIVA local backups and temporary artifacts
+backups/
+backup_*/
+**/backups/
+**/backup_*/
+*.bak*
+*.backup*
+*.phase1_backup*
+*.pre_*
+*.before*
+*.chat_backup*
+*.chatbackup*
+data/reports/backups/
+data/processed/*candidate*
+oriva_anomaly_source_agents_review.txt
+oriva_routing_diagnostics.txt
+project_audit.txt
+test_results.txt

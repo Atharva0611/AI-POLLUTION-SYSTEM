@@ -1,0 +1,201 @@
+{
+  "available": true,
+  "method": "SHAP TreeExplainer",
+  "model": "C:\\final year project\\AI-POLLUTION-SYSTEM\\models\\forecasting\\pune_multistation_xgboost.pkl",
+  "feature_file": "C:\\final year project\\AI-POLLUTION-SYSTEM\\models\\forecasting\\pune_multistation_features.pkl",
+  "data": "C:\\final year project\\AI-POLLUTION-SYSTEM\\data\\processed\\pune_cpcb_all_stations_hourly.csv",
+  "station": "Transport Nagar-Nigdi, Pune - IITM",
+  "timestamp": "2025-12-31T23:00:00+00:00",
+  "predicted_next_hour_pm25": 48.14020919799805,
+  "expected_value": 41.00273513793945,
+  "reconstructed_prediction": 48.14015197753906,
+  "additivity_error": 5.7220458984375e-05,
+  "additivity_check": true,
+  "rows_explained": 1000,
+  "feature_count": 72,
+  "top_global_features": [
+    {
+      "feature": "pm25",
+      "mean_abs_shap": 14.892524719238281,
+      "mean_shap": -3.027484893798828,
+      "importance_percent": 49.43505859375
+    },
+    {
+      "feature": "pm25_lag_1",
+      "mean_abs_shap": 1.7563259601593018,
+      "mean_shap": 0.6171495318412781,
+      "importance_percent": 5.830044269561768
+    },
+    {
+      "feature": "pm10",
+      "mean_abs_shap": 1.3653180599212646,
+      "mean_shap": 0.13494610786437988,
+      "importance_percent": 4.532111644744873
+    },
+    {
+      "feature": "hour",
+      "mean_abs_shap": 1.2363189458847046,
+      "mean_shap": -0.020197274163365364,
+      "importance_percent": 4.103904724121094
+    },
+    {
+      "feature": "co",
+      "mean_abs_shap": 0.8939535021781921,
+      "mean_shap": -0.318214476108551,
+      "importance_percent": 2.967438220977783
+    },
+    {
+      "feature": "no2",
+      "mean_abs_shap": 0.886920154094696,
+      "mean_shap": -0.3417448103427887,
+      "importance_percent": 2.9440910816192627
+    },
+    {
+      "feature": "pm25_lag_24",
+      "mean_abs_shap": 0.6916307210922241,
+      "mean_shap": -0.1361253559589386,
+      "importance_percent": 2.295836925506592
+    },
+    {
+      "feature": "pm25_lag_3",
+      "mean_abs_shap": 0.5434452891349792,
+      "mean_shap": -0.34457626938819885,
+      "importance_percent": 1.8039419651031494
+    },
+    {
+      "feature": "pm10_lag_1",
+      "mean_abs_shap": 0.5385042428970337,
+      "mean_shap": 0.03396499902009964,
+      "importance_percent": 1.787540316581726
+    },
+    {
+      "feature": "humidity",
+      "mean_abs_shap": 0.48466232419013977,
+      "mean_shap": 0.09228811413049698,
+      "importance_percent": 1.6088144779205322
+    },
+    {
+      "feature": "pm25_lag_6",
+      "mean_abs_shap": 0.4828905761241913,
+      "mean_shap": -0.0979144498705864,
+      "importance_percent": 1.602933406829834
+    },
+    {
+      "feature": "day_of_year",
+      "mean_abs_shap": 0.4356580376625061,
+      "mean_shap": 0.03838608041405678,
+      "importance_percent": 1.446147084236145
+    },
+    {
+      "feature": "pm25_lag_12",
+      "mean_abs_shap": 0.4268723130226135,
+      "mean_shap": -0.018361195921897888,
+      "importance_percent": 1.4169832468032837
+    },
+    {
+      "feature": "co_lag_3",
+      "mean_abs_shap": 0.3924952447414398,
+      "mean_shap": 0.11792445182800293,
+      "importance_percent": 1.3028701543807983
+    },
+    {
+      "feature": "no2_lag_6",
+      "mean_abs_shap": 0.3036414086818695,
+      "mean_shap": -0.09167221188545227,
+      "importance_percent": 1.0079238414764404
+    }
+  ],
+  "top_local_factors": [
+    {
+      "feature": "pm25",
+      "value": 50.12,
+      "shap": 5.459643363952637,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "pm25_lag_1",
+      "value": 54.805,
+      "shap": 1.9409059286117554,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "pm10",
+      "value": 140.3,
+      "shap": 1.8162081241607666,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "co",
+      "value": 2.1566666666666667,
+      "shap": 1.457829475402832,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "pm10_lag_1",
+      "value": 140.515,
+      "shap": -0.9008692502975464,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "pm25_lag_6",
+      "value": 17.2425,
+      "shap": -0.8941317796707153,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "day_of_year",
+      "value": 365.0,
+      "shap": 0.8151571750640869,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "co_lag_3",
+      "value": 2.005,
+      "shap": -0.6914348602294922,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "no2_lag_3",
+      "value": 38.755,
+      "shap": -0.36697348952293396,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "pm25_lag_24",
+      "value": 35.1425,
+      "shap": -0.36512327194213867,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "month",
+      "value": 12.0,
+      "shap": 0.2300858497619629,
+      "direction": "INCREASES_PREDICTION"
+    },
+    {
+      "feature": "hour",
+      "value": 23.0,
+      "shap": -0.21688105165958405,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "pm10_lag_3",
+      "value": 97.8825,
+      "shap": -0.1703225076198578,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "co_lag_24",
+      "value": 1.0,
+      "shap": -0.1333271861076355,
+      "direction": "DECREASES_PREDICTION"
+    },
+    {
+      "feature": "co_lag_1",
+      "value": 2.1175,
+      "shap": -0.1321418136358261,
+      "direction": "DECREASES_PREDICTION"
+    }
+  ],
+  "note": "SHAP explains the XGBoost prediction. SHAP values are not causal source apportionment."
+}

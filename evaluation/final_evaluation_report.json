@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "xgboost_model": true,
+    "feature_names": true,
+    "weather_service": true,
+    "ensemble_service": true,
+    "policy_agent": true,
+    "langgraph_agent": true,
+    "run_modules": true,
+    "location_resolver": true,
+    "postgres_schema": true,
+    "chroma_builder": false,
+    "shap_explainer": true,
+    "source_analysis": true
+  },
+  "router": {
+    "status": "unavailable",
+    "reason": "ModuleNotFoundError: No module named 'backend'"
+  },
+  "xgboost": {
+    "status": "previous_benchmark",
+    "mae": 1.84,
+    "rmse": 21.58,
+    "r2": 0.7058,
+    "note": "Previous development benchmark. Run a held-out chronological test before using this as final paper/report evidence."
+  },
+  "anomaly": {
+    "status": "completed",
+    "rows": 59795,
+    "anomaly_count": 1196,
+    "anomaly_rate": 0.02000167238063383,
+    "mean_anomaly_score": 0.1851663409764232,
+    "ground_truth_available": false,
+    "note": "Precision, recall and F1 require labeled anomaly ground truth."
+  },
+  "hotspots": {
+    "status": "completed",
+    "rows": 2,
+    "hotspot_count": 0
+  },
+  "shap": {
+    "status": "unavailable",
+    "reason": "SHAP output directory not found"
+  },
+  "source_analysis": {
+    "status": "unavailable",
+    "reason": "source_analysis directory not found"
+  },
+  "chroma": {
+    "status": "unavailable",
+    "reason": "Chroma directory not found"
+  },
+  "database": {
+    "status": "not_connected",
+    "reason": "OperationalError: connection to server at \"localhost\" (::1), port 5432 failed: FATAL:  password authentication failed for user \"postgres\"\n"
+  }
+}

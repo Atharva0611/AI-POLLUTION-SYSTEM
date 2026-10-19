@@ -1,0 +1,100 @@
+location_id,location_name,country,state,city,location_type,source
+PUNE_001,Alandi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_002,Aundh,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_003,Baner,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_004,Balewadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_005,Bavdhan,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_006,Bhugaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_007,Bhukum,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_008,Bhosari,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_009,Bibwewadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_010,Bhumkar Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_011,Camp,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_012,Chakan,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_013,Chinchwad,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_014,Dapodi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_015,Dattawadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_016,Deccan Gymkhana,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_017,Dhankawadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_018,Dhayari,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_019,Erandwane,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_020,Fatima Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_021,Fursungi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_022,Hadapsar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_023,Hinjawadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_024,Kalyani Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_025,Katraj,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_026,Kharadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_027,Kondhwa,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_028,Kothrud,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_029,Koregaon Park,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_030,Karve Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_031,Karve Road,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_032,Lohegaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_033,Magarpatta,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_034,Mahalunge,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_035,Manjari,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_036,Mangalwar Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_037,Market Yard,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_038,Mhada Colony,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_039,Model Colony,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_040,Moshi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_041,Mukund Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_042,Nagar Road,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_043,Nanded,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_044,Narayan Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_045,Nigdi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_046,Pashan,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_047,Pimpri,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_048,Pimple Gurav,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_049,Pimple Nilakh,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_050,Pimple Saudagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_051,Pirangut,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_052,Pune Cantonment,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_053,Pune Station,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_054,Rahatani,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_055,Ranjangaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_056,Rasta Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_057,Raviwar Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_058,Revenue Colony,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_059,Sadashiv Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_060,Sangamwadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_061,Sanjay Park,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_062,Sasane Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_063,Senapati Bapat Road,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_064,Shaniwar Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_065,Shivajinagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_066,Sinhagad Road,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_067,Somwar Peth,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_068,SPPU,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_069,Sus,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_070,Swargate,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_071,Tathawade,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_072,Thergaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_073,Tingre Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_074,Undri,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_075,Viman Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_076,Vishrantwadi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_077,Wadgaon Budruk,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_078,Wadgaon Sheri,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_079,Wagholi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_080,Wanowrie,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_081,Warje,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_082,Yerawada,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_083,Akurdi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_084,Ambegaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_085,Anand Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_086,Bopodi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_087,Dhanori,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_088,Gultekdi,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_089,Keshav Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_090,Kondhwa Khurd,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_091,Mundhwa,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_092,NIBM,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_093,Parvati,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_094,Sinhagad,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_095,Talwade,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_096,Vadgaon Sheri,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_097,Wakad,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_098,Wadgaon,India,Maharashtra,Pune,analysis_location,Pune analysis master list
+PUNE_099,Vishal Nagar,India,Maharashtra,Pune,analysis_location,Pune analysis master list

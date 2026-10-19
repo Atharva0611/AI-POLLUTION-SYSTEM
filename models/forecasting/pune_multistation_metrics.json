@@ -1,0 +1,27 @@
+{
+  "model":"Pune Multi-Station XGBoost",
+  "station_count":12,
+  "stations":[
+    "Alandi, Pune - IITM",
+    "Bhosari, Pune - IITM",
+    "Bhumkar Nagar, Pune - IITM",
+    "Dhankawadi, Pune - IITM",
+    "Hadapsar, Pune - IITM",
+    "Karve Road, Pune - MPCB",
+    "Katraj Dairy, Pune - MPCB",
+    "Mhada Colony, Pune - IITM",
+    "Panchawati_Pashan, Pune - IITM",
+    "Revenue Colony-Shivajinagar, Pune - IITM",
+    "Savitribai Phule Pune University, Pune - MPCB",
+    "Transport Nagar-Nigdi, Pune - IITM"
+  ],
+  "rows":136938,
+  "train_rows":97257,
+  "validation_rows":19914,
+  "test_rows":19767,
+  "MAE":8.1794756338,
+  "RMSE":16.5767901905,
+  "R2":0.8682973614,
+  "target":"CPCB PM2.5 next hour",
+  "data_source":"C:\\final year project\\AI-POLLUTION-SYSTEM\\data\\processed\\pune_cpcb_all_stations_hourly.csv"
+}

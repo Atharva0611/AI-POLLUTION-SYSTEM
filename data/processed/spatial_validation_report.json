@@ -1,0 +1,79 @@
+{
+  "validation_metadata": {
+    "dataset": "pune_cpcb_all_stations_hourly.csv",
+    "total_records": 136938,
+    "station_count": 12,
+    "stations_covered": [
+      "Alandi, Pune - IITM",
+      "Bhosari, Pune - IITM",
+      "Bhumkar Nagar, Pune - IITM",
+      "Dhankawadi, Pune - IITM",
+      "Hadapsar, Pune - IITM",
+      "Karve Road, Pune - MPCB",
+      "Katraj Dairy, Pune - MPCB",
+      "Mhada Colony, Pune - IITM",
+      "Panchawati_Pashan, Pune - IITM",
+      "Revenue Colony-Shivajinagar, Pune - IITM",
+      "Savitribai Phule Pune University, Pune - MPCB",
+      "Transport Nagar-Nigdi, Pune - IITM"
+    ],
+    "region": "Maharashtra (Pune Metropolitan Area & Western Ghats Foothills)"
+  },
+  "chronological_holdout": {
+    "train_rows": 97257,
+    "val_rows": 19914,
+    "test_rows": 19767,
+    "test_start_date": "2025-09-13 08:00:00+00:00",
+    "test_end_date": "2025-12-31 22:00:00+00:00",
+    "xgboost_metrics": {
+      "MAE": 7.993,
+      "RMSE": 16.422,
+      "R2": 0.871,
+      "Mean_Bias": -1.53
+    },
+    "persistence_baseline_metrics": {
+      "MAE": 7.792,
+      "RMSE": 15.356,
+      "R2": 0.887,
+      "Mean_Bias": -0.029
+    }
+  },
+  "leave_one_station_out_spatial_validation": [
+    {
+      "held_out_station": "Alandi, Pune - IITM",
+      "test_observations": 6163,
+      "MAE": 6.098,
+      "RMSE": 16.046,
+      "R2": 0.819,
+      "Mean_Bias": -0.567
+    },
+    {
+      "held_out_station": "Bhosari, Pune - IITM",
+      "test_observations": 9267,
+      "MAE": 4.847,
+      "RMSE": 14.504,
+      "R2": 0.633,
+      "Mean_Bias": 0.138
+    },
+    {
+      "held_out_station": "Bhumkar Nagar, Pune - IITM",
+      "test_observations": 12763,
+      "MAE": 13.36,
+      "RMSE": 32.093,
+      "R2": 0.439,
+      "Mean_Bias": 6.012
+    },
+    {
+      "held_out_station": "Dhankawadi, Pune - IITM",
+      "test_observations": 4284,
+      "MAE": 5.166,
+      "RMSE": 9.425,
+      "R2": 0.903,
+      "Mean_Bias": 0.011
+    }
+  ],
+  "coverage_limitations": {
+    "supported_geographic_radius_km": 50.0,
+    "nationwide_coverage_statement": "The current verified CPCB training dataset contains 12 active monitoring stations in Maharashtra. While the system architecture dynamically accepts arbitrary coordinates anywhere in India, high-confidence empirical CPCB forecasts are statistically valid within a 50 km radius of calibrated stations. For locations beyond this radius (e.g. Delhi, Kolkata, Bengaluru), the system triggers CASE C (INSUFFICIENT_DATA), honestly reporting coverage limitations and suppressing misleading synthetic forecasts."
+  }
+}

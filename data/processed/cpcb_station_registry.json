@@ -1,0 +1,361 @@
+{
+  "Alandi, Pune - IITM": {
+    "station_id": "site_5405",
+    "station_name": "Alandi, Pune - IITM",
+    "clean_name": "Alandi",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.677245,
+    "longitude": 73.898113,
+    "total_observations": 9444,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-01-28 11:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 34.72,
+      "pm10": 34.96,
+      "no2": 37.46,
+      "so2": 100.0,
+      "co": 35.03,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 63.17,
+    "data_quality_score": 0.368,
+    "is_active": true
+  },
+  "Bhosari, Pune - IITM": {
+    "station_id": "site_5406",
+    "station_name": "Bhosari, Pune - IITM",
+    "clean_name": "Bhosari",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.621009,
+    "longitude": 73.85013,
+    "total_observations": 17077,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-12-12 12:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 45.72,
+      "pm10": 46.43,
+      "no2": 50.4,
+      "so2": 100.0,
+      "co": 49.18,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 70.25,
+    "data_quality_score": 0.297,
+    "is_active": true
+  },
+  "Bhumkar Nagar, Pune - IITM": {
+    "station_id": "site_5988",
+    "station_name": "Bhumkar Nagar, Pune - IITM",
+    "clean_name": "Bhumkar Nagar",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.603027,
+    "longitude": 73.749413,
+    "total_observations": 14147,
+    "start_timestamp": "2024-05-21 13:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 9.77,
+      "pm10": 10.67,
+      "no2": 10.41,
+      "so2": 100.0,
+      "co": 10.39,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 48.75,
+    "data_quality_score": 0.512,
+    "is_active": true
+  },
+  "Dhankawadi, Pune - IITM": {
+    "station_id": "site_6012",
+    "station_name": "Dhankawadi, Pune - IITM",
+    "clean_name": "Dhankawadi",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.46542,
+    "longitude": 73.850152,
+    "total_observations": 8399,
+    "start_timestamp": "2025-01-15 11:00:00+00:00",
+    "latest_timestamp": "2025-12-31 09:00:00+00:00",
+    "pollutants_available": [
+      "PM25"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 48.97,
+      "pm10": 50.97,
+      "no2": 63.76,
+      "so2": 100.0,
+      "co": 52.61,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 73.76,
+    "data_quality_score": 0.262,
+    "is_active": true
+  },
+  "Hadapsar, Pune - IITM": {
+    "station_id": "site_5407",
+    "station_name": "Hadapsar, Pune - IITM",
+    "clean_name": "Hadapsar",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.500774,
+    "longitude": 73.937915,
+    "total_observations": 14174,
+    "start_timestamp": "2024-05-20 10:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 49.6,
+      "pm10": 50.95,
+      "no2": 60.92,
+      "so2": 100.0,
+      "co": 63.97,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 75.06,
+    "data_quality_score": 0.249,
+    "is_active": true
+  },
+  "Karve Road, Pune - MPCB": {
+    "station_id": "site_292",
+    "station_name": "Karve Road, Pune - MPCB",
+    "clean_name": "Karve Road",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.488664,
+    "longitude": 73.814088,
+    "total_observations": 12214,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-05-23 21:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "SO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 10.15,
+      "pm10": 23.61,
+      "no2": 10.35,
+      "so2": 10.44,
+      "co": 10.15,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 37.81,
+    "data_quality_score": 0.622,
+    "is_active": true
+  },
+  "Katraj Dairy, Pune - MPCB": {
+    "station_id": "site_5766",
+    "station_name": "Katraj Dairy, Pune - MPCB",
+    "clean_name": "Katraj Dairy",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.501805,
+    "longitude": 73.80936,
+    "total_observations": 17544,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "SO2",
+      "CO",
+      "NH3"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 20.62,
+      "pm10": 21.33,
+      "no2": 22.67,
+      "so2": 25.19,
+      "co": 22.37,
+      "o3": 100.0,
+      "nh3": 22.31
+    },
+    "average_missing_pct": 33.5,
+    "data_quality_score": 0.665,
+    "is_active": true
+  },
+  "Mhada Colony, Pune - IITM": {
+    "station_id": "site_5404",
+    "station_name": "Mhada Colony, Pune - IITM",
+    "clean_name": "Mhada Colony",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5528,
+    "longitude": 73.94,
+    "total_observations": 17544,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 9.22,
+      "pm10": 9.55,
+      "no2": 15.01,
+      "so2": 100.0,
+      "co": 9.96,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 49.11,
+    "data_quality_score": 0.509,
+    "is_active": true
+  },
+  "Panchawati_Pashan, Pune - IITM": {
+    "station_id": "site_5996",
+    "station_name": "Panchawati_Pashan, Pune - IITM",
+    "clean_name": "Panchawati Pashan",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.530614,
+    "longitude": 73.812351,
+    "total_observations": 12750,
+    "start_timestamp": "2024-07-18 18:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 14.0,
+      "pm10": 14.74,
+      "no2": 25.48,
+      "so2": 100.0,
+      "co": 25.35,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 54.22,
+    "data_quality_score": 0.458,
+    "is_active": true
+  },
+  "Revenue Colony-Shivajinagar, Pune - IITM": {
+    "station_id": "site_5409",
+    "station_name": "Revenue Colony-Shivajinagar, Pune - IITM",
+    "clean_name": "Shivajinagar",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.529557,
+    "longitude": 73.849141,
+    "total_observations": 17536,
+    "start_timestamp": "2024-01-01 08:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "SO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 14.29,
+      "pm10": 14.65,
+      "no2": 19.74,
+      "so2": 20.98,
+      "co": 18.5,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 41.17,
+    "data_quality_score": 0.588,
+    "is_active": true
+  },
+  "Savitribai Phule Pune University, Pune - MPCB": {
+    "station_id": "site_5767",
+    "station_name": "Savitribai Phule Pune University, Pune - MPCB",
+    "clean_name": "SPPU",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.552844,
+    "longitude": 73.826644,
+    "total_observations": 17544,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "SO2",
+      "CO",
+      "NH3"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 8.09,
+      "pm10": 8.36,
+      "no2": 13.37,
+      "so2": 10.9,
+      "co": 8.62,
+      "o3": 100.0,
+      "nh3": 11.88
+    },
+    "average_missing_pct": 23.03,
+    "data_quality_score": 0.77,
+    "is_active": true
+  },
+  "Transport Nagar-Nigdi, Pune - IITM": {
+    "station_id": "site_5408",
+    "station_name": "Transport Nagar-Nigdi, Pune - IITM",
+    "clean_name": "Nigdi",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.663927,
+    "longitude": 73.76765,
+    "total_observations": 17544,
+    "start_timestamp": "2024-01-01 00:00:00+00:00",
+    "latest_timestamp": "2025-12-31 23:00:00+00:00",
+    "pollutants_available": [
+      "PM25",
+      "PM10",
+      "NO2",
+      "CO"
+    ],
+    "missing_pct_by_pollutant": {
+      "pm25": 17.99,
+      "pm10": 20.96,
+      "no2": 20.75,
+      "so2": 100.0,
+      "co": 19.05,
+      "o3": 100.0,
+      "nh3": 100.0
+    },
+    "average_missing_pct": 54.11,
+    "data_quality_score": 0.459,
+    "is_active": true
+  }
+}

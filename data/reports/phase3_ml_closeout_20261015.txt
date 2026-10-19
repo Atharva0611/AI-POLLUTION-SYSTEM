@@ -1,0 +1,26 @@
+﻿ORIVA - Phase 3 Machine Learning Closeout
+Generated: 2026-10-15 19:18:22 +05:30
+
+REGRESSION
+Full pytest suite: 55 passed, 3 SHAP deprecation warnings.
+Candidate stale-observation test: passed.
+Candidate missing-current-PM2.5 test: passed.
+
+MODEL EVALUATION
+Persistence baseline: MAE=7.5563; RMSE=14.3666; R2=0.8997.
+Direct XGBoost: MAE=7.7995; RMSE=15.7462; R2=0.8796.
+Residual XGBoost: MAE=7.4288; RMSE=14.8790; R2=0.8925.
+Selected validation blend on final test: MAE=6.9831; RMSE=13.8338; R2=0.9070.
+Rolling-window performance is mixed; do not promote the candidate automatically.
+
+PRODUCTION ARTIFACT INVENTORY
+C:\final year project\AI-POLLUTION-SYSTEM\models\forecasting\pune_multistation_xgboost.pkl | bytes=5565036 | modified=09/19/2026 14:01:14
+C:\final year project\AI-POLLUTION-SYSTEM\models\forecasting\pune_multistation_features.pkl | bytes=1307 | modified=09/19/2026 14:01:14
+C:\final year project\AI-POLLUTION-SYSTEM\models\forecasting\pune_multistation_medians.pkl | bytes=1955 | modified=09/19/2026 14:01:14
+C:\final year project\AI-POLLUTION-SYSTEM\models\forecasting\pune_multistation_stations.pkl | bytes=383 | modified=09/19/2026 14:01:14
+C:\final year project\AI-POLLUTION-SYSTEM\models\forecasting\pune_multistation_metrics.json | bytes=840 | modified=09/19/2026 14:01:14
+
+DECISION
+Keep production model artifacts unchanged pending model-selection approval.
+Candidate safety checks are tested; candidate production integration is not established by this report.
+Phase 3 remains pending formal sign-off.

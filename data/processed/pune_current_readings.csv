@@ -1,0 +1,50 @@
+country,state,city,station,last_update,observation_time_ist,latitude,longitude,pollutant_id,pollutant_min,pollutant_max,pollutant_avg
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,NO2,0.0,49.0,18.0
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,CO,21.0,110.0,67.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,CO,20.0,84.0,56.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,NO2,20.0,32.0,26.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,PM2.5,62.0,158.0,98.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,OZONE,15.0,60.0,35.0
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,PM10,,,
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,NH3,,,
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,OZONE,50.0,50.0,50.0
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,OZONE,4.0,130.0,49.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,PM10,104.0,147.0,130.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,NH3,,,
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,SO2,15.0,18.0,17.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,CO,26.0,75.0,45.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,NO2,5.0,39.0,19.0
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,PM2.5,47.0,216.0,101.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,SO2,,,
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,NH3,2.0,31.0,11.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,PM2.5,11.0,117.0,47.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,SO2,4.0,4.0,4.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,SO2,,,
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,CO,2.0,22.0,10.0
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,NH3,,,
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,CO,36.0,76.0,55.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,NO2,27.0,116.0,60.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,CO,31.0,116.0,70.0
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,PM2.5,44.0,97.0,72.0
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,SO2,2.0,5.0,3.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,PM2.5,69.0,194.0,118.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,NO2,60.0,136.0,94.0
+India,Maharashtra,Pune,"Revenue Colony-Shivajinagar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.530085,73.849598,OZONE,4.0,33.0,12.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,OZONE,10.0,10.0,10.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,PM10,90.0,140.0,115.0
+India,Maharashtra,Pune,"Panchawati_Pashan, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.536457,73.805454,NH3,,,
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,NO2,19.0,34.0,24.0
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,SO2,,,
+India,Maharashtra,Pune,"Dhankawadi, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.459883,73.852193,OZONE,1.0,5.0,3.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,PM2.5,60.0,176.0,107.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,OZONE,3.0,36.0,19.0
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,NH3,,,
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,SO2,,,
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,CO,8.0,8.0,8.0
+India,Maharashtra,Pune,"Savitribai Phule Pune University, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.547056,73.826908,PM10,102.0,182.0,132.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,PM10,44.0,161.0,88.0
+India,Maharashtra,Pune,"Katraj Dairy, Pune - MPCB",12-10-2026 23:00:00,2026-10-12 23:00:00,18.45445,73.854155,NH3,2.0,3.0,2.0
+India,Maharashtra,Pune,"Mhada Colony, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.57304,73.927715,PM10,102.0,144.0,115.0
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,PM2.5,38.0,263.0,150.0
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,PM10,68.0,191.0,129.0
+India,Maharashtra,Pune,"Hadapsar, Pune - IITM",12-10-2026 23:00:00,2026-10-12 23:00:00,18.501793,73.927532,NO2,30.0,96.0,68.0

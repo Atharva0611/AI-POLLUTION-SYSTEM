@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pandas
+numpy
+scikit-learn
+xgboost
+shap
+langchain
+langgraph
+langchain-community
+chromadb
+pypdf
+sqlalchemy
+psycopg2-binary
+python-dotenv
