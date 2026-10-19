@@ -1,4 +1,5 @@
 from uuid import uuid4
+from datetime import date
 
 from backend.agents.orchestrator import run_pipeline
 from backend.services.historical_weather import get_historical_weather
@@ -38,8 +39,8 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
                 r"\\b(20\\d{2}-\\d{2}-\\d{2})\\b.*?\\b(20\\d{2}-\\d{2}-\\d{2})\\b",
                 question,
             )
-            start_date = date_match.group(1) if date_match else None
-            end_date = date_match.group(2) if date_match else None
+            start_date = date.fromisoformat(date_match.group(1)) if date_match else None
+            end_date = date.fromisoformat(date_match.group(2)) if date_match else None
             history = get_historical_weather(location, start_date, end_date)
             rows = history["hourly"]
             temps = [r["temperature_2m"] for r in rows if r.get("temperature_2m") is not None]
