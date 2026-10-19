@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Hotspots from "./pages/Hotspots.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Intelligence from "./pages/Intelligence.jsx";
 import "./index.css";
 
 const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "");
@@ -9,6 +10,7 @@ const CHAT_URL = API_BASE + "/api/chat";
 const newSession = () => globalThis.crypto?.randomUUID?.() || ("oriva-" + Date.now());
 const sections = [
   { id: "overview", title: "Mission overview", icon: "◈" },
+  { id: "intelligence", title: "Location intelligence", icon: "⌖" },
   { id: "dashboard", title: "Air quality dashboard", icon: "◉" },
   { id: "map", title: "Hotspot explorer", icon: "⌖" },
   { id: "chat", title: "ORIVA AI assistant", icon: "✳" }
@@ -161,14 +163,14 @@ function ChatView() {
 
 function App() {
   const [view, setView] = useState("overview");
-  const titles = { overview: "Mission overview", dashboard: "Air quality dashboard", map: "Hotspot explorer", chat: "ORIVA AI assistant" };
+  const titles = { overview: "Mission overview", intelligence: "Location intelligence", dashboard: "Air quality dashboard", map: "Hotspot explorer", chat: "ORIVA AI assistant" };
   return <main className="app-shell"><aside className="sidebar"><Brand/><div className="workspace-chip"><span className="workspace-chip-icon">⌘</span><div><small>WORKSPACE</small><strong>Pollution intelligence</strong></div><span className="chevron">⌄</span></div>
     <div className="side-label">NAVIGATION</div><nav className="primary-nav" aria-label="Main navigation"><button className={"nav-item " + (view === "overview" ? "active" : "")} onClick={() => setView("overview")}><span className="icon-mark">◈</span><span>Mission overview</span><b>↗</b></button></nav>
     <div className="side-label">INTELLIGENCE TOOLS</div><nav className="primary-nav" aria-label="Intelligence tools">{sections.slice(1).map(item => <button key={item.id} className={"nav-item " + (view === item.id ? "active" : "")} onClick={() => setView(item.id)}><span className="icon-mark">{item.icon}</span><span>{item.title}</span>{item.id === "chat" && <b className="nav-live">AI</b>}</button>)}</nav>
     <div className="sidebar-spacer"/><div className="sidebar-status"><div className="status-halo"><span/></div><div><strong>ORIVA core</strong><small>Environment intelligence</small></div><span className="status-led"/></div><div className="sidebar-bottom"><div className="mini-brand-glyph">O</div><div><strong>ORIVA PLATFORM</strong><small>Field operations interface</small></div><span>v1.0</span></div>
   </aside><section className="main-shell"><header className="topbar"><div className="breadcrumb"><span>ORIVA</span><i>/</i><strong>{titles[view]}</strong></div><div className="topbar-right"><span className="topbar-env"><span className="tiny-pulse"/> ENVIRONMENT SYSTEMS</span><span className="topbar-separator"/><div className="topbar-avatar">O</div></div></header>
-    <div className="page-scroll">{view === "overview" && <Overview setView={setView}/>}{view === "dashboard" && <div className="legacy-page page-enter"><div className="eyebrow"><span className="eyebrow-line"/> LIVE API EXPLORER <span className="eyebrow-coordinate">ENVIRONMENTAL METRICS / FORECAST STATIONS</span></div><Dashboard/></div>}{view === "map" && <div className="legacy-page page-enter"><div className="eyebrow"><span className="eyebrow-line"/> SPATIAL ANALYSIS <span className="eyebrow-coordinate">HISTORICAL STATION CLUSTERS</span></div><Hotspots/></div>}{view === "chat" && <ChatView/>}</div>
-    <nav className="mobile-nav" aria-label="Mobile navigation">{sections.map(item => <button key={item.id} className={"mobile-nav-item " + (view === item.id ? "active" : "")} onClick={() => setView(item.id)}><span>{item.icon}</span><small>{item.id === "overview" ? "Home" : item.id === "dashboard" ? "AQI" : item.id === "map" ? "Map" : "AI"}</small></button>)}</nav>
+    <div className="page-scroll">{view === "overview" && <Overview setView={setView}/>}{view === "intelligence" && <Intelligence/>}{view === "dashboard" && <div className="legacy-page page-enter"><div className="eyebrow"><span className="eyebrow-line"/> LIVE API EXPLORER <span className="eyebrow-coordinate">ENVIRONMENTAL METRICS / FORECAST STATIONS</span></div><Dashboard/></div>}{view === "map" && <div className="legacy-page page-enter"><div className="eyebrow"><span className="eyebrow-line"/> SPATIAL ANALYSIS <span className="eyebrow-coordinate">HISTORICAL STATION CLUSTERS</span></div><Hotspots/></div>}{view === "chat" && <ChatView/>}</div>
+    <nav className="mobile-nav" aria-label="Mobile navigation">{sections.map(item => <button key={item.id} className={"mobile-nav-item " + (view === item.id ? "active" : "")} onClick={() => setView(item.id)}><span>{item.icon}</span><small>{item.id === "overview" ? "Home" : item.id === "intelligence" ? "Live" : item.id === "dashboard" ? "AQI" : item.id === "map" ? "Map" : "AI"}</small></button>)}</nav>
   </section></main>;
 }
 createRoot(document.getElementById("root")).render(<App/>);
