@@ -622,7 +622,14 @@ def get_environment_for_user(question: str) -> dict:
         requested
     )
 
+    # Use an independent no-key provider if WeatherAPI credentials, quota, or
+    # upstream service fail. Never label modeled values as official CPCB data.
     if data.get("_error"):
+        from backend.services.open_meteo_current import get_open_meteo_current
+        fallback = get_open_meteo_current(requested)
+        if fallback.get("status") == "ok":
+            fallback["data_provenance"]["fallback_reason"] = data["_error"]
+            return fallback
 
         return {
             "status": "degraded",
