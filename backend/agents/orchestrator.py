@@ -835,12 +835,12 @@ def final_node(state: dict) -> dict:
 
     # Do not present empty or failed live data as a successful live report.
     if env.get("status") in {"error", "degraded"}:
+        reason = env.get("error") or "the primary and fallback providers returned no usable data"
         return {
             "final_answer": (
-                f"Live AQI and weather data for {location} is currently "
-                "unavailable because the live data service could not provide "
-                "a valid response. No current pollutant readings are available "
-                "to report. Please try again later."
+                f"Current AQI/weather data for {location} is unavailable. "
+                f"Reason: {reason}. No pollutant values have been invented. "
+                "Try again later or check the official CPCB monitoring source."
             )
         }
 
@@ -895,6 +895,16 @@ def final_node(state: dict) -> dict:
         "",
         f"Data Provenance: {env.get('data_provenance', {}).get('primary_source', 'WeatherAPI Air Quality Network')}",
     ])
+
+    provenance = env.get("data_provenance") or {}
+    if "Open-Meteo" in str(provenance.get("primary_source", "")):
+        lines.extend([
+            "",
+            "DATA QUALITY NOTICE",
+            "-" * 78,
+            "Fallback values are model-based estimates for the nearest available grid cell, not a Kharadi street-level sensor reading.",
+            "The displayed AQI is the provider's US AQI scale, not India's CPCB National AQI. For official Indian AQI, verify CPCB/MPCB station data.",
+        ])
 
     return {"final_answer": "\n".join(lines)}
 
