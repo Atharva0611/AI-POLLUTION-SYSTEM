@@ -120,3 +120,46 @@ body{background:var(--oriva-bg)!important;color:var(--oriva-text)!important}
 .aq-weather-metric span{font-size:10px;color:#687c85}
 .aq-weather-metric strong{font-size:16px;color:#203640;font-weight:700}
 @media(max-width:800px){.aq-weather-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.aq-weather-heading{grid-column:1/-1;border-right:0;border-bottom:1px solid #e4eaed}.aq-weather-metric:nth-child(3){border-right:0}.aq-weather-metric:nth-child(4),.aq-weather-metric:nth-child(5){border-top:1px solid #e4eaed}}
+
+.forecast-page{padding:clamp(18px,3vw,34px);max-width:1500px;margin:0 auto;display:grid;gap:18px;color:#172b35;align-content:start}
+.forecast-header{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.forecast-header h1{font-size:clamp(25px,3vw,34px);letter-spacing:-.035em;margin:7px 0 9px;font-weight:700}
+.forecast-header p{color:#647680;font-size:13px;line-height:1.6;max-width:720px;margin:0}
+.forecast-search{min-width:min(100%,360px)}
+.forecast-search label{display:block;font-size:11px;font-weight:700;color:#4c626c;margin-bottom:7px}
+.forecast-search-row{display:flex;gap:8px}
+.forecast-search-row input{min-width:0;flex:1;border:1px solid #d7e1e5;border-radius:5px;padding:10px 11px;font-size:12px;color:#203640;background:#fff}
+.forecast-notice{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#f2f6f8;border:1px solid #dce6eb;border-radius:7px;font-size:12px;line-height:1.65;color:#405b68}
+.forecast-notice strong{white-space:nowrap;color:#203f50}
+.forecast-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.forecast-metric{background:#fff;border:1px solid #dce4e8;border-radius:8px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.forecast-metric>span{font-size:11px;color:#687c85}
+.forecast-metric>strong{font-size:22px;line-height:1.25;overflow-wrap:anywhere;color:#203640}
+.forecast-metric>small{font-size:10px;line-height:1.5;color:#71828a}
+.forecast-metric-primary{border-top:3px solid #287b9a}
+.forecast-metric-primary>strong{font-size:30px}
+.forecast-method-value{font-size:14px!important}
+.forecast-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.forecast-panel{background:#fff;border:1px solid #dce4e8;border-radius:8px;padding:18px;min-width:0}
+.forecast-panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+.forecast-panel-heading h2{font-size:17px;margin:0 0 5px;font-weight:700;color:#203640}
+.forecast-panel-heading p{font-size:11px;color:#71828a;line-height:1.55;margin:0}
+.forecast-tag{font-size:10px;color:#365c6c;background:#edf4f7;border:1px solid #d7e6ed;border-radius:4px;padding:5px 7px;white-space:nowrap}
+.forecast-shap-list{display:grid;gap:14px}
+.forecast-shap-row{display:grid;gap:6px}
+.forecast-shap-label{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#40545e}
+.forecast-shap-label span{overflow-wrap:anywhere}
+.forecast-shap-label strong{font-variant-numeric:tabular-nums;white-space:nowrap}
+.forecast-bar-track{height:7px;background:#eef2f4;border-radius:4px;overflow:hidden}
+.forecast-bar{height:100%;border-radius:4px;min-width:2px}
+.forecast-bar.positive{background:#287b9a}
+.forecast-bar.negative{background:#c47a42}
+.forecast-table-wrap{overflow:auto}
+.forecast-empty{background:#f8fafb;border:1px dashed #d5e0e4;border-radius:6px;padding:18px;color:#687c85;font-size:12px;line-height:1.65}
+.forecast-empty strong{display:block;color:#344f5b;margin-bottom:5px}
+.forecast-empty p{margin:0}
+.forecast-reason{font-size:11px;color:#637781;line-height:1.6;margin:0}
+.forecast-loading{background:#fff;border:1px solid #dce4e8;border-radius:7px;padding:18px;color:#4c626c;font-size:12px}
+.forecast-footer{border-top:1px solid #dce4e8;padding-top:12px;color:#71828a;font-size:10px;line-height:1.65}
+@media(max-width:1000px){.forecast-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.forecast-panels{grid-template-columns:1fr}}
+@media(max-width:560px){.forecast-metrics{grid-template-columns:1fr}.forecast-search{width:100%;min-width:0}.forecast-search-row{flex-wrap:wrap}.forecast-search-row input{flex-basis:100%}.forecast-notice{display:grid;gap:5px}.forecast-panel{padding:13px}}
