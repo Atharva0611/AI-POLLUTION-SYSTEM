@@ -37,7 +37,7 @@ export default function Forecast() {
   }, []);
 
   useEffect(() => { run("Pune"); }, [run]);
-  const shapRows = useMemo(() => rowsFromShap(data?.shap_explanation || data?.shap), [data]);
+  const shapRows = useMemo(() => rowsFromShap(data?.shap_explanation || data?.shap_contributions || data?.shap), [data]);
   const stations = Array.isArray(data?.contributing_stations) ? data.contributing_stations : [];
   const hourly = Array.isArray(data?.hourly_context) ? data.hourly_context : [];
   const predictionOK = data?.forecast_available === true && data?.predicted_pm25 != null && Number.isFinite(Number(data.predicted_pm25));
