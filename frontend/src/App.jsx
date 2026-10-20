@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import Hotspots from "./pages/Hotspots.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import LiveAirQuality from "./pages/LiveAirQuality.jsx";
+import Forecast from "./pages/Forecast.jsx";
 import "./index.css";
 import "./oriva-light.css";
 
@@ -52,14 +53,16 @@ function App() {
     chat: "ORIVA Assistant",
     dashboard: "Environmental overview",
     "live-aqi": "Live air-quality stations",
-    map: "Historical hotspot intelligence"
+    map: "Historical hotspot intelligence",
+    forecast: "Forecast & explainability"
   }[view] || "ORIVA";
 
   const pageSubtitle = {
     chat: "Multi-agent environmental intelligence",
     dashboard: "Station snapshots and model outputs",
     "live-aqi": "OpenAQ measurements, timestamps, and freshness",
-    map: "Historical DBSCAN clusters — not live readings"
+    map: "Historical DBSCAN clusters — not live readings",
+    forecast: "PM2.5 forecast, station coverage, and SHAP transparency"
   }[view];
 
   function startNewChat() {
@@ -85,6 +88,7 @@ function App() {
           <button type="button" className={`nav-item ${view === "dashboard" ? "active" : ""}`} onClick={() => setView("dashboard")}><span className="icon-mark">▦</span><span>Overview</span></button>
           <button type="button" className={`nav-item ${view === "live-aqi" ? "active" : ""}`} onClick={() => setView("live-aqi")}><span className="icon-mark">◉</span><span>Live air quality</span><span className="nav-live">API</span></button>
           <button type="button" className={`nav-item ${view === "map" ? "active" : ""}`} onClick={() => setView("map")}><span className="icon-mark">⌖</span><span>Hotspot map</span></button>
+          <button type="button" className={`nav-item ${view === "forecast" ? "active" : ""}`} onClick={() => setView("forecast")}><span className="icon-mark">↗</span><span>Forecast &amp; SHAP</span></button>
         </nav>
 
         <div className="side-label">ANALYTICS MODULES</div>
@@ -114,6 +118,8 @@ function App() {
           <div className="page-scroll"><LiveAirQuality /></div>
         ) : view === "map" ? (
           <div className="page-scroll"><Hotspots /></div>
+        ) : view === "forecast" ? (
+          <div className="page-scroll"><Forecast /></div>
         ) : (
           <>
             <div className="messages" aria-live="polite">
