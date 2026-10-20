@@ -27,7 +27,7 @@ def classify_freshness(timestamp, now=None):
     age = (now.astimezone(timezone.utc) - observed).total_seconds() / 3600
     fresh_h = float(os.getenv("OPENAQ_FRESH_HOURS", "24"))
     delayed_h = float(os.getenv("OPENAQ_DELAYED_HOURS", "72"))
-    status = "future_timestamp" if age < -1 else "fresh" if age <= fresh_h else "delayed" if age <= delayed_h else "stale"
+    status = "future_timestamp" if age < 0 else "fresh" if age <= fresh_h else "delayed" if age <= delayed_h else "stale"
     return {"freshness": status, "age_hours": round(max(age, 0), 1), "is_fresh": status == "fresh"}
 
 
