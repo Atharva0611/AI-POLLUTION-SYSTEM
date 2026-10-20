@@ -41,7 +41,7 @@ export default function Forecast() {
   const stations = Array.isArray(data?.contributing_stations) ? data.contributing_stations : [];
   const hourly = Array.isArray(data?.hourly_context) ? data.hourly_context : [];
   const predictionOK = data?.forecast_available === true && data?.predicted_pm25 != null && Number.isFinite(Number(data.predicted_pm25));
-  const modelGenerated = data?.model_generated === true;
+  const modelGenerated = data?.model_generated === true || ["DIRECT_STATION_FORECAST", "SPATIALLY_ESTIMATED_FORECAST"].includes(data?.forecast_method);
   const method = data?.forecast_method_label || data?.forecast_method || (modelGenerated ? "Model forecast" : "Method not specified");
 
   return <div className="forecast-page">
@@ -63,6 +63,13 @@ export default function Forecast() {
       </section>
       {!predictionOK && <div className="forecast-empty"><strong>Forecast unavailable</strong><p>{data.reason || "No valid prediction was returned. Check station coverage, model artifacts, and backend logs."}</p></div>}
       {data.reason && predictionOK && <p className="forecast-reason">{data.reason}</p>}
+      <section className="forecast-provenance">
+        <div><span>Model / service</span><strong>{data.model_name || "Not reported"}</strong><small>{data.model_version ? `Version ${data.model_version}` : "Version not supplied"}</small></div>
+        <div><span>Forecast case</span><strong>{data.case || "Not reported"}</strong><small>{data.data_quality_status || "Quality status unavailable"}</small></div>
+        <div><span>Reported validation R²</span><strong>{data.validation_metrics?.holdout_r2 == null ? "Unavailable" : num(data.validation_metrics.holdout_r2, 3)}</strong><small>Chronological holdout metric, if present</small></div>
+        <div><span>Reported holdout MAE</span><strong>{data.validation_metrics?.holdout_mae == null ? "Unavailable" : `${num(data.validation_metrics.holdout_mae, 2)} µg/m³`}</strong><small>Not a guarantee for this location</small></div>
+      </section>
+      {Array.isArray(data.warnings) && data.warnings.length > 0 && <section className="forecast-warnings"><strong>Data-quality warnings</strong><ul>{data.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul></section>}
       <section className="forecast-panels">
         <article className="forecast-panel"><div className="forecast-panel-heading"><div><h2>SHAP explainability</h2><p>Feature contributions supplied by the backend</p></div><span className="forecast-tag">{shapRows.length ? `${shapRows.length} entries` : "No SHAP data"}</span></div>
           {shapRows.length ? <div className="forecast-shap-list">{shapRows.slice(0, 12).map((row, i) => {
