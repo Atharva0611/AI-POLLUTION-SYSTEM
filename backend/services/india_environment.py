@@ -193,52 +193,60 @@ def _extract_location_from_question(question: str) -> str:
 
 
 def _call_weatherapi(location: str) -> dict:
+    """Query WeatherAPI by canonical station coordinates where available."""
     load_dotenv(ROOT / ".env")
-
     api_key = os.getenv("WEATHER_API_KEY")
-
     if not api_key:
         return {"_error": "WEATHER_API_KEY is missing in .env"}
 
-    loc_lower = location.lower()
-    if loc_lower == "pune":
-        query = "Pune, Maharashtra, India"
-    elif loc_lower in LOCALITIES or any(loc_lower == p for p in LOCALITIES):
-        query = f"{location}, Pune, Maharashtra, India"
+    requested = str(location or "").strip()
+    if not requested:
+        return {"_error": "location_unresolved: no location was supplied"}
+
+    canonical = resolve_pune_location(requested)
+    if canonical and canonical.get("latitude") is not None and canonical.get("longitude") is not None:
+        query = f"{canonical['latitude']},{canonical['longitude']}"
+        requested_label = canonical.get("canonical_location") or requested
     else:
-        query = f"{location}, India"
+        # For localities not in the station registry, ask for that locality by
+        # name; never replace a failed locality with generic Pune coordinates.
+        lower = requested.casefold()
+        query = f"{requested}, Pune, Maharashtra, India" if lower in LOCALITIES else f"{requested}, India"
+        requested_label = requested
 
     try:
         response = requests.get(
             WEATHER_URL,
-            params={
-                "key": api_key,
-                "q": query,
-                "days": 2,
-                "aqi": "yes",
-                "alerts": "no",
-            },
-            timeout=30,
+            params={"key": api_key, "q": query, "days": 2, "aqi": "yes", "alerts": "no"},
+            timeout=20,
         )
-
         if not response.ok:
-            return {
-                "_error": f"WeatherAPI HTTP {response.status_code}"
-            }
-
+            return {"_error": f"WeatherAPI HTTP {response.status_code}"}
         data = response.json()
-
         if data.get("error"):
-            return {
-                "_error": str(data["error"])
-            }
-
-        return data
-
-    except requests.RequestException as exc:
-        return {
-            "_error": f"WeatherAPI request failed: {exc}"
+            return {"_error": str(data["error"])}
+        provider_location = data.get("location") or {}
+        if canonical and provider_location.get("lat") is not None and provider_location.get("lon") is not None:
+            # Prevent a provider's distant geocode result from being silently
+            # displayed under the requested locality's name.
+            import math
+            lat1, lon1 = math.radians(float(canonical["latitude"])), math.radians(float(canonical["longitude"]))
+            lat2, lon2 = math.radians(float(provider_location["lat"])), math.radians(float(provider_location["lon"]))
+            dlat, dlon = lat2 - lat1, lon2 - lon1
+            a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+            distance = 6371.0 * 2 * math.asin(min(1.0, math.sqrt(a)))
+            if distance > 10:
+                return {"_error": f"location_mismatch: provider resolved {distance:.1f} km from {requested_label}"}
+        data["_oriva_location"] = {
+            "requested_location": requested_label,
+            "resolved_location": provider_location.get("name"),
+            "latitude": provider_location.get("lat"),
+            "longitude": provider_location.get("lon"),
+            "resolution_source": "ORIVA canonical station coordinates" if canonical else "WeatherAPI named locality search",
         }
+        return data
+    except (requests.RequestException, ValueError, TypeError) as exc:
+        return {"_error": f"WeatherAPI request failed: {type(exc).__name__}: {exc}"}
 
 
 def _air_quality(block: dict) -> dict:
