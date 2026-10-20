@@ -31,6 +31,8 @@ export default function LiveAirQuality() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [lastChecked, setLastChecked] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [weatherError, setWeatherError] = useState("");
 
   const loadStations = useCallback(async () => {
     setLoadingStations(true);
@@ -53,6 +55,19 @@ export default function LiveAirQuality() {
     }
   }, []);
 
+  const loadWeather = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_BASE}/api/weather/current?location=Pune`);
+      if (!response.ok) throw new Error(`Weather API HTTP ${response.status}`);
+      const payload = await response.json();
+      setWeather(payload.weather || null);
+      setWeatherError("");
+    } catch (err) {
+      setWeather(null);
+      setWeatherError("Current weather unavailable. Check provider configuration.");
+    }
+  }, []);
+
   const loadStationDetail = useCallback(async (id) => {
     if (!id) { setDetail(null); return; }
     setLoadingDetail(true);
@@ -72,7 +87,7 @@ export default function LiveAirQuality() {
     }
   }, []);
 
-  useEffect(() => { loadStations(); }, [loadStations]);
+  useEffect(() => { loadStations(); loadWeather(); }, [loadStations, loadWeather]);
   useEffect(() => { loadStationDetail(selectedId); }, [selectedId, loadStationDetail]);
 
   const filtered = useMemo(() => {
@@ -98,6 +113,14 @@ export default function LiveAirQuality() {
           {loadingStations ? "Checking…" : "Refresh stations"}
         </button>
       </header>
+
+      <section className="aq-weather-strip" aria-label="Pune current weather">
+        <div className="aq-weather-heading"><span className="aq-eyebrow">WEATHER CONTEXT</span><strong>Pune</strong><small>{weather?.last_updated ? `Observed ${formatTime(weather.last_updated)}` : weatherError || "Weather data unavailable"}</small></div>
+        <div className="aq-weather-metric"><span>Temperature</span><strong>{weather?.temperature == null ? "—" : `${weather.temperature} °C`}</strong></div>
+        <div className="aq-weather-metric"><span>Humidity</span><strong>{weather?.humidity == null ? "—" : `${weather.humidity}%`}</strong></div>
+        <div className="aq-weather-metric"><span>Wind</span><strong>{weather?.wind_speed_kmh == null ? "—" : `${weather.wind_speed_kmh} km/h`}</strong></div>
+        <div className="aq-weather-metric"><span>Rainfall</span><strong>{weather?.rainfall == null ? "—" : `${weather.rainfall} mm`}</strong></div>
+      </section>
 
       <div className="aq-notice" role="note">
         <strong>Source note</strong>
