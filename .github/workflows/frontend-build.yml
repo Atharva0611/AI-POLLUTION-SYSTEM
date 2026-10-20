@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/oriva-animated-frontend
+      - feat/oriva-live-data-quality-frontend
     paths:
       - "frontend/**"
       - ".github/workflows/frontend-build.yml"
