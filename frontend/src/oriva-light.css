@@ -109,3 +109,14 @@ body{background:var(--oriva-bg)!important;color:var(--oriva-text)!important}
 @media(max-width:900px){.aq-workspace{grid-template-columns:1fr}.aq-station-list{max-height:280px}.aq-detail-panel{padding:15px}}
 @media(max-width:560px){.aq-page-header{display:grid}.aq-page-header .aq-button{justify-self:start}.aq-detail-summary{grid-template-columns:1fr}.aq-notice{display:grid;gap:5px}.aq-table{min-width:650px}.topbar{padding:0 14px}.sidebar{padding:18px 10px}.app-shell{grid-template-columns:190px minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+.aq-weather-strip{display:grid;grid-template-columns:minmax(180px,1.5fr) repeat(4,minmax(90px,1fr));gap:0;background:#fff;border:1px solid #dce4e8;border-radius:8px;overflow:hidden}
+.aq-weather-heading,.aq-weather-metric{padding:13px 15px;display:flex;flex-direction:column;gap:5px;justify-content:center;min-width:0}
+.aq-weather-heading{border-right:1px solid #e4eaed}
+.aq-weather-heading strong{font-size:15px;color:#203640}
+.aq-weather-heading small{font-size:10px;color:#71828a;line-height:1.5}
+.aq-weather-metric{border-right:1px solid #e4eaed}
+.aq-weather-metric:last-child{border-right:0}
+.aq-weather-metric span{font-size:10px;color:#687c85}
+.aq-weather-metric strong{font-size:16px;color:#203640;font-weight:700}
+@media(max-width:800px){.aq-weather-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.aq-weather-heading{grid-column:1/-1;border-right:0;border-bottom:1px solid #e4eaed}.aq-weather-metric:nth-child(3){border-right:0}.aq-weather-metric:nth-child(4),.aq-weather-metric:nth-child(5){border-top:1px solid #e4eaed}}
