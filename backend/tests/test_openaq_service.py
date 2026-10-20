@@ -28,3 +28,10 @@ def test_future_timestamp_is_not_fresh():
     result = classify_freshness("2026-10-21T12:00:00Z", now)
     assert result["freshness"] == "future_timestamp"
     assert result["is_fresh"] is False
+
+
+def test_near_future_timestamp_is_not_fresh():
+    now = datetime(2026, 10, 20, 12, tzinfo=timezone.utc)
+    result = classify_freshness("2026-10-20T12:30:00Z", now)
+    assert result["freshness"] == "future_timestamp"
+    assert result["is_fresh"] is False
