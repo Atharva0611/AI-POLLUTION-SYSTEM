@@ -1,9 +1,10 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.api.routes import pollution, forecast, rag, anomalies, hotspots, recommendations, source_analysis, current_snapshot
+from backend.api.routes import pollution, forecast, rag, anomalies, hotspots, recommendations, source_analysis, current_snapshot, air_quality
 from backend.app.api.chat import router as chat_router
 from backend.services.historical_weather import router as historical_weather_router
+from backend.api.routes.weather_current import router as current_weather_router
 
 app = FastAPI(
     title="AI Pollution System",
@@ -66,8 +67,13 @@ if hasattr(current_snapshot, "router"):
     app.include_router(current_snapshot.router, prefix="/api/current-snapshot", tags=["Current Snapshot"])
 
 
+if hasattr(air_quality, "router"):
+    app.include_router(air_quality.router, prefix="/api/air-quality", tags=["Live Air Quality / OpenAQ"])
+
 # Historical meteorological data (separate from measured pollution data)
 app.include_router(historical_weather_router, prefix="/api/weather", tags=["Historical Weather"])
+
+app.include_router(current_weather_router, prefix="/api/weather", tags=["Current Weather"])
 
 # Unified ORIVA conversational API
 app.include_router(chat_router, prefix="/api/chat", tags=["Chat"])
