@@ -13,7 +13,7 @@ def nearby_locations(
     radius_m: int = Query(default=15000, ge=100, le=100000),
     limit: int = Query(default=100, ge=1, le=1000),
 ):
-    """Discover nearby OpenAQ locations. This is not an official CPCB station list."""
+    """Discover nearby OpenAQ locations; this is not an official CPCB station list."""
     try:
         return get_station_catalog(latitude, longitude, radius_m, limit)
     except OpenAQError as exc:
@@ -22,14 +22,11 @@ def nearby_locations(
 
 @router.get("/stations/{location_id}")
 def station_measurements(location_id: int):
-    """Return latest provider measurements with original timestamps and freshness."""
-    client = OpenAQClient()
+    """Return latest provider measurements with timestamps and freshness labels."""
     try:
-        payload = client._get(f"/locations/{location_id}")
-        rows = payload.get("results") or []
-        if not rows or not isinstance(rows[0], dict):
+        result = OpenAQClient().measurements(location_id)
+        if result is None:
             raise HTTPException(status_code=404, detail="OpenAQ location was not found.")
-        result = client.station_detail(rows[0])
         return {
             "status": "ok",
             "provider": "OpenAQ",
