@@ -11,7 +11,7 @@ const API_URL = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").re
 const newSession = () => globalThis.crypto?.randomUUID?.() || `oriva-${Date.now()}`;
 
 function App() {
-  const [view, setView] = useState("chat");
+  const [view, setView] = useState("dashboard");
   const [sessionId, setSessionId] = useState(newSession);
   const [messages, setMessages] = useState([{
     role: "assistant",
@@ -52,14 +52,14 @@ function App() {
   const pageTitle = {
     chat: "ORIVA Assistant",
     dashboard: "Environmental overview",
-    "live-aqi": "Live air-quality stations",
+    "live-aqi": "Live air quality & weather",
     map: "Historical hotspot intelligence",
     forecast: "Forecast & explainability"
   }[view] || "ORIVA";
 
   const pageSubtitle = {
     chat: "Multi-agent environmental intelligence",
-    dashboard: "Station snapshots and model outputs",
+    dashboard: "Current OpenAQ and OpenWeather conditions",
     "live-aqi": "OpenAQ measurements, timestamps, and freshness",
     map: "Historical DBSCAN clusters — not live readings",
     forecast: "PM2.5 forecast, station coverage, and SHAP transparency"
