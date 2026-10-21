@@ -53,25 +53,24 @@ export default function LiveAirQuality() {
   const [lastRefresh, setLastRefresh] = useState(null);
   const [stationSearch, setStationSearch] = useState("");
   const [selectedStationId, setSelectedStationId] = useState(null);
-  const inFlight = useRef(false);
+  const requestId = useRef(0);
 
   const refresh = useCallback(async (target = location) => {
-    if (inFlight.current) return;
-    inFlight.current = true;
+    const request = ++requestId.current;
     setLoading(true);
     setError("");
     try {
       const response = await fetch(`${API_BASE}/api/live/air-quality?location=${encodeURIComponent(target)}`, { headers: { Accept: "application/json" } });
       const body = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(body.detail || `Live data API returned HTTP ${response.status}`);
+      if (request !== requestId.current) return;
       setData(body);
       setLastRefresh(new Date().toISOString());
       if (body.status === "unavailable") setError("No provider returned eligible current data. Check the source-specific status below; historical readings are intentionally not substituted.");
     } catch (err) {
-      setError(err.message || "Could not fetch current environmental data.");
+      if (request === requestId.current) setError(err.message || "Could not fetch current environmental data.");
     } finally {
-      setLoading(false);
-      inFlight.current = false;
+      if (request === requestId.current) setLoading(false);
     }
   }, [location]);
 
@@ -80,13 +79,12 @@ export default function LiveAirQuality() {
     const target = draft.trim();
     if (!target) { setError("Enter a town, city, or locality."); return; }
     setLocation(target);
-    refresh(target);
   };
 
   useEffect(() => {
     refresh(location);
     const timer = setInterval(() => refresh(location), REFRESH_MS);
-    return () => clearInterval(timer);
+    return () => { clearInterval(timer); requestId.current += 1; };
   }, [location, refresh]);
 
   const providers = data?.providers || {};
