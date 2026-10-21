@@ -97,18 +97,32 @@ def current_environment(location: str = Query(default="Wagholi, Pune, Maharashtr
     resolver = OpenWeatherClient()
     try:
         resolved = resolver.resolve_location(location.strip())
-    except OpenWeatherError as exc:
-        # OpenAQ also requires coordinates; no guessed coordinates are used.
-        return {
-            "status": "unavailable",
-            "location": {"requested": location, "resolved_name": None, "latitude": None, "longitude": None},
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-            "providers": {
-                "openaq": {"status": "blocked_by_location_resolution", "error": str(exc), "stations": [], "measurements": [], "live_measurements": []},
-                "openweather_air_pollution": {"status": "unavailable", "error": str(exc)},
-                "openweather_weather": {"status": "unavailable", "error": str(exc)},
-            },
-        }
+    except OpenWeatherError as geocode_error:
+        # Keep OpenAQ usable when OpenWeather geocoding is down or its key is
+        # missing, using the project's existing validated resolver / OSM.
+        try:
+            from backend.services.universal_location_resolver import resolve_universal_location
+            fallback = resolve_universal_location(location.strip())
+            if not fallback.get("success") or fallback.get("latitude") is None or fallback.get("longitude") is None:
+                raise ValueError("Existing location resolver did not verify this place.")
+            resolved = {
+                "requested": location,
+                "resolved_name": fallback.get("display_name") or fallback.get("location_name") or location,
+                "latitude": fallback["latitude"],
+                "longitude": fallback["longitude"],
+                "resolution_source": fallback.get("resolution_source", "existing_location_resolver"),
+            }
+        except Exception:
+            return {
+                "status": "unavailable",
+                "location": {"requested": location, "resolved_name": None, "latitude": None, "longitude": None},
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+                "providers": {
+                    "openaq": {"status": "blocked_by_location_resolution", "error": "Coordinates could not be verified; OpenAQ was not queried.", "stations": [], "measurements": [], "live_measurements": []},
+                    "openweather_air_pollution": {"status": "unavailable", "error": str(geocode_error)},
+                    "openweather_weather": {"status": "unavailable", "error": str(geocode_error)},
+                },
+            }
     lat, lon = resolved["latitude"], resolved["longitude"]
     max_age = int(os.getenv("OPENWEATHER_LIVE_MAX_AGE_MINUTES", "180"))
     with ThreadPoolExecutor(max_workers=3) as pool:
