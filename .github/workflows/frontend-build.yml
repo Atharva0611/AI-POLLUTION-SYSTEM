@@ -5,12 +5,23 @@ on:
     branches:
       - feature/oriva-animated-frontend
       - feat/oriva-live-data-quality-frontend
+      - feat/oriva-current-data-dashboard
     paths:
       - "frontend/**"
+      - "backend/services/openaq_service.py"
+      - "backend/services/openweather_service.py"
+      - "backend/api/routes/live_environment.py"
+      - "backend/tests/test_openaq_service.py"
+      - "backend/tests/test_openweather_service.py"
       - ".github/workflows/frontend-build.yml"
   pull_request:
     paths:
       - "frontend/**"
+      - "backend/services/openaq_service.py"
+      - "backend/services/openweather_service.py"
+      - "backend/api/routes/live_environment.py"
+      - "backend/tests/test_openaq_service.py"
+      - "backend/tests/test_openweather_service.py"
       - ".github/workflows/frontend-build.yml"
 
 jobs:
@@ -48,3 +59,18 @@ jobs:
         run: python -m pip install pytest requests
       - name: Test OpenAQ freshness classification
         run: python -m pytest -q backend/tests/test_openaq_service.py
+
+  backend-openweather-tests:
+    name: OpenWeather current data unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: python -m pip install pytest requests
+      - name: Test OpenWeather parsing and freshness
+        run: python -m pytest -q backend/tests/test_openweather_service.py
