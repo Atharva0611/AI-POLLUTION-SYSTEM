@@ -55,3 +55,31 @@ def test_all_provider_failures_return_unavailable_not_historical_data(monkeypatc
     assert result["providers"]["openweather_air_pollution"]["status"] == "unavailable"
     assert result["providers"]["openweather_weather"]["status"] == "unavailable"
     assert result["providers"]["openaq"]["live_measurements"] == []
+
+def test_openaq_remains_available_when_openweather_geocoding_fails(monkeypatch):
+    class GeocodingUnavailable(FakeOpenWeather):
+        def resolve_location(self, location):
+            raise OpenWeatherError("OpenWeather key missing.")
+
+        def current_air_pollution(self, latitude, longitude):
+            raise OpenWeatherError("OpenWeather key missing.")
+
+        def current_weather(self, latitude, longitude):
+            raise OpenWeatherError("OpenWeather key missing.")
+
+    from backend.services import universal_location_resolver
+    monkeypatch.setattr(live_environment, "OpenWeatherClient", GeocodingUnavailable)
+    monkeypatch.setattr(universal_location_resolver, "resolve_universal_location", lambda location: {
+        "success": True, "display_name": "Wagholi, Pune, Maharashtra, India",
+        "latitude": 18.579, "longitude": 73.983, "resolution_source": "test_registry"
+    })
+    monkeypatch.setattr(live_environment, "_openaq_result", lambda *args: {
+        "status": "ok", "provider": "OpenAQ", "stations": [],
+        "measurements": [], "live_measurements": [{"pollutant": "pm25", "value": 8.0, "unit": "µg/m³"}],
+        "fresh_count": 1, "error": None
+    })
+    result = live_environment.current_environment("Wagholi, Pune", 15000)
+    assert result["status"] == "ok"
+    assert result["location"]["latitude"] == 18.579
+    assert result["providers"]["openaq"]["live_measurements"][0]["value"] == 8.0
+    assert result["providers"]["openweather_air_pollution"]["status"] == "unavailable"
