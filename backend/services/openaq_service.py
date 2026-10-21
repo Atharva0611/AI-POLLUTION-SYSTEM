@@ -33,7 +33,7 @@ def classify_freshness(timestamp, now=None):
               "fresh" if age_minutes <= max_age_minutes else
               "delayed" if age <= delayed_h else "stale")
     return {"freshness": status, "age_hours": round(max(age, 0), 3),
-            "age_minutes": round(max(age_minutes, 0), 1),
+            "age_minutes": round(max(age_minutes, 0), 1), "age_seconds": max(age * 3600, 0),
             "is_fresh": status == "fresh" and age >= 0}
 
 
