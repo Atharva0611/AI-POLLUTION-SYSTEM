@@ -77,7 +77,7 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
 
     # Route explicit current AQI / pollution / weather questions to source-aware data.
     live_question = bool(re.search(
-        r"\b(aqi|air quality|pm2\.?5|pm10|pollution|current weather|live weather|temperature|humidity|wind speed)\b",
+        r"\b(aqi|air quality|pm2\.?5|pm10|pollution|weather|temperature|humidity|wind speed)\b",
         question, flags=re.IGNORECASE
     )) and not bool(re.search(r"\b(forecast|predict|prediction|historical|history|yesterday|last week|last month)\b", question, flags=re.IGNORECASE))
     if live_question:
