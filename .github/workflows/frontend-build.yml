@@ -13,6 +13,7 @@ on:
       - "backend/api/routes/live_environment.py"
       - "backend/tests/test_openaq_service.py"
       - "backend/tests/test_openweather_service.py"
+      - "backend/tests/test_live_environment.py"
       - ".github/workflows/frontend-build.yml"
   pull_request:
     paths:
@@ -71,6 +72,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install test dependencies
-        run: python -m pip install pytest requests
-      - name: Test OpenWeather parsing and freshness
-        run: python -m pytest -q backend/tests/test_openweather_service.py
+        run: python -m pip install pytest requests fastapi
+      - name: Test live provider parsing, freshness, and partial outages
+        run: python -m pytest -q backend/tests/test_openweather_service.py backend/tests/test_live_environment.py
