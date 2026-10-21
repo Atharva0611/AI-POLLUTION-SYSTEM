@@ -69,11 +69,6 @@ class OpenWeatherClient:
         except ValueError as exc:
             raise OpenWeatherError("OpenWeather returned invalid JSON.") from exc
 
-    def geocode(self, location):
-        rows = self._get(GEO_URL, "/direct", {"q": location, "limit": 5})
-        # The direct geocoding endpoint returns an array, not an object.
-        return rows
-
     def resolve_location(self, location):
         if not self.api_key:
             raise OpenWeatherError("OpenWeather is not configured. Set OPENWEATHER_API_KEY in the backend environment.")
