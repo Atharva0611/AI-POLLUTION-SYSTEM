@@ -459,6 +459,10 @@ def get_weatherapi_current(
             "last_updated"
         ),
 
+        "last_updated_epoch": to_int(
+            current.get("last_updated_epoch")
+        ),
+
         "source": "WeatherAPI",
         "live": True,
     }
