@@ -6,7 +6,6 @@ import os
 from fastapi import APIRouter, Query
 
 from backend.services.live_aqi_service import get_weatherapi_current
-from backend.services.live_aqi_service import LiveAQIError
 from backend.services.openaq_service import OpenAQClient, OpenAQError, classify_freshness
 from backend.services.openweather_service import (
     OpenWeatherClient,
@@ -135,7 +134,7 @@ def _safe_weatherapi(latitude, longitude, max_age):
             result["status"] = "ok"
             result["error"] = None
         return result
-    except (LiveAQIError, Exception):
+    except Exception:
         # Isolate this provider failure; never make the entire endpoint fail because
         # WeatherAPI is down or unconfigured, and do not expose provider internals.
         return {
