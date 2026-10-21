@@ -1,4 +1,13 @@
-﻿from fastapi import FastAPI
+# ORIVA_ENV_LOADING
+from pathlib import Path
+from dotenv import load_dotenv
+
+BACKEND_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BACKEND_DIR.parent
+
+load_dotenv(PROJECT_ROOT / ".env", override=False)
+load_dotenv(BACKEND_DIR / ".env", override=True)
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.api.routes import pollution, forecast, rag, anomalies, hotspots, recommendations, source_analysis, current_snapshot, air_quality
