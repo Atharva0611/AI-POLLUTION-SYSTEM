@@ -5,6 +5,7 @@ from backend.api.routes import pollution, forecast, rag, anomalies, hotspots, re
 from backend.app.api.chat import router as chat_router
 from backend.services.historical_weather import router as historical_weather_router
 from backend.api.routes.weather_current import router as current_weather_router
+from backend.api.routes.live_environment import router as live_environment_router
 
 app = FastAPI(
     title="AI Pollution System",
@@ -74,6 +75,9 @@ if hasattr(air_quality, "router"):
 app.include_router(historical_weather_router, prefix="/api/weather", tags=["Historical Weather"])
 
 app.include_router(current_weather_router, prefix="/api/weather", tags=["Current Weather"])
+
+# Unified current OpenAQ + OpenWeather data; separate from historical/model outputs
+app.include_router(live_environment_router, prefix="/api/live", tags=["Live Environment"])
 
 # Unified ORIVA conversational API
 app.include_router(chat_router, prefix="/api/chat", tags=["Chat"])

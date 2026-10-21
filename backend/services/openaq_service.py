@@ -25,10 +25,16 @@ def classify_freshness(timestamp, now=None):
     if now.tzinfo is None:
         now = now.replace(tzinfo=timezone.utc)
     age = (now.astimezone(timezone.utc) - observed).total_seconds() / 3600
+    max_age_minutes = float(os.getenv("OPENAQ_LIVE_MAX_AGE_MINUTES", "180"))
     fresh_h = float(os.getenv("OPENAQ_FRESH_HOURS", "24"))
     delayed_h = float(os.getenv("OPENAQ_DELAYED_HOURS", "72"))
-    status = "future_timestamp" if age < 0 else "fresh" if age <= fresh_h else "delayed" if age <= delayed_h else "stale"
-    return {"freshness": status, "age_hours": round(max(age, 0), 1), "is_fresh": status == "fresh"}
+    age_minutes = age * 60
+    status = ("future_timestamp" if age < 0 else
+              "fresh" if age_minutes <= max_age_minutes else
+              "delayed" if age <= delayed_h else "stale")
+    return {"freshness": status, "age_hours": round(max(age, 0), 3),
+            "age_minutes": round(max(age_minutes, 0), 1), "age_seconds": max(age * 3600, 0),
+            "is_fresh": status == "fresh" and age >= 0}
 
 
 class OpenAQClient:
