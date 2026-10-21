@@ -1,7 +1,18 @@
 from datetime import datetime, timezone
 
+import pytest
+
 from backend.api.routes import live_environment
+from backend.services.live_aqi_service import LiveAQIError
 from backend.services.openweather_service import OpenWeatherError
+
+
+@pytest.fixture(autouse=True)
+def disable_weatherapi_network_by_default(monkeypatch):
+    def unavailable(*args, **kwargs):
+        raise LiveAQIError("WeatherAPI disabled in isolated test.")
+
+    monkeypatch.setattr(live_environment, "get_weatherapi_current", unavailable)
 
 
 class FakeOpenWeather:
@@ -83,3 +94,36 @@ def test_openaq_remains_available_when_openweather_geocoding_fails(monkeypatch):
     assert result["location"]["latitude"] == 18.579
     assert result["providers"]["openaq"]["live_measurements"][0]["value"] == 8.0
     assert result["providers"]["openweather_air_pollution"]["status"] == "unavailable"
+
+
+
+def test_weatherapi_current_data_is_included_and_timestamp_validated(monkeypatch):
+    monkeypatch.setattr(live_environment, "OpenWeatherClient", FakeOpenWeather)
+    monkeypatch.setattr(live_environment, "_openaq_result", lambda *args: {
+        "status": "no_fresh_data", "provider": "OpenAQ", "stations": [],
+        "measurements": [], "live_measurements": [], "fresh_count": 0,
+        "error": "No fresh measurements."
+    })
+    now = datetime.now(timezone.utc).timestamp()
+    monkeypatch.setattr(live_environment, "get_weatherapi_current", lambda lat, lon: {
+        "source": "WeatherAPI", "pm2_5": 18.5, "pm10": 30.0, "no2": 12.0,
+        "so2": 3.0, "co": 250.0, "o3": 40.0, "last_updated": "current",
+        "last_updated_epoch": now, "us_epa_index": 2, "uk_defra_index": 2,
+    })
+    result = live_environment.current_environment("Wagholi, Pune", 15000)
+    weatherapi = result["providers"]["weatherapi_air_quality"]
+    assert result["status"] == "ok"
+    assert weatherapi["status"] == "ok"
+    assert weatherapi["provider"] == "WeatherAPI"
+    assert weatherapi["pm2_5"] == 18.5
+    assert weatherapi["is_current"] is True
+
+
+def test_weatherapi_stale_observation_is_not_marked_current(monkeypatch):
+    now = datetime.now(timezone.utc).timestamp()
+    result = live_environment._validated_weatherapi({
+        "source": "WeatherAPI", "pm2_5": 18.5,
+        "last_updated": "old", "last_updated_epoch": now - 6 * 60 * 60,
+    }, max_age=180)
+    assert result["status"] == "stale_or_invalid"
+    assert result["is_current"] is False
