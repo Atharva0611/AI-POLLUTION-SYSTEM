@@ -100,7 +100,7 @@ def _safe_weatherapi(latitude, longitude, max_age):
     try:
         raw = get_weatherapi_current(latitude, longitude)
         return _validated_weatherapi(raw, max_age)
-    except (LiveAQIError, Exception):
+    except Exception:
         # Keep provider credentials and request details out of the public response.
         return {
             "status": "unavailable",
