@@ -5,8 +5,14 @@ import os
 
 from fastapi import APIRouter, Query
 
+from backend.services.live_aqi_service import get_weatherapi_current
+from backend.services.live_aqi_service import LiveAQIError
 from backend.services.openaq_service import OpenAQClient, OpenAQError, classify_freshness
-from backend.services.openweather_service import OpenWeatherClient, OpenWeatherError, classify_provider_time
+from backend.services.openweather_service import (
+    OpenWeatherClient,
+    OpenWeatherError,
+    classify_provider_time,
+)
 
 router = APIRouter()
 
@@ -17,7 +23,7 @@ def _openaq_result(latitude, longitude, radius_m):
         catalog = client.locations(latitude, longitude, radius_m, limit=30)
         stations = []
         measurements = []
-        # Keep network calls bounded and parallel; each station uses its own HTTP session.
+
         def read_station(row):
             station_id = row.get("id")
             if station_id is None:
@@ -49,13 +55,17 @@ def _openaq_result(latitude, longitude, radius_m):
                     item["longitude"] = station.get("longitude")
                     item["eligible_for_live"] = False
                     measurements.append(item)
+
         max_age = int(os.getenv("OPENAQ_LIVE_MAX_AGE_MINUTES", "180"))
         eligible = []
         for item in measurements:
             age_seconds = item.get("age_seconds")
-            if (age_seconds is not None and item.get("freshness") == "fresh"
-                    and age_seconds <= max_age * 60
-                    and isinstance(item.get("value"), (int, float))):
+            if (
+                age_seconds is not None
+                and item.get("freshness") == "fresh"
+                and age_seconds <= max_age * 60
+                and isinstance(item.get("value"), (int, float))
+            ):
                 item["eligible_for_live"] = True
                 eligible.append(item)
             else:
@@ -73,8 +83,15 @@ def _openaq_result(latitude, longitude, radius_m):
             "error": None if eligible else "No OpenAQ observations meet the current-data age limit.",
         }
     except OpenAQError as exc:
-        return {"status": "unavailable", "provider": "OpenAQ", "stations": [], "measurements": [],
-                "live_measurements": [], "fresh_count": 0, "error": str(exc)}
+        return {
+            "status": "unavailable",
+            "provider": "OpenAQ",
+            "stations": [],
+            "measurements": [],
+            "live_measurements": [],
+            "fresh_count": 0,
+            "error": str(exc),
+        }
 
 
 def _validated_openweather(raw, max_age):
@@ -83,27 +100,78 @@ def _validated_openweather(raw, max_age):
     result.update(freshness)
     if not result["is_current"]:
         result["status"] = "stale_or_invalid"
-        result["error"] = "OpenWeather observation timestamp is missing, invalid, future-dated, or older than the configured live-data limit."
+        result["error"] = (
+            "OpenWeather observation timestamp is missing, invalid, future-dated, "
+            "or older than the configured live-data limit."
+        )
     else:
         result["status"] = "ok"
         result["error"] = None
     return result
 
 
+def _safe_weatherapi(latitude, longitude, max_age):
+    """Fetch WeatherAPI pollution/weather values and validate its observation time."""
+    try:
+        raw = get_weatherapi_current(latitude, longitude)
+        result = dict(raw)
+        observed_epoch = result.get("last_updated_epoch")
+        freshness = classify_provider_time(
+            observed_epoch,
+            int(os.getenv("WEATHERAPI_LIVE_MAX_AGE_MINUTES", str(max_age))),
+        )
+        result.update(freshness)
+        result["provider"] = "WeatherAPI"
+        result["source_type"] = "provider_current_air_quality_and_weather"
+        result["observed_at"] = result.get("last_updated")
+        result["observed_at_unix"] = observed_epoch
+        if not result["is_current"]:
+            result["status"] = "stale_or_invalid"
+            result["error"] = (
+                "WeatherAPI observation timestamp is missing, invalid, future-dated, "
+                "or older than the configured live-data limit."
+            )
+        else:
+            result["status"] = "ok"
+            result["error"] = None
+        return result
+    except (LiveAQIError, Exception):
+        # Isolate this provider failure; never make the entire endpoint fail because
+        # WeatherAPI is down or unconfigured, and do not expose provider internals.
+        return {
+            "status": "unavailable",
+            "provider": "WeatherAPI",
+            "source_type": "provider_current_air_quality_and_weather",
+            "error": "WeatherAPI current air-quality data is temporarily unavailable.",
+            "is_current": False,
+            "freshness": "unavailable",
+        }
+
+
 @router.get("/air-quality")
-def current_environment(location: str = Query(default="Wagholi, Pune, Maharashtra, India", min_length=2, max_length=120),
-                        radius_m: int = Query(default=15000, ge=100, le=100000)):
+def current_environment(
+    location: str = Query(
+        default="Wagholi, Pune, Maharashtra, India",
+        min_length=2,
+        max_length=120,
+    ),
+    radius_m: int = Query(default=15000, ge=100, le=100000),
+):
     """Fetch independently timestamped current data; never use historical fallback values."""
     resolver = OpenWeatherClient()
     try:
         resolved = resolver.resolve_location(location.strip())
     except OpenWeatherError as geocode_error:
-        # Keep OpenAQ usable when OpenWeather geocoding is down or its key is
-        # missing, using the project's existing validated resolver / OSM.
+        # Keep providers usable when OpenWeather geocoding is down or its key is missing.
         try:
             from backend.services.universal_location_resolver import resolve_universal_location
+
             fallback = resolve_universal_location(location.strip())
-            if not fallback.get("success") or fallback.get("latitude") is None or fallback.get("longitude") is None:
+            if (
+                not fallback.get("success")
+                or fallback.get("latitude") is None
+                or fallback.get("longitude") is None
+            ):
                 raise ValueError("Existing location resolver did not verify this place.")
             resolved = {
                 "requested": location,
@@ -115,24 +183,54 @@ def current_environment(location: str = Query(default="Wagholi, Pune, Maharashtr
         except Exception:
             return {
                 "status": "unavailable",
-                "location": {"requested": location, "resolved_name": None, "latitude": None, "longitude": None},
+                "location": {
+                    "requested": location,
+                    "resolved_name": None,
+                    "latitude": None,
+                    "longitude": None,
+                },
                 "updated_at": datetime.now(timezone.utc).isoformat(),
                 "providers": {
-                    "openaq": {"status": "blocked_by_location_resolution", "error": "Coordinates could not be verified; OpenAQ was not queried.", "stations": [], "measurements": [], "live_measurements": []},
-                    "openweather_air_pollution": {"status": "unavailable", "error": str(geocode_error)},
-                    "openweather_weather": {"status": "unavailable", "error": str(geocode_error)},
+                    "openaq": {
+                        "status": "blocked_by_location_resolution",
+                        "error": "Coordinates could not be verified; OpenAQ was not queried.",
+                        "stations": [],
+                        "measurements": [],
+                        "live_measurements": [],
+                    },
+                    "openweather_air_pollution": {
+                        "status": "unavailable",
+                        "error": str(geocode_error),
+                    },
+                    "openweather_weather": {
+                        "status": "unavailable",
+                        "error": str(geocode_error),
+                    },
+                    "weatherapi": {
+                        "status": "blocked_by_location_resolution",
+                        "error": "Coordinates could not be verified; WeatherAPI was not queried.",
+                    },
                 },
             }
+
     lat, lon = resolved["latitude"], resolved["longitude"]
     max_age = int(os.getenv("OPENWEATHER_LIVE_MAX_AGE_MINUTES", "180"))
-    with ThreadPoolExecutor(max_workers=3) as pool:
+    with ThreadPoolExecutor(max_workers=4) as pool:
         openaq_future = pool.submit(_openaq_result, lat, lon, radius_m)
         pollution_future = pool.submit(_safe_openweather, resolver, "current_air_pollution", lat, lon, max_age)
         weather_future = pool.submit(_safe_openweather, resolver, "current_weather", lat, lon, max_age)
+        weatherapi_future = pool.submit(_safe_weatherapi, lat, lon, max_age)
         openaq = openaq_future.result()
         pollution = pollution_future.result()
         weather = weather_future.result()
-    any_current = bool(openaq.get("live_measurements")) or pollution.get("status") == "ok" or weather.get("status") == "ok"
+        weatherapi = weatherapi_future.result()
+
+    any_current = (
+        bool(openaq.get("live_measurements"))
+        or pollution.get("status") == "ok"
+        or weather.get("status") == "ok"
+        or weatherapi.get("status") == "ok"
+    )
     return {
         "status": "ok" if any_current else "unavailable",
         "location": resolved,
@@ -141,11 +239,13 @@ def current_environment(location: str = Query(default="Wagholi, Pune, Maharashtr
             "openaq": openaq,
             "openweather_air_pollution": pollution,
             "openweather_weather": weather,
+            "weatherapi": weatherapi,
         },
         "notes": [
             "OpenWeather AQI uses its own 1-5 scale and is not CPCB AQI.",
-            "OpenAQ sensor measurements and OpenWeather values are separate provider results and are not averaged.",
+            "OpenAQ sensor measurements, OpenWeather values, and WeatherAPI values are separate provider results and are not averaged.",
             "Only timestamp-validated readings are eligible to be called current.",
+            "WeatherAPI's US EPA and UK DEFRA indexes are not CPCB AQI.",
         ],
     }
 
