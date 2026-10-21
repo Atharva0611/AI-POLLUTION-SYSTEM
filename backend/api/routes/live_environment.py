@@ -52,8 +52,8 @@ def _openaq_result(latitude, longitude, radius_m):
         max_age = int(os.getenv("OPENAQ_LIVE_MAX_AGE_MINUTES", "180"))
         eligible = []
         for item in measurements:
-            age_hours = item.get("age_hours")
-            if age_hours is not None and item.get("freshness") == "fresh" and age_hours * 60 <= max_age:
+            age_minutes = item.get("age_minutes")
+            if age_minutes is not None and item.get("freshness") == "fresh" and age_minutes <= max_age:
                 item["eligible_for_live"] = True
                 eligible.append(item)
             else:
