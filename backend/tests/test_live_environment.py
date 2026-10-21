@@ -1,7 +1,18 @@
 from datetime import datetime, timezone
 
+import pytest
+
 from backend.api.routes import live_environment
+from backend.services.live_aqi_service import LiveAQIError
 from backend.services.openweather_service import OpenWeatherError
+
+
+@pytest.fixture(autouse=True)
+def disable_weatherapi_network_by_default(monkeypatch):
+    def unavailable(*args, **kwargs):
+        raise LiveAQIError("WeatherAPI disabled in isolated test.")
+
+    monkeypatch.setattr(live_environment, "get_weatherapi_current", unavailable)
 
 
 class FakeOpenWeather:
