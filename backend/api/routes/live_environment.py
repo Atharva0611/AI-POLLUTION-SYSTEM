@@ -17,28 +17,38 @@ def _openaq_result(latitude, longitude, radius_m):
         catalog = client.locations(latitude, longitude, radius_m, limit=30)
         stations = []
         measurements = []
-        # Limit station fan-out to protect provider quotas and response latency.
-        for row in catalog[:8]:
+        # Keep network calls bounded and parallel; each station uses its own HTTP session.
+        def read_station(row):
             station_id = row.get("id")
             if station_id is None:
-                continue
+                return None
             try:
-                detail = client.measurements(int(station_id))
+                detail = OpenAQClient().measurements(int(station_id))
             except OpenAQError:
-                continue
+                return None
             if not detail:
-                continue
+                return None
             station = detail.get("station") or {}
-            stations.append(station)
-            for item in detail.get("measurements") or []:
-                item = dict(item)
-                item.update(classify_freshness(item.get("observed_at_utc")))
-                item["station"] = station.get("name")
-                item["station_id"] = station_id
-                item["latitude"] = station.get("latitude")
-                item["longitude"] = station.get("longitude")
-                item["eligible_for_live"] = item.get("is_fresh") is True
-                measurements.append(item)
+            coordinates = row.get("coordinates") or {}
+            station.setdefault("latitude", coordinates.get("latitude"))
+            station.setdefault("longitude", coordinates.get("longitude"))
+            return station_id, station, detail.get("measurements") or []
+
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            for outcome in pool.map(read_station, catalog[:8]):
+                if not outcome:
+                    continue
+                station_id, station, rows = outcome
+                stations.append(station)
+                for source_item in rows:
+                    item = dict(source_item)
+                    item.update(classify_freshness(item.get("observed_at_utc")))
+                    item["station"] = station.get("name")
+                    item["station_id"] = station_id
+                    item["latitude"] = station.get("latitude")
+                    item["longitude"] = station.get("longitude")
+                    item["eligible_for_live"] = False
+                    measurements.append(item)
         max_age = int(os.getenv("OPENAQ_LIVE_MAX_AGE_MINUTES", "180"))
         eligible = []
         for item in measurements:
