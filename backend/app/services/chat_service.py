@@ -20,23 +20,23 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
     # Dedicated deterministic route for historical weather requests. This avoids
     # sending weather-history questions to the policy RAG fallback.
     historical_weather_query = re.search(
-        r"\\b(historical|history|past|last\\s+(?:\\d+\\s+)?(?:days?|weeks?|months?)|yesterday)\\b.*"
-        r"\\b(weather|temperature|humidity|rainfall|precipitation|wind|weather data)\\b"
-        r"|\\b(weather|temperature|humidity|rainfall|precipitation|wind)\\b.*"
-        r"\\b(historical|history|past|last\\s+(?:\\d+\\s+)?(?:days?|weeks?|months?)|yesterday)\\b",
+        r"\b(historical|history|past|last\s+(?:\d+\s+)?(?:days?|weeks?|months?)|yesterday)\b.*"
+        r"\b(weather|temperature|humidity|rainfall|precipitation|wind|weather data)\b"
+        r"|\b(weather|temperature|humidity|rainfall|precipitation|wind)\b.*"
+        r"\b(historical|history|past|last\s+(?:\d+\s+)?(?:days?|weeks?|months?)|yesterday)\b",
         question,
         flags=re.IGNORECASE,
     )
     if historical_weather_query:
         try:
             location_match = re.search(
-                r"\\b(?:in|for|at)\\s+([A-Za-z][A-Za-z .'-]{1,60}?)(?=\\s+(?:from|between|during|for the|over the|last|past|yesterday|on)\\b|[?.!,]|$)",
+                r"\b(?:in|for|at)\s+([A-Za-z][A-Za-z .'-]{1,60}?)(?=\s+(?:from|between|during|for the|over the|last|past|yesterday|on)\b|[?.!,]|$)",
                 question,
                 flags=re.IGNORECASE,
             )
             location = location_match.group(1).strip() if location_match else "Pune"
             date_match = re.search(
-                r"\\b(20\\d{2}-\\d{2}-\\d{2})\\b.*?\\b(20\\d{2}-\\d{2}-\\d{2})\\b",
+                r"\b(20\d{2}-\d{2}-\d{2})\b.*?\b(20\d{2}-\d{2}-\d{2})\b",
                 question,
             )
             start_date = date.fromisoformat(date_match.group(1)) if date_match else None
@@ -49,21 +49,21 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
             winds = [r["wind_speed_10m"] for r in rows if r.get("wind_speed_10m") is not None]
             answer = (
                 f"Historical weather summary for {history['location']['resolved']}, "
-                f"{history['start_date']} to {history['end_date']} (Asia/Kolkata)\\n"
-                f"Source: {history['source']}\\n"
-                f"Hourly records returned: {len(rows)}\\n"
-                f"Temperature range: {min(temps):.1f}–{max(temps):.1f} °C\\n" if temps else
+                f"{history['start_date']} to {history['end_date']} (Asia/Kolkata)\n"
+                f"Source: {history['source']}\n"
+                f"Hourly records returned: {len(rows)}\n"
+                f"Temperature range: {min(temps):.1f}–{max(temps):.1f} °C\n" if temps else
                 f"Historical weather data for {history['location']['resolved']}, "
-                f"{history['start_date']} to {history['end_date']}\\nSource: {history['source']}\\n"
+                f"{history['start_date']} to {history['end_date']}\nSource: {history['source']}\n"
             )
             if humidity:
-                answer += f"Relative humidity range: {min(humidity):.0f}–{max(humidity):.0f}%\\n"
+                answer += f"Relative humidity range: {min(humidity):.0f}–{max(humidity):.0f}%\n"
             if rain:
-                answer += f"Total precipitation across returned hourly records: {sum(rain):.1f} mm\\n"
+                answer += f"Total precipitation across returned hourly records: {sum(rain):.1f} mm\n"
             if winds:
-                answer += f"Wind speed range: {min(winds):.1f}–{max(winds):.1f} km/h\\n"
+                answer += f"Wind speed range: {min(winds):.1f}–{max(winds):.1f} km/h\n"
             answer += (
-                "\\nThis is weather reanalysis data, not measured PM2.5 or official AQI. "
+                "\nThis is weather reanalysis data, not measured PM2.5 or official AQI. "
                 "For exact dates, ask e.g. 'Historical weather in Wagholi from 2026-10-01 to 2026-10-03'."
             )
             return {"answer": answer, "session_id": sid, "status": "ok", "intent": "historical_weather", "location": history["location"]["resolved"]}
@@ -77,21 +77,21 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
 
     # Route explicit current AQI / pollution / weather questions to source-aware data.
     live_question = bool(re.search(
-        r"\\b(aqi|air quality|pm2\\.?5|pm10|pollution|current weather|live weather|temperature|humidity|wind speed)\\b",
+        r"\b(aqi|air quality|pm2\.?5|pm10|pollution|current weather|live weather|temperature|humidity|wind speed)\b",
         question, flags=re.IGNORECASE
-    )) and not bool(re.search(r"\\b(forecast|predict|prediction|historical|history|yesterday|last week|last month)\\b", question, flags=re.IGNORECASE))
+    )) and not bool(re.search(r"\b(forecast|predict|prediction|historical|history|yesterday|last week|last month)\b", question, flags=re.IGNORECASE))
     if live_question:
-        if re.search(r"\\b(near me|around me|my location)\\b", question, flags=re.IGNORECASE):
+        if re.search(r"\b(near me|around me|my location)\b", question, flags=re.IGNORECASE):
             return {
                 "answer": "I need a town, city, or locality to look up live provider data. Please ask e.g. 'AQI of Wagholi, Pune'. I will not guess your coordinates.",
                 "session_id": sid, "status": "partial", "intent": "live_aqi"
             }
         location_match = re.search(
-            r"\\b(?:in|of|for|at)\\s+(.+?)(?=\\s+(?:right now|currently|today|now)\\b|[?.!,]|$)",
+            r"\b(?:in|of|for|at)\s+(.+?)(?=\s+(?:right now|currently|today|now)\b|[?.!,]|$)",
             question, flags=re.IGNORECASE
         )
         target = location_match.group(1).strip() if location_match else "Wagholi, Pune, Maharashtra, India"
-        target = re.sub(r"\\s+", " ", target).strip(" .")
+        target = re.sub(r"\s+", " ", target).strip(" .")
         try:
             from backend.api.routes.live_environment import current_environment
             snapshot = current_environment(target)
@@ -125,7 +125,7 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
             lines.append("Provider values are kept separate. No historical value is substituted and OpenWeather AQI is not CPCB AQI.")
             available = pollution.get("status") == "ok" or weather.get("status") == "ok" or bool(fresh)
             return {
-                "answer": "\\n".join(lines), "session_id": sid,
+                "answer": "\n".join(lines), "session_id": sid,
                 "status": "ok" if available else "partial",
                 "intent": "live_aqi", "location": resolved
             }
