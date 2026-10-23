@@ -1,0 +1,126 @@
+/* ORIVA animated live dashboard — additive styles, preserves existing page logic */
+.oriva-live-overview {
+  --live-bg: #0a1210;
+  --live-panel: rgba(17, 29, 25, .88);
+  --live-border: rgba(157, 211, 184, .14);
+  --live-text: #e8f3ec;
+  --live-muted: #8da79a;
+  --live-mint: #7de0b7;
+  background:
+    radial-gradient(ellipse at 88% 0%, rgba(47, 131, 94, .16), transparent 35%),
+    radial-gradient(ellipse at 0% 45%, rgba(36, 94, 81, .10), transparent 36%),
+    var(--live-bg) !important;
+  color: var(--live-text) !important;
+  gap: 20px !important;
+  position: relative;
+  isolation: isolate;
+  animation: livePageIn .65s cubic-bezier(.2,.7,.2,1) both;
+}
+.oriva-live-overview::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  background-image: linear-gradient(rgba(125,224,183,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(125,224,183,.10) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+.oriva-live-overview > header { animation: liveSlideUp .55s .04s both; }
+.oriva-live-overview > header > div:first-child > div:first-child {
+  color: var(--live-mint) !important;
+  font: 9px 'DM Mono', monospace !important;
+  letter-spacing: .16em !important;
+}
+.oriva-live-overview h1 {
+  color: #f0fbf4 !important;
+  font-weight: 650 !important;
+  letter-spacing: -.055em !important;
+}
+.oriva-live-overview h2 { color: #e7f4ec !important; letter-spacing: -.025em; }
+.oriva-live-overview p { color: var(--live-muted) !important; }
+.oriva-live-overview > header > span { color: var(--live-muted) !important; font: 10px 'DM Mono', monospace; }
+.oriva-live-overview > form {
+  background: linear-gradient(125deg, rgba(19,36,29,.96), rgba(13,24,21,.96)) !important;
+  border-color: var(--live-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 14px 44px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.025) !important;
+  animation: liveSlideUp .6s .10s both;
+}
+.oriva-live-overview label { color: #9db7a9 !important; font: 9px 'DM Mono', monospace !important; letter-spacing: .1em !important; }
+.oriva-live-overview input {
+  background: rgba(6,14,11,.8) !important;
+  border-color: rgba(157,211,184,.2) !important;
+  color: #edf8f0 !important;
+  border-radius: 9px !important;
+  transition: border-color .2s, box-shadow .2s !important;
+}
+.oriva-live-overview input:focus { border-color: var(--live-mint) !important; box-shadow: 0 0 0 3px rgba(125,224,183,.1) !important; outline: none; }
+.oriva-live-overview button {
+  background: linear-gradient(135deg, #8ce8bd, #63cda0) !important;
+  color: #082218 !important;
+  border: 1px solid rgba(151,255,202,.28) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 5px 20px rgba(68,191,132,.1);
+  transition: transform .2s, box-shadow .2s, filter .2s !important;
+}
+.oriva-live-overview button:hover { transform: translateY(-2px); box-shadow: 0 9px 28px rgba(68,191,132,.18); filter: brightness(1.04); }
+.oriva-live-overview button:disabled { opacity: .65; cursor: wait; transform: none; }
+.oriva-live-overview > div[role="status"] {
+  background: rgba(24,43,34,.68) !important;
+  border-color: rgba(125,224,183,.16) !important;
+  color: #b5d7c3 !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  animation: liveFadeIn .4s both;
+}
+.oriva-live-overview > section { animation: liveSlideUp .65s both; }
+.oriva-live-overview > section:nth-of-type(1) { animation-delay: .12s; }
+.oriva-live-overview > section:nth-of-type(2) { animation-delay: .20s; }
+.oriva-live-overview > section:nth-of-type(3) { animation-delay: .28s; }
+.oriva-live-overview > section:nth-of-type(4) { animation-delay: .34s; }
+.oriva-live-overview > section > article,
+.oriva-live-overview > section[style*="border-radius"] {
+  background: linear-gradient(145deg, rgba(20,34,29,.96), rgba(14,25,21,.96)) !important;
+  border-color: var(--live-border) !important;
+  border-radius: 14px !important;
+  color: var(--live-text) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.12), inset 0 1px rgba(255,255,255,.025) !important;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease !important;
+}
+.oriva-live-overview > section > article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125,224,183,.34) !important;
+  box-shadow: 0 18px 38px rgba(0,0,0,.2), 0 0 24px rgba(83,205,154,.035) !important;
+}
+.oriva-live-overview > section > article > div:first-child { color: #91aa9d !important; font: 9px 'DM Mono', monospace !important; letter-spacing: .09em !important; }
+.oriva-live-overview > section > article > div:nth-child(2) { color: #e8f7ed !important; }
+.oriva-live-overview > section > article small { color: #91aa9d !important; }
+.oriva-live-overview > section:nth-of-type(2) > div > div > div {
+  background: rgba(125,224,183,.075) !important;
+  border-radius: 999px !important;
+}
+.oriva-live-overview > section:nth-of-type(2) > div > div > div > div {
+  background: linear-gradient(90deg, #4dba89, #8ce8bd) !important;
+  box-shadow: 0 0 13px rgba(125,224,183,.19);
+  animation: liveBarGrow .9s cubic-bezier(.2,.7,.2,1) both;
+  transform-origin: left;
+}
+.oriva-live-overview > section:nth-of-type(2) strong { color: #d6e9dc; }
+.oriva-live-overview > section:nth-of-type(2) span { color: #b5c9bd !important; }
+.oriva-live-overview > section:nth-of-type(2) > p { border-color: var(--live-border) !important; }
+.oriva-live-overview > section:nth-of-type(3) > article > div:nth-child(2) { color: var(--live-mint) !important; }
+.oriva-live-overview > section:last-child h2 { color: #e9f5ed !important; }
+.oriva-live-overview > section:last-child button + button { background: rgba(125,224,183,.08) !important; color: #bce9d0 !important; border-color: rgba(125,224,183,.2) !important; }
+@keyframes livePageIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes liveSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes liveFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes liveBarGrow { from { transform: scaleX(.03); opacity: .3; } to { transform: scaleX(1); opacity: 1; } }
+@media (max-width: 650px) {
+  .oriva-live-overview { gap: 14px !important; padding: 20px 14px !important; }
+  .oriva-live-overview > section > article { padding: 15px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oriva-live-overview, .oriva-live-overview * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
