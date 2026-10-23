@@ -1,126 +1,111 @@
-/* ORIVA animated live dashboard — additive styles, preserves existing page logic */
-.oriva-live-overview {
-  --live-bg: #0a1210;
-  --live-panel: rgba(17, 29, 25, .88);
-  --live-border: rgba(157, 211, 184, .14);
-  --live-text: #e8f3ec;
-  --live-muted: #8da79a;
-  --live-mint: #7de0b7;
+/* ORIVA v2 — midnight blue / electric cyan / violet. Intentionally replaces the old green theme. */
+:root {
+  --oriva-v2-bg:#080d19;
+  --oriva-v2-panel:#10192b;
+  --oriva-v2-panel-2:#131f35;
+  --oriva-v2-border:rgba(145,177,230,.16);
+  --oriva-v2-text:#edf3ff;
+  --oriva-v2-muted:#94a5c4;
+  --oriva-v2-blue:#5aa7ff;
+  --oriva-v2-cyan:#62e5ff;
+  --oriva-v2-violet:#a78bfa;
+  color-scheme:dark;
+}
+html,body,#root{background:#080d19!important;color:var(--oriva-v2-text)!important}
+body{background:radial-gradient(ellipse at 72% -12%,rgba(50,112,218,.2),transparent 42%),radial-gradient(ellipse at 5% 85%,rgba(117,76,218,.1),transparent 34%),#080d19!important}
+.app-shell{background:transparent!important;max-width:none!important}
+.sidebar{background:rgba(10,16,31,.97)!important;border-right:1px solid var(--oriva-v2-border)!important;backdrop-filter:blur(22px)}
+.brand-lockup strong{color:#f3f7ff!important;letter-spacing:.13em!important}
+.brand-period{color:var(--oriva-v2-cyan)!important}
+.brand-glyph{border-color:rgba(98,229,255,.48)!important;background:linear-gradient(145deg,rgba(90,167,255,.2),rgba(167,139,250,.1))!important;box-shadow:0 0 26px rgba(90,167,255,.12)!important}
+.brand-glyph span{background:linear-gradient(180deg,var(--oriva-v2-cyan),var(--oriva-v2-blue))!important}
+.side-label{color:#7f91b5!important}
+.nav-item{color:#a4b4d1!important}
+.nav-item:hover{background:rgba(90,167,255,.08)!important;color:#f2f7ff!important}
+.nav-item.active{background:linear-gradient(100deg,rgba(90,167,255,.18),rgba(167,139,250,.08))!important;border-color:rgba(90,167,255,.28)!important;color:#e4f2ff!important}
+.nav-item.active .icon-mark,.icon-mark{color:var(--oriva-v2-cyan)!important}
+.nav-live{color:var(--oriva-v2-cyan)!important;border-color:rgba(98,229,255,.25)!important}
+.sidebar-status{background:rgba(90,167,255,.07)!important;border-color:rgba(90,167,255,.18)!important}
+.status-halo{background:rgba(90,167,255,.12)!important}
+.status-halo span{background:var(--oriva-v2-cyan)!important;box-shadow:0 0 0 4px rgba(98,229,255,.1)!important}
+.sidebar-bottom{border-color:var(--oriva-v2-border)!important}
+.mini-brand-glyph{background:linear-gradient(135deg,#234d88,#423078)!important;color:#d9f8ff!important}
+.main-shell{background:transparent!important}
+.topbar{background:rgba(8,13,25,.8)!important;border-color:var(--oriva-v2-border)!important;backdrop-filter:blur(20px)}
+.breadcrumb span,.breadcrumb strong{color:#b8c9e8!important}
+.topbar-avatar{color:var(--oriva-v2-cyan)!important;background:rgba(90,167,255,.1)!important;border-color:rgba(90,167,255,.3)!important}
+.page-scroll{scrollbar-color:#30466e transparent!important}
+.oriva-live-overview{
+  --live-bg:#080d19!important;
+  --live-panel:#10192b!important;
+  --live-border:rgba(145,177,230,.16)!important;
+  --live-text:#edf3ff!important;
+  --live-muted:#94a5c4!important;
+  --live-mint:#62e5ff!important;
   background:
-    radial-gradient(ellipse at 88% 0%, rgba(47, 131, 94, .16), transparent 35%),
-    radial-gradient(ellipse at 0% 45%, rgba(36, 94, 81, .10), transparent 36%),
-    var(--live-bg) !important;
-  color: var(--live-text) !important;
-  gap: 20px !important;
-  position: relative;
-  isolation: isolate;
-  animation: livePageIn .65s cubic-bezier(.2,.7,.2,1) both;
+    radial-gradient(ellipse at 88% 0%,rgba(54,120,231,.17),transparent 36%),
+    radial-gradient(ellipse at 8% 55%,rgba(125,86,224,.09),transparent 32%),
+    #080d19!important;
+  color:#edf3ff!important;
+  gap:20px!important;
+  position:relative;isolation:isolate;animation:v2Fade .55s ease both;
 }
-.oriva-live-overview::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  pointer-events: none;
-  opacity: .12;
-  background-image: linear-gradient(rgba(125,224,183,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(125,224,183,.10) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: linear-gradient(to bottom, black, transparent 78%);
+.oriva-live-overview::before{
+ content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.13;
+ background-image:linear-gradient(rgba(98,229,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(98,229,255,.1) 1px,transparent 1px);
+ background-size:36px 36px;mask-image:linear-gradient(to bottom,black,transparent 80%);
 }
-.oriva-live-overview > header { animation: liveSlideUp .55s .04s both; }
-.oriva-live-overview > header > div:first-child > div:first-child {
-  color: var(--live-mint) !important;
-  font: 9px 'DM Mono', monospace !important;
-  letter-spacing: .16em !important;
+.oriva-live-overview>header{animation:v2Rise .55s .04s both}
+.oriva-live-overview>header>div:first-child>div:first-child{color:var(--oriva-v2-cyan)!important;font:9px 'DM Mono',monospace!important;letter-spacing:.17em!important}
+.oriva-live-overview h1{color:#f3f7ff!important;font-weight:700!important;letter-spacing:-.055em!important}
+.oriva-live-overview h2{color:#e9f1ff!important;letter-spacing:-.03em}
+.oriva-live-overview p{color:var(--oriva-v2-muted)!important}
+.oriva-live-overview>header>span{color:#8fa4c9!important;font:10px 'DM Mono',monospace}
+.oriva-live-overview>form{
+ background:linear-gradient(120deg,rgba(18,29,50,.96),rgba(15,24,43,.96))!important;
+ border:1px solid var(--oriva-v2-border)!important;border-radius:16px!important;
+ box-shadow:0 18px 50px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.04)!important;
+ animation:v2Rise .6s .1s both;
 }
-.oriva-live-overview h1 {
-  color: #f0fbf4 !important;
-  font-weight: 650 !important;
-  letter-spacing: -.055em !important;
+.oriva-live-overview label{color:#9fb3d7!important;font:9px 'DM Mono',monospace!important;letter-spacing:.1em!important}
+.oriva-live-overview input{background:#090f1e!important;border:1px solid rgba(145,177,230,.22)!important;color:#edf3ff!important;border-radius:10px!important;transition:border-color .2s,box-shadow .2s!important}
+.oriva-live-overview input:focus{border-color:var(--oriva-v2-cyan)!important;box-shadow:0 0 0 3px rgba(98,229,255,.1)!important;outline:none}
+.oriva-live-overview button{background:linear-gradient(115deg,#5aa7ff,#7a8cff)!important;color:#071326!important;border:1px solid rgba(151,197,255,.38)!important;border-radius:10px!important;box-shadow:0 7px 24px rgba(64,133,245,.17);transition:transform .2s,box-shadow .2s,filter .2s!important}
+.oriva-live-overview button:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(64,133,245,.26);filter:brightness(1.08)}
+.oriva-live-overview button:disabled{opacity:.65;cursor:wait;transform:none}
+.oriva-live-overview>div[role="status"]{background:rgba(22,38,66,.88)!important;border-color:rgba(90,167,255,.23)!important;color:#c1d9ff!important;border-radius:11px!important;font-size:11px!important;animation:v2Fade .4s both}
+.oriva-live-overview>section{animation:v2Rise .65s both}
+.oriva-live-overview>section:nth-of-type(1){animation-delay:.12s}
+.oriva-live-overview>section:nth-of-type(2){animation-delay:.2s}
+.oriva-live-overview>section:nth-of-type(3){animation-delay:.28s}
+.oriva-live-overview>section:nth-of-type(4){animation-delay:.34s}
+.oriva-live-overview>section>article,.oriva-live-overview>section[style*="border-radius"]{
+ background:linear-gradient(145deg,rgba(19,30,51,.97),rgba(13,22,39,.98))!important;
+ border-color:var(--oriva-v2-border)!important;border-radius:16px!important;color:#edf3ff!important;
+ box-shadow:0 14px 36px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.035)!important;
+ transition:transform .23s ease,border-color .23s ease,box-shadow .23s ease!important;
 }
-.oriva-live-overview h2 { color: #e7f4ec !important; letter-spacing: -.025em; }
-.oriva-live-overview p { color: var(--live-muted) !important; }
-.oriva-live-overview > header > span { color: var(--live-muted) !important; font: 10px 'DM Mono', monospace; }
-.oriva-live-overview > form {
-  background: linear-gradient(125deg, rgba(19,36,29,.96), rgba(13,24,21,.96)) !important;
-  border-color: var(--live-border) !important;
-  border-radius: 14px !important;
-  box-shadow: 0 14px 44px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.025) !important;
-  animation: liveSlideUp .6s .10s both;
-}
-.oriva-live-overview label { color: #9db7a9 !important; font: 9px 'DM Mono', monospace !important; letter-spacing: .1em !important; }
-.oriva-live-overview input {
-  background: rgba(6,14,11,.8) !important;
-  border-color: rgba(157,211,184,.2) !important;
-  color: #edf8f0 !important;
-  border-radius: 9px !important;
-  transition: border-color .2s, box-shadow .2s !important;
-}
-.oriva-live-overview input:focus { border-color: var(--live-mint) !important; box-shadow: 0 0 0 3px rgba(125,224,183,.1) !important; outline: none; }
-.oriva-live-overview button {
-  background: linear-gradient(135deg, #8ce8bd, #63cda0) !important;
-  color: #082218 !important;
-  border: 1px solid rgba(151,255,202,.28) !important;
-  border-radius: 9px !important;
-  box-shadow: 0 5px 20px rgba(68,191,132,.1);
-  transition: transform .2s, box-shadow .2s, filter .2s !important;
-}
-.oriva-live-overview button:hover { transform: translateY(-2px); box-shadow: 0 9px 28px rgba(68,191,132,.18); filter: brightness(1.04); }
-.oriva-live-overview button:disabled { opacity: .65; cursor: wait; transform: none; }
-.oriva-live-overview > div[role="status"] {
-  background: rgba(24,43,34,.68) !important;
-  border-color: rgba(125,224,183,.16) !important;
-  color: #b5d7c3 !important;
-  border-radius: 10px !important;
-  font-size: 11px !important;
-  animation: liveFadeIn .4s both;
-}
-.oriva-live-overview > section { animation: liveSlideUp .65s both; }
-.oriva-live-overview > section:nth-of-type(1) { animation-delay: .12s; }
-.oriva-live-overview > section:nth-of-type(2) { animation-delay: .20s; }
-.oriva-live-overview > section:nth-of-type(3) { animation-delay: .28s; }
-.oriva-live-overview > section:nth-of-type(4) { animation-delay: .34s; }
-.oriva-live-overview > section > article,
-.oriva-live-overview > section[style*="border-radius"] {
-  background: linear-gradient(145deg, rgba(20,34,29,.96), rgba(14,25,21,.96)) !important;
-  border-color: var(--live-border) !important;
-  border-radius: 14px !important;
-  color: var(--live-text) !important;
-  box-shadow: 0 12px 32px rgba(0,0,0,.12), inset 0 1px rgba(255,255,255,.025) !important;
-  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease !important;
-}
-.oriva-live-overview > section > article:hover {
-  transform: translateY(-4px);
-  border-color: rgba(125,224,183,.34) !important;
-  box-shadow: 0 18px 38px rgba(0,0,0,.2), 0 0 24px rgba(83,205,154,.035) !important;
-}
-.oriva-live-overview > section > article > div:first-child { color: #91aa9d !important; font: 9px 'DM Mono', monospace !important; letter-spacing: .09em !important; }
-.oriva-live-overview > section > article > div:nth-child(2) { color: #e8f7ed !important; }
-.oriva-live-overview > section > article small { color: #91aa9d !important; }
-.oriva-live-overview > section:nth-of-type(2) > div > div > div {
-  background: rgba(125,224,183,.075) !important;
-  border-radius: 999px !important;
-}
-.oriva-live-overview > section:nth-of-type(2) > div > div > div > div {
-  background: linear-gradient(90deg, #4dba89, #8ce8bd) !important;
-  box-shadow: 0 0 13px rgba(125,224,183,.19);
-  animation: liveBarGrow .9s cubic-bezier(.2,.7,.2,1) both;
-  transform-origin: left;
-}
-.oriva-live-overview > section:nth-of-type(2) strong { color: #d6e9dc; }
-.oriva-live-overview > section:nth-of-type(2) span { color: #b5c9bd !important; }
-.oriva-live-overview > section:nth-of-type(2) > p { border-color: var(--live-border) !important; }
-.oriva-live-overview > section:nth-of-type(3) > article > div:nth-child(2) { color: var(--live-mint) !important; }
-.oriva-live-overview > section:last-child h2 { color: #e9f5ed !important; }
-.oriva-live-overview > section:last-child button + button { background: rgba(125,224,183,.08) !important; color: #bce9d0 !important; border-color: rgba(125,224,183,.2) !important; }
-@keyframes livePageIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes liveSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes liveFadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes liveBarGrow { from { transform: scaleX(.03); opacity: .3; } to { transform: scaleX(1); opacity: 1; } }
-@media (max-width: 650px) {
-  .oriva-live-overview { gap: 14px !important; padding: 20px 14px !important; }
-  .oriva-live-overview > section > article { padding: 15px !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .oriva-live-overview, .oriva-live-overview * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}
+.oriva-live-overview>section>article:hover{transform:translateY(-4px);border-color:rgba(98,229,255,.35)!important;box-shadow:0 20px 42px rgba(0,0,0,.26),0 0 26px rgba(90,167,255,.05)!important}
+.oriva-live-overview>section>article>div:first-child{color:#91a7ce!important;font:9px 'DM Mono',monospace!important;letter-spacing:.1em!important}
+.oriva-live-overview>section>article>div:nth-child(2){color:#edf4ff!important}
+.oriva-live-overview>section>article small{color:#91a7ce!important}
+.oriva-live-overview>section:nth-of-type(2)>div>div>div{background:rgba(145,177,230,.12)!important;border-radius:999px!important}
+.oriva-live-overview>section:nth-of-type(2)>div>div>div>div{background:linear-gradient(90deg,#5aa7ff,#62e5ff,#a78bfa)!important;box-shadow:0 0 15px rgba(90,167,255,.22);animation:v2Bar .9s cubic-bezier(.2,.7,.2,1) both;transform-origin:left}
+.oriva-live-overview>section:nth-of-type(2) strong{color:#dbe8ff!important}
+.oriva-live-overview>section:nth-of-type(2) span{color:#b6c9e9!important}
+.oriva-live-overview>section:nth-of-type(2)>p{border-color:var(--oriva-v2-border)!important}
+.oriva-live-overview>section:nth-of-type(3)>article>div:nth-child(2){color:#7fe4c2!important}
+.oriva-live-overview>section:last-child h2{color:#edf3ff!important}
+.oriva-live-overview>section:last-child button+button{background:rgba(167,139,250,.12)!important;color:#d7cbff!important;border-color:rgba(167,139,250,.25)!important}
+.oriva-live-overview>section:last-child button+button:hover{background:rgba(167,139,250,.2)!important}
+.messages{background:transparent!important}
+.message-content{color:#dce8ff!important}
+.composer,.chat-composer{background:rgba(16,25,43,.96)!important;border-color:var(--oriva-v2-border)!important}
+.composer textarea,.chat-composer textarea{color:#edf3ff!important}
+.send-button{background:linear-gradient(135deg,#5aa7ff,#7a8cff)!important;color:#071326!important}
+.error-message{border-color:rgba(255,118,140,.3)!important;background:rgba(130,35,57,.18)!important;color:#ffb7c4!important}
+@keyframes v2Fade{from{opacity:0}to{opacity:1}}
+@keyframes v2Rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@keyframes v2Bar{from{transform:scaleX(.025);opacity:.35}to{transform:scaleX(1);opacity:1}}
+@media(max-width:650px){.oriva-live-overview{gap:14px!important;padding:20px 14px!important}.oriva-live-overview>section>article{padding:15px!important}}
+@media(prefers-reduced-motion:reduce){.oriva-live-overview,.oriva-live-overview *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
