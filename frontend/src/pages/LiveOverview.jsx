@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "");
+const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001").replace(/\/$/, "");
 const DEFAULT_LOCATION = "Wagholi, Pune, Maharashtra, India";
 const colors = { text: "#17243a", muted: "#68788f", border: "#dce4ee", blue: "#2868c7", panel: "#ffffff", bg: "#f4f7fb" };
 
@@ -64,7 +64,7 @@ export default function LiveOverview({ setView }) {
     ["OpenWeather weather", weather],
     ["OpenAQ sensors", openaq]
   ];
-  return <main style={{ padding: "clamp(18px,3vw,42px)", background: colors.bg, color: colors.text, minHeight: "100%", display: "grid", gap: 22, alignContent: "start", fontFamily: "Inter,Manrope,system-ui,sans-serif" }}>
+  return <main className="oriva-live-overview" style={{ padding: "clamp(18px,3vw,42px)", background: colors.bg, color: colors.text, minHeight: "100%", display: "grid", gap: 22, alignContent: "start", fontFamily: "Inter,Manrope,system-ui,sans-serif" }}>
     <header style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 18 }}>
       <div><div style={{ ...label, color: colors.blue }}>ORIVA / ENVIRONMENTAL INTELLIGENCE</div><h1 style={{ fontSize: "clamp(28px,3vw,40px)", letterSpacing: "-.045em", margin: "10px 0 8px" }}>Air quality overview</h1><p style={{ color: colors.muted, margin: 0, lineHeight: 1.6 }}>Location-specific conditions from connected providers, with source and freshness transparency.</p></div>
       <span style={{ color: colors.muted, fontSize: 12 }}>Last checked: {checkedAt || "Not checked"}</span>
