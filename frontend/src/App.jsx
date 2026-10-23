@@ -6,6 +6,7 @@ import LiveAirQuality from "./pages/LiveAirQuality.jsx";
 import Forecast from "./pages/Forecast.jsx";
 import "./index.css";
 import "./oriva-light.css";
+import "./oriva-live.css";
 
 const API_URL = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001").replace(/\/$/, "")}/api/chat`;
 const newSession = () => globalThis.crypto?.randomUUID?.() || `oriva-${Date.now()}`;
@@ -59,7 +60,7 @@ function App() {
 
   const pageSubtitle = {
     chat: "Multi-agent environmental intelligence",
-    dashboard: "Current OpenAQ and OpenWeather conditions",
+    dashboard: "Live environmental intelligence · source-aware readings",
     "live-aqi": "OpenAQ measurements, timestamps, and freshness",
     map: "Historical DBSCAN clusters — not live readings",
     forecast: "PM2.5 forecast, station coverage, and SHAP transparency"
