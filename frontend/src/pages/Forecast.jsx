@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-const API = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "")}/api/forecast/universal`;
+const API = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001").replace(/\/$/, "")}/api/forecast/universal`;
 const num = (v, d = 1) => Number.isFinite(Number(v)) ? Number(v).toFixed(d) : "—";
 
 function rowsFromShap(shap) {
