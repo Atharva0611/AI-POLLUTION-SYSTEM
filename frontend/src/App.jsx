@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import Hotspots from "./pages/Hotspots.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import LiveOverview from "./pages/LiveOverview.jsx";
 import LiveAirQuality from "./pages/LiveAirQuality.jsx";
 import Forecast from "./pages/Forecast.jsx";
 import "./index.css";
 import "./oriva-light.css";
 
-const API_URL = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "")}/api/chat`;
+const API_URL = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001").replace(/\/$/, "")}/api/chat`;
 const newSession = () => globalThis.crypto?.randomUUID?.() || `oriva-${Date.now()}`;
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
         content: data.answer || "No answer returned."
       }]);
     } catch (err) {
-      setError(`${err.message}. Check the backend at http://127.0.0.1:8000.`);
+      setError(`${err.message}. Check the backend at http://127.0.0.1:8001.`);
     } finally {
       setBusy(false);
     }
@@ -113,7 +113,7 @@ function App() {
         </header>
 
         {view === "dashboard" ? (
-          <div className="page-scroll"><Dashboard /></div>
+          <div className="page-scroll page-enter"><LiveOverview setView={setView} /></div>
         ) : view === "live-aqi" ? (
           <div className="page-scroll"><LiveAirQuality /></div>
         ) : view === "map" ? (
