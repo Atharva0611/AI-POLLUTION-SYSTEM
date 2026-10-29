@@ -1,4 +1,4 @@
-﻿import os
+import os
 import pandas as pd
 import numpy as np
 import math
@@ -9,11 +9,11 @@ ROOT = os.path.abspath(
 )
 
 FEATURE_FILE = os.path.join(
-    ROOT, "data", "processed", "pune_cpcb_features.csv"
+    ROOT, "data", "processed", "pune_cpcb_all_stations_hourly.csv"
 )
 
 STATION_FILE = os.path.join(
-    ROOT, "data", "processed", "pune_cpcb_verified_stations.csv"
+    ROOT, "data", "processed", "dbscan_candidate", "verified_station_hotspots.csv"
 )
 
 RESULT_FILE = os.path.join(
@@ -24,10 +24,8 @@ EARTH_RADIUS_KM = 6371.0088
 
 
 def normalize(value):
-    return (
-        str(value).strip().lower()
-        .replace("_", " ")
-        .replace("-", " ")
+    return " ".join(
+        str(value).strip().lower().replace("_", " ").replace("-", " ").split()
     )
 
 

@@ -1,0 +1,8 @@
+station_name,hourly_rows,valid_pm25,valid_next_hour_pairs,mean_pm25,median_pm25
+"Bhumkar Nagar, Pune - IITM",14147,12765,12764,45.92628913696305,29.9375
+"Katraj Dairy, Pune - MPCB",17544,13926,13925,33.56631073770885,28.165
+"Mhada Colony, Pune - IITM",17544,15927,15926,43.45990514011846,35.155
+"Panchawati_Pashan, Pune - IITM",12750,10965,10964,27.509375208998332,22.26333333333333
+"Revenue Colony-Shivajinagar, Pune - IITM",17536,15030,15029,52.939635617653586,44.9975
+"Savitribai Phule Pune University, Pune - MPCB",17544,16124,16123,35.073736820888115,27.7625
+"Transport Nagar-Nigdi, Pune - IITM",17544,14387,14386,34.14474531405667,28.57

@@ -75,64 +75,137 @@ def process_chat(message: str, session_id: str | None = None) -> dict:
                 "intent": "historical_weather",
             }
 
-    # Route explicit current AQI / pollution / weather questions to source-aware data.
+    # Current AQI/weather questions use WeatherAPI as the single live provider.
+    # Historical, forecast, ML, SHAP, DBSCAN and RAG routes remain separate.
     live_question = bool(re.search(
-        r"\b(aqi|air quality|pm2\.?5|pm10|pollution|weather|temperature|humidity|wind speed)\b",
-        question, flags=re.IGNORECASE
-    )) and not bool(re.search(r"\b(forecast|predict|prediction|historical|history|yesterday|last week|last month)\b", question, flags=re.IGNORECASE))
+        r"\b(aqi|air quality|pm2\.?5|pm10|pollution|weather|temperature|humidity|"
+        r"wind speed|wind direction|rainfall|precipitation|no2|so2|ozone)\b",
+        question,
+        flags=re.IGNORECASE,
+    )) and not bool(re.search(
+        r"\b(forecast|predict|prediction|historical|history|yesterday|last week|last month)\b",
+        question,
+        flags=re.IGNORECASE,
+    ))
+
     if live_question:
         if re.search(r"\b(near me|around me|my location)\b", question, flags=re.IGNORECASE):
             return {
-                "answer": "I need a town, city, or locality to look up live provider data. Please ask e.g. 'AQI of Wagholi, Pune'. I will not guess your coordinates.",
-                "session_id": sid, "status": "partial", "intent": "live_aqi"
+                "answer": (
+                    "Please provide a city or locality for live WeatherAPI data, "
+                    "for example: 'AQI in Wagholi, Pune'. I won't guess your location."
+                ),
+                "session_id": sid,
+                "status": "partial",
+                "intent": "live_aqi",
             }
+
         location_match = re.search(
             r"\b(?:in|of|for|at)\s+(.+?)(?=\s+(?:right now|currently|today|now)\b|[?.!,]|$)",
-            question, flags=re.IGNORECASE
+            question,
+            flags=re.IGNORECASE,
         )
-        target = location_match.group(1).strip() if location_match else "Wagholi, Pune, Maharashtra, India"
+        target = (
+            location_match.group(1).strip()
+            if location_match
+            else "Wagholi, Pune, Maharashtra, India"
+        )
         target = re.sub(r"\s+", " ", target).strip(" .")
+
         try:
-            from backend.api.routes.live_environment import current_environment
-            snapshot = current_environment(target)
-            providers = snapshot.get("providers") or {}
-            pollution = providers.get("openweather_air_pollution") or {}
-            weather = providers.get("openweather_weather") or {}
-            openaq = providers.get("openaq") or {}
-            resolved = (snapshot.get("location") or {}).get("resolved_name") or target
-            lines = [f"Current environmental data for {resolved}:"]
-            if pollution.get("status") == "ok":
-                lines.append(f"OpenWeather Air Quality Index: {pollution.get('aqi', 'unavailable')} on OpenWeather's 1–5 scale (not CPCB AQI).")
-                for key, label in (("pm2_5", "PM2.5"), ("pm10", "PM10"), ("no2", "NO2"), ("so2", "SO2"), ("o3", "O3"), ("co", "CO")):
-                    value = (pollution.get("components") or {}).get(key)
-                    if value is not None:
-                        lines.append(f"OpenWeather {label}: {value} µg/m³.")
-                lines.append(f"OpenWeather pollution observed at: {pollution.get('observed_at') or 'timestamp unavailable'} (UTC); freshness: {pollution.get('freshness', 'unknown')}.")
-            else:
-                lines.append(f"OpenWeather current pollution is unavailable: {pollution.get('error') or pollution.get('status', 'unknown status')}.")
-            if weather.get("status") == "ok":
-                lines.append(f"OpenWeather weather: {weather.get('temperature_c', '—')} °C, humidity {weather.get('humidity_percent', '—')}%, wind {weather.get('wind_speed_m_s', '—')} m/s.")
-                lines.append(f"Weather observed at: {weather.get('observed_at') or 'timestamp unavailable'} (UTC); freshness: {weather.get('freshness', 'unknown')}.")
-            else:
-                lines.append(f"OpenWeather current weather is unavailable: {weather.get('error') or weather.get('status', 'unknown status')}.")
-            fresh = openaq.get("live_measurements") or []
-            if fresh:
-                lines.append(f"OpenAQ has {len(fresh)} sensor measurement(s) within the configured live window:")
-                for item in fresh[:8]:
-                    lines.append(f"OpenAQ {item.get('pollutant', 'pollutant')} at {item.get('station', 'station')}: {item.get('value')} {item.get('unit') or ''}, observed {item.get('observed_at_utc') or 'timestamp unavailable'} (UTC).")
-            else:
-                lines.append(f"OpenAQ current sensor readings unavailable: {openaq.get('error') or 'no measurements meet the live-data threshold'}.")
-            lines.append("Provider values are kept separate. No historical value is substituted and OpenWeather AQI is not CPCB AQI.")
-            available = pollution.get("status") == "ok" or weather.get("status") == "ok" or bool(fresh)
+            from backend.services.india_environment import get_environment_for_user
+
+            env = get_environment_for_user(target)
+            if env.get("status") != "ok":
+                detail = (env.get("policy") or [])
+                detail_text = str(detail[0]) if detail else "WeatherAPI did not return current data."
+                return {
+                    "answer": (
+                        f"WeatherAPI could not retrieve current environmental data for {target}. "
+                        f"{detail_text} Check WEATHER_API_KEY in the project .env file, "
+                        "your WeatherAPI quota, and the provider response. "
+                        "No historical data has been substituted."
+                    ),
+                    "session_id": sid,
+                    "status": "partial",
+                    "intent": "live_aqi",
+                    "location": target,
+                }
+
+            current = env.get("current") or {}
+            aqi = env.get("current_aqi") or {}
+            loc = env.get("location") or {}
+            display = loc.get("display_name") or target
+            updated = current.get("last_updated") or loc.get("local_time") or "Unavailable"
+
+            lines = [
+                f"CURRENT AIR QUALITY & WEATHER — {display}",
+                f"Source: WeatherAPI current weather and air-quality data",
+                f"Last updated by provider: {updated}",
+                "",
+                "AIR QUALITY",
+                f"Indicative India-style AQI: {aqi.get('value', 'Unavailable')} "
+                f"({aqi.get('category', 'Unavailable')})",
+                f"Controlling pollutant: {aqi.get('controlling_pollutant', 'Unavailable')}",
+                f"PM2.5: {current.get('pm2_5', 'Unavailable')} µg/m³",
+                f"PM10: {current.get('pm10', 'Unavailable')} µg/m³",
+                f"NO₂: {current.get('no2', 'Unavailable')} µg/m³",
+                f"SO₂: {current.get('so2', 'Unavailable')} µg/m³",
+                f"CO: {current.get('co', 'Unavailable')} µg/m³",
+                f"O₃: {current.get('o3', 'Unavailable')} µg/m³",
+                "",
+                "CURRENT WEATHER",
+                f"Temperature: {current.get('temperature_c', 'Unavailable')} °C",
+                f"Feels like: {current.get('feels_like_c', 'Unavailable')} °C",
+                f"Humidity: {current.get('humidity', 'Unavailable')}%",
+                f"Wind: {current.get('wind_speed_kph', 'Unavailable')} km/h "
+                f"({current.get('wind_direction', 'Unavailable')})",
+                f"Rainfall: {current.get('rainfall_mm', 'Unavailable')} mm",
+                f"Conditions: {current.get('condition', 'Unavailable')}",
+                "",
+                "AQI note: this is an indicative calculation from available pollutant "
+                "concentrations, not a verified official CPCB station reading. "
+                "WeatherAPI's US EPA and UK DEFRA indices are different scales.",
+            ]
+
+            has_current_data = any(
+                current.get(key) is not None
+                for key in (
+                    "pm2_5", "pm10", "no2", "so2", "co", "o3",
+                    "temperature_c", "humidity", "wind_speed_kph",
+                )
+            )
+            if not has_current_data:
+                return {
+                    "answer": (
+                        f"WeatherAPI responded for {display}, but did not provide usable "
+                        "current weather or pollutant values. No historical data was substituted."
+                    ),
+                    "session_id": sid,
+                    "status": "partial",
+                    "intent": "live_aqi",
+                    "location": display,
+                }
+
             return {
-                "answer": "\n".join(lines), "session_id": sid,
-                "status": "ok" if available else "partial",
-                "intent": "live_aqi", "location": resolved
+                "answer": "\n".join(lines),
+                "session_id": sid,
+                "status": "ok",
+                "intent": "live_aqi",
+                "location": display,
             }
+
         except Exception:
             return {
-                "answer": "Current environmental data could not be retrieved. Check the OpenAQ and OpenWeather provider status on the Live Air Quality page; no historical reading has been substituted.",
-                "session_id": sid, "status": "partial", "intent": "live_aqi"
+                "answer": (
+                    "WeatherAPI could not retrieve current environmental data. "
+                    "Check WEATHER_API_KEY in the project .env file, your API quota, "
+                    "network connectivity, and WeatherAPI provider status. "
+                    "No historical reading has been substituted."
+                ),
+                "session_id": sid,
+                "status": "partial",
+                "intent": "live_aqi",
             }
 
     try:

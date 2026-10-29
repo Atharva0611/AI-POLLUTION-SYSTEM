@@ -1,0 +1,33 @@
+{
+  "status": "FORECAST_VALIDATION_CHECKS_PASSED",
+  "model_artifacts": {
+    "models": 24,
+    "median_files": 24,
+    "features_per_horizon": 133
+  },
+  "station_data_quality": {
+    "exact_one_hour_gaps": 114602,
+    "gaps_over_one_hour": 0,
+    "nonpositive_gaps": 0,
+    "valid_pm25_rows": 99124,
+    "total_station_rows": 114609
+  },
+  "evaluation": {
+    "horizons": 24,
+    "prediction_rows": 358464,
+    "stations": 7,
+    "xgboost_better_test_horizons": 20,
+    "persistence_better_or_equal_test_horizons": 4
+  },
+  "outputs": {
+    "horizon_metrics": "C:\\final year project\\AI-POLLUTION-SYSTEM-GITHUB\\models\\forecasting\\pune_pm25_24h_candidate\\seven_station_diagnostic\\horizon_metrics.csv",
+    "test_predictions": "C:\\final year project\\AI-POLLUTION-SYSTEM-GITHUB\\models\\forecasting\\pune_pm25_24h_candidate\\seven_station_diagnostic\\test_predictions.csv",
+    "station_metrics": "C:\\final year project\\AI-POLLUTION-SYSTEM-GITHUB\\models\\forecasting\\pune_pm25_24h_candidate\\seven_station_diagnostic\\station_metrics.csv",
+    "station_coverage": "C:\\final year project\\AI-POLLUTION-SYSTEM-GITHUB\\models\\forecasting\\pune_pm25_24h_candidate\\seven_station_diagnostic\\station_coverage_audit.csv"
+  },
+  "limitations": [
+    "Test metrics are diagnostic and must not be used to select a strategy.",
+    "This does not prove live API integration, production latency, or end-to-end readiness.",
+    "Model promotion requires a separate review of feature parity and live inference behavior."
+  ]
+}

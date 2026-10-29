@@ -258,7 +258,7 @@ def resolve_universal_location(
         }
 
     # Also check if any known locality is a substring
-    for key, (lat, lon, disp) in LOCAL_COORDINATE_REGISTRY.items():
+    for key, (lat, lon, disp) in sorted(LOCAL_COORDINATE_REGISTRY.items(), key=lambda item: len(item[0]), reverse=True):
         if re.search(r"\b" + re.escape(key) + r"\b", low):
             station_audit = discover_cpcb_stations(lat, lon, max_radius_km=max_cpcb_radius_km)
             return {

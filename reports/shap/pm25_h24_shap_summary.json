@@ -1,0 +1,125 @@
+{
+  "model": "xgb_pm25_h24.joblib",
+  "horizon_hours": 24,
+  "feature_count": 133,
+  "explanation_rows": 256,
+  "sample_station": "Transport Nagar-Nigdi, Pune - IITM",
+  "sample_timestamp_utc": "2025-12-31 23:00:00+00:00",
+  "predicted_pm25": 59.034515380859375,
+  "shap_expected_value": 41.1850700378418,
+  "top_features": [
+    {
+      "feature": "pm25",
+      "mean_abs_shap": 11.214680671691895,
+      "mean_shap": 8.729532241821289
+    },
+    {
+      "feature": "pm25_lag_1h",
+      "mean_abs_shap": 3.7069578170776367,
+      "mean_shap": 2.8469350337982178
+    },
+    {
+      "feature": "day_of_year",
+      "mean_abs_shap": 3.6432485580444336,
+      "mean_shap": 0.9791070818901062
+    },
+    {
+      "feature": "pm25_lag_72h",
+      "mean_abs_shap": 1.4780490398406982,
+      "mean_shap": 0.936850368976593
+    },
+    {
+      "feature": "pm25_lag_24h",
+      "mean_abs_shap": 1.2420508861541748,
+      "mean_shap": 0.6597957015037537
+    },
+    {
+      "feature": "hour",
+      "mean_abs_shap": 1.2171066999435425,
+      "mean_shap": -0.17061962187290192
+    },
+    {
+      "feature": "no2",
+      "mean_abs_shap": 1.1015183925628662,
+      "mean_shap": 1.0094362497329712
+    },
+    {
+      "feature": "pm25_lag_48h",
+      "mean_abs_shap": 1.0160698890686035,
+      "mean_shap": 0.4505785405635834
+    },
+    {
+      "feature": "no2_lag_1h",
+      "mean_abs_shap": 0.9933223724365234,
+      "mean_shap": 0.964368462562561
+    },
+    {
+      "feature": "pm25_lag_2h",
+      "mean_abs_shap": 0.8933112025260925,
+      "mean_shap": 0.739771842956543
+    }
+  ],
+  "top_local_contributions": [
+    {
+      "feature": "pm25",
+      "feature_value": 50.12,
+      "shap_value": 6.05674934387207,
+      "abs_shap": 6.05674934387207
+    },
+    {
+      "feature": "day_of_year",
+      "feature_value": 1.0,
+      "shap_value": 5.425611972808838,
+      "abs_shap": 5.425611972808838
+    },
+    {
+      "feature": "pm25_lag_72h",
+      "feature_value": 105.48,
+      "shap_value": 3.486847400665283,
+      "abs_shap": 3.486847400665283
+    },
+    {
+      "feature": "pm25_lag_1h",
+      "feature_value": 54.805,
+      "shap_value": 2.5902183055877686,
+      "abs_shap": 2.5902183055877686
+    },
+    {
+      "feature": "pm10_lag_48h",
+      "feature_value": 82.8125,
+      "shap_value": 0.8384620547294617,
+      "abs_shap": 0.8384620547294617
+    },
+    {
+      "feature": "pm25_lag_24h",
+      "feature_value": 35.442499999999995,
+      "shap_value": -0.8156061768531799,
+      "abs_shap": 0.8156061768531799
+    },
+    {
+      "feature": "pm25_lag_48h",
+      "feature_value": 35.5,
+      "shap_value": -0.5437663197517395,
+      "abs_shap": 0.5437663197517395
+    },
+    {
+      "feature": "hour",
+      "feature_value": 23.0,
+      "shap_value": 0.5100410580635071,
+      "abs_shap": 0.5100410580635071
+    },
+    {
+      "feature": "month",
+      "feature_value": 1.0,
+      "shap_value": -0.3001629710197449,
+      "abs_shap": 0.3001629710197449
+    },
+    {
+      "feature": "pm25_lag_3h",
+      "feature_value": 39.5825,
+      "shap_value": 0.28531113266944885,
+      "abs_shap": 0.28531113266944885
+    }
+  ],
+  "method": "shap.TreeExplainer"
+}

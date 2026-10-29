@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+﻿import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-const API = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "")}/api/forecast/universal`;
-const num = (v, d = 1) => Number.isFinite(Number(v)) ? Number(v).toFixed(d) : "—";
+const API = `${(import.meta.env.VITE_API_BASE || "http://127.0.0.1:8003").replace(/\/$/, "")}/api/forecast/universal`;
+const num = (v, d = 1) => Number.isFinite(Number(v)) ? Number(v).toFixed(d) : "â€”";
 
 function rowsFromShap(shap) {
   if (Array.isArray(shap)) return shap;
@@ -48,15 +48,15 @@ export default function Forecast() {
     <header className="forecast-header">
       <div><div className="aq-eyebrow">PREDICTIVE ANALYTICS / MODEL TRANSPARENCY</div><h1>PM2.5 Forecast &amp; Explainability</h1><p>Inspect next-hour prediction, station coverage, hourly context, and SHAP values returned by the backend.</p></div>
       <form className="forecast-search" onSubmit={e => { e.preventDefault(); run(draft); }}>
-        <label htmlFor="forecast-location">City or locality</label><div className="forecast-search-row"><input id="forecast-location" value={draft} onChange={e => setDraft(e.target.value)} placeholder="Enter location"/><button className="aq-button" disabled={loading || !draft.trim()}>{loading ? "Loading…" : "Run forecast"}</button></div>
+        <label htmlFor="forecast-location">City or locality</label><div className="forecast-search-row"><input id="forecast-location" value={draft} onChange={e => setDraft(e.target.value)} placeholder="Enter location"/><button className="aq-button" disabled={loading || !draft.trim()}>{loading ? "Loadingâ€¦" : "Run forecast"}</button></div>
       </form>
     </header>
     <div className="forecast-notice"><strong>Source distinction</strong><span>A provider hourly estimate is not an XGBoost prediction. This page labels the result using the method and flags returned by the API; it does not infer official CPCB AQI.</span></div>
     {error && <div className="aq-error" role="alert">{error}</div>}
-    {loading && <div className="forecast-loading" role="status">Loading forecast for {location}…</div>}
+    {loading && <div className="forecast-loading" role="status">Loading forecast for {location}â€¦</div>}
     {!loading && data && <>
       <section className="forecast-metrics">
-        <article className="forecast-metric forecast-metric-primary"><span>Next-hour PM2.5</span><strong>{predictionOK ? num(data.predicted_pm25, 2) : "Unavailable"}</strong><small>µg/m³ · {modelGenerated ? "Model-generated" : "Non-model/provider result"}</small></article>
+        <article className="forecast-metric forecast-metric-primary"><span>Next-hour PM2.5</span><strong>{predictionOK ? num(data.predicted_pm25, 2) : "Unavailable"}</strong><small>Âµg/mÂ³ Â· {modelGenerated ? "Model-generated" : "Non-model/provider result"}</small></article>
         <article className="forecast-metric"><span>Requested location</span><strong>{data.requested_location || location}</strong><small>API input</small></article>
         <article className="forecast-metric"><span>Forecast method</span><strong className="forecast-method-value">{method}</strong><small>{data.fallback_used ? "Fallback used" : "Fallback not flagged"}</small></article>
         <article className="forecast-metric"><span>Contributing stations</span><strong>{stations.length}</strong><small>Returned by API</small></article>
@@ -66,8 +66,8 @@ export default function Forecast() {
       <section className="forecast-provenance">
         <div><span>Model / service</span><strong>{data.model_name || "Not reported"}</strong><small>{data.model_version ? `Version ${data.model_version}` : "Version not supplied"}</small></div>
         <div><span>Forecast case</span><strong>{data.case || "Not reported"}</strong><small>{data.data_quality_status || "Quality status unavailable"}</small></div>
-        <div><span>Reported validation R²</span><strong>{data.validation_metrics?.holdout_r2 == null ? "Unavailable" : num(data.validation_metrics.holdout_r2, 3)}</strong><small>Chronological holdout metric, if present</small></div>
-        <div><span>Reported holdout MAE</span><strong>{data.validation_metrics?.holdout_mae == null ? "Unavailable" : `${num(data.validation_metrics.holdout_mae, 2)} µg/m³`}</strong><small>Not a guarantee for this location</small></div>
+        <div><span>Reported validation RÂ²</span><strong>{data.validation_metrics?.holdout_r2 == null ? "Unavailable" : num(data.validation_metrics.holdout_r2, 3)}</strong><small>Chronological holdout metric, if present</small></div>
+        <div><span>Reported holdout MAE</span><strong>{data.validation_metrics?.holdout_mae == null ? "Unavailable" : `${num(data.validation_metrics.holdout_mae, 2)} Âµg/mÂ³`}</strong><small>Not a guarantee for this location</small></div>
       </section>
       {Array.isArray(data.warnings) && data.warnings.length > 0 && <section className="forecast-warnings"><strong>Data-quality warnings</strong><ul>{data.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul></section>}
       <section className="forecast-panels">
@@ -82,7 +82,7 @@ export default function Forecast() {
           {data.shap_explanation?.summary && <p className="forecast-reason">{data.shap_explanation.summary}</p>}
         </article>
         <article className="forecast-panel"><div className="forecast-panel-heading"><div><h2>Station coverage</h2><p>Stations considered by the forecasting service</p></div><span className="forecast-tag">{stations.length} returned</span></div>
-          {stations.length ? <div className="forecast-table-wrap"><table className="aq-table"><thead><tr><th>Station</th><th>Distance</th><th>Observation time</th></tr></thead><tbody>{stations.map((s,i)=><tr key={s.station_id || s.id || i}><td><strong>{s.name || s.station_name || s.station || "Unnamed station"}</strong><small>{s.city || s.state || s.source || ""}</small></td><td>{s.distance_km == null ? "—" : `${num(s.distance_km,2)} km`}</td><td>{s.timestamp || s.observed_at || s.last_updated || "Not supplied"}</td></tr>)}</tbody></table></div> : <div className="forecast-empty">No contributing station list was returned.</div>}
+          {stations.length ? <div className="forecast-table-wrap"><table className="aq-table"><thead><tr><th>Station</th><th>Distance</th><th>Observation time</th></tr></thead><tbody>{stations.map((s,i)=><tr key={s.station_id || s.id || i}><td><strong>{s.name || s.station_name || s.station || "Unnamed station"}</strong><small>{s.city || s.state || s.source || ""}</small></td><td>{s.distance_km == null ? "â€”" : `${num(s.distance_km,2)} km`}</td><td>{s.timestamp || s.observed_at || s.last_updated || "Not supplied"}</td></tr>)}</tbody></table></div> : <div className="forecast-empty">No contributing station list was returned.</div>}
         </article>
       </section>
       <section className="forecast-panel"><div className="forecast-panel-heading"><div><h2>Hourly context</h2><p>Environmental-provider context, separate from the next-hour forecast</p></div><span className="forecast-tag">{hourly.length} records</span></div>

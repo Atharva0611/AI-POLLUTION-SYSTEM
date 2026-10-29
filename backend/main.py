@@ -11,6 +11,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.api.routes import pollution, forecast, rag, anomalies, hotspots, recommendations, source_analysis, current_snapshot, air_quality
+from backend.api.routes.pune_hourly import router as pune_hourly_router
 from backend.app.api.chat import router as chat_router
 from backend.services.historical_weather import router as historical_weather_router
 from backend.api.routes.weather_current import router as current_weather_router
@@ -57,6 +58,8 @@ if hasattr(pollution, "router"):
 
 if hasattr(forecast, "router"):
     app.include_router(forecast.router, prefix="/api/forecast", tags=["Forecast"])
+
+app.include_router(pune_hourly_router, prefix="/api/forecast/pune-hourly", tags=["Pune Hourly Forecast"])
 
 if hasattr(rag, "router"):
     app.include_router(rag.router, prefix="/api/rag", tags=["RAG / Policy"])

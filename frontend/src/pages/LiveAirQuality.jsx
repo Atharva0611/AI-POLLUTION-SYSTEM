@@ -1,19 +1,19 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CircleMarker, MapContainer, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "");
+const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8003").replace(/\/$/, "");
 const DEFAULT_LOCATION = "Wagholi, Pune, Maharashtra, India";
 const REFRESH_MS = Math.max(60, Number(import.meta.env.VITE_LIVE_REFRESH_SECONDS || 300)) * 1000;
 const POLLUTANTS = [
-  ["pm2_5", "PM2.5", "µg/m³"], ["pm10", "PM10", "µg/m³"],
-  ["no2", "NO₂", "µg/m³"], ["so2", "SO₂", "µg/m³"],
-  ["o3", "O₃", "µg/m³"], ["co", "CO", "µg/m³"],
-  ["no", "NO", "µg/m³"], ["nh3", "NH₃", "µg/m³"]
+  ["pm2_5", "PM2.5", "Âµg/mÂ³"], ["pm10", "PM10", "Âµg/mÂ³"],
+  ["no2", "NOâ‚‚", "Âµg/mÂ³"], ["so2", "SOâ‚‚", "Âµg/mÂ³"],
+  ["o3", "Oâ‚ƒ", "Âµg/mÂ³"], ["co", "CO", "Âµg/mÂ³"],
+  ["no", "NO", "Âµg/mÂ³"], ["nh3", "NHâ‚ƒ", "Âµg/mÂ³"]
 ];
 
 function fmt(value, digits = 1) {
-  return value == null || !Number.isFinite(Number(value)) ? "—" : Number(value).toFixed(digits);
+  return value == null || !Number.isFinite(Number(value)) ? "â€”" : Number(value).toFixed(digits);
 }
 function fmtTime(value) {
   if (!value) return "Timestamp unavailable";
@@ -41,7 +41,7 @@ function MapViewport({ center, stations }) {
   return null;
 }
 function MetricCard({ label, value, unit, sub, state = "normal" }) {
-  return <article className={`live-metric live-metric--${state}`}><span>{label}</span><strong>{value ?? "—"}{value != null && value !== "—" && unit ? <small> {unit}</small> : null}</strong><p>{sub || "No eligible current observation"}</p></article>;
+  return <article className={`live-metric live-metric--${state}`}><span>{label}</span><strong>{value ?? "â€”"}{value != null && value !== "â€”" && unit ? <small> {unit}</small> : null}</strong><p>{sub || "No eligible current observation"}</p></article>;
 }
 
 export default function LiveAirQuality() {
@@ -117,39 +117,39 @@ export default function LiveAirQuality() {
 
     <header className="live-hero">
       <div><div className="aq-eyebrow">ORIVA / CURRENT ENVIRONMENT</div><h1>Live air quality &amp; weather</h1><p>Current provider observations with timestamp validation, source attribution, and location-aware monitoring. Historical analytics and model forecasts remain separate.</p></div>
-      <form className="live-search" onSubmit={searchLocation}><input aria-label="Search location" value={draft} onChange={e => setDraft(e.target.value)} placeholder="Search town, city, or locality" /><button className="aq-button" disabled={loading || !draft.trim()}>{loading ? "Checking…" : "Search location"}</button></form>
+      <form className="live-search" onSubmit={searchLocation}><input aria-label="Search location" value={draft} onChange={e => setDraft(e.target.value)} placeholder="Search town, city, or locality" /><button className="aq-button" disabled={loading || !draft.trim()}>{loading ? "Checkingâ€¦" : "Search location"}</button></form>
     </header>
 
     <section className="live-toolbar">
-      <div className="live-location"><strong>{center.resolved_name || location}</strong><small>{center.latitude != null ? `Coordinates: ${Number(center.latitude).toFixed(5)}, ${Number(center.longitude).toFixed(5)}` : "Location coordinates not resolved"} · Last dashboard fetch: {fmtTime(lastRefresh)}</small></div>
-      <div className="live-statuses"><ProviderStatus item={openaq} label="OpenAQ" /><ProviderStatus item={aq} label="OpenWeather air" /><ProviderStatus item={weather} label="OpenWeather weather" /><button className="aq-button aq-button-secondary" onClick={() => refresh(location)} disabled={loading}>{loading ? "Refreshing…" : "↻ Refresh now"}</button></div>
+      <div className="live-location"><strong>{center.resolved_name || location}</strong><small>{center.latitude != null ? `Coordinates: ${Number(center.latitude).toFixed(5)}, ${Number(center.longitude).toFixed(5)}` : "Location coordinates not resolved"} Â· Last dashboard fetch: {fmtTime(lastRefresh)}</small></div>
+      <div className="live-statuses"><ProviderStatus item={openaq} label="OpenAQ" /><ProviderStatus item={aq} label="OpenWeather air" /><ProviderStatus item={weather} label="OpenWeather weather" /><button className="aq-button aq-button-secondary" onClick={() => refresh(location)} disabled={loading}>{loading ? "Refreshingâ€¦" : "â†» Refresh now"}</button></div>
     </section>
 
     {error && <div className="live-alert" role="alert">{error}</div>}
-    {loading && !data && <div className="live-loading" role="status">Resolving location and requesting current provider data…</div>}
+    {loading && !data && <div className="live-loading" role="status">Resolving location and requesting current provider dataâ€¦</div>}
 
     <section>
       <div className="live-section-heading"><div><h2>Current conditions</h2><p>Only timestamp-validated values appear as current. A dash means no eligible value was returned.</p></div><span className="aq-count">{currentCount} current source records</span></div>
       <div className="live-metrics">
-        <MetricCard label="OpenWeather AQI" value={aq.status === "ok" && aq.aqi != null ? aq.aqi : "—"} unit={aq.status === "ok" && aq.aqi != null ? "/ 5" : ""} state="accent" sub={aq.status === "ok" ? `OpenWeather scale · observed ${fmtTime(aq.observed_at)}` : aq.error || "No current AQI"} />
-        <MetricCard label="PM2.5" value={aq.status === "ok" ? fmt(components.pm2_5) : "—"} unit={aq.status === "ok" && components.pm2_5 != null ? "µg/m³" : ""} sub="OpenWeather · provider value" />
-        <MetricCard label="PM10" value={aq.status === "ok" ? fmt(components.pm10) : "—"} unit={aq.status === "ok" && components.pm10 != null ? "µg/m³" : ""} sub="OpenWeather · provider value" />
-        <MetricCard label="Temperature" value={weather.status === "ok" ? fmt(weather.temperature_c) : "—"} unit={weather.status === "ok" && weather.temperature_c != null ? "°C" : ""} sub={weather.status === "ok" ? `Observed ${fmtTime(weather.observed_at)}` : weather.error || "Weather unavailable"} />
-        <MetricCard label="Humidity" value={weather.status === "ok" ? fmt(weather.humidity_percent, 0) : "—"} unit={weather.status === "ok" && weather.humidity_percent != null ? "%" : ""} sub="OpenWeather current weather" />
-        <MetricCard label="Wind speed" value={weather.status === "ok" ? fmt(weather.wind_speed_m_s) : "—"} unit={weather.status === "ok" && weather.wind_speed_m_s != null ? "m/s" : ""} sub="OpenWeather current weather" />
+        <MetricCard label="OpenWeather AQI" value={aq.status === "ok" && aq.aqi != null ? aq.aqi : "â€”"} unit={aq.status === "ok" && aq.aqi != null ? "/ 5" : ""} state="accent" sub={aq.status === "ok" ? `OpenWeather scale Â· observed ${fmtTime(aq.observed_at)}` : aq.error || "No current AQI"} />
+        <MetricCard label="PM2.5" value={aq.status === "ok" ? fmt(components.pm2_5) : "â€”"} unit={aq.status === "ok" && components.pm2_5 != null ? "Âµg/mÂ³" : ""} sub="OpenWeather Â· provider value" />
+        <MetricCard label="PM10" value={aq.status === "ok" ? fmt(components.pm10) : "â€”"} unit={aq.status === "ok" && components.pm10 != null ? "Âµg/mÂ³" : ""} sub="OpenWeather Â· provider value" />
+        <MetricCard label="Temperature" value={weather.status === "ok" ? fmt(weather.temperature_c) : "â€”"} unit={weather.status === "ok" && weather.temperature_c != null ? "Â°C" : ""} sub={weather.status === "ok" ? `Observed ${fmtTime(weather.observed_at)}` : weather.error || "Weather unavailable"} />
+        <MetricCard label="Humidity" value={weather.status === "ok" ? fmt(weather.humidity_percent, 0) : "â€”"} unit={weather.status === "ok" && weather.humidity_percent != null ? "%" : ""} sub="OpenWeather current weather" />
+        <MetricCard label="Wind speed" value={weather.status === "ok" ? fmt(weather.wind_speed_m_s) : "â€”"} unit={weather.status === "ok" && weather.wind_speed_m_s != null ? "m/s" : ""} sub="OpenWeather current weather" />
       </div>
     </section>
 
     <section className="live-panel">
-      <div className="live-section-heading"><div><h2>OpenWeather pollutant detail</h2><p>Provider-reported concentrations. AQI uses OpenWeather's 1–5 index, not the CPCB 0–500 scale.</p></div><Freshness value={aq} /></div>
-      {aq.status === "ok" ? <><div className="live-pollutants">{POLLUTANTS.map(([key, label, unit]) => <div className="live-pollutant" key={key}><span>{label}</span><strong>{fmt(components[key], 2)}</strong><small>{components[key] == null ? "Not supplied" : unit}</small></div>)}</div><p className="aq-footnote">Observed: {fmtTime(aq.observed_at)} · Age: {aq.age_minutes == null ? "unknown" : `${aq.age_minutes} minutes`} · Source: OpenWeather current Air Pollution API.</p></> : <div className="live-empty">{aq.error || "No timestamp-validated OpenWeather pollution observation is available. No historical value was substituted."}</div>}
+      <div className="live-section-heading"><div><h2>OpenWeather pollutant detail</h2><p>Provider-reported concentrations. AQI uses OpenWeather's 1â€“5 index, not the CPCB 0â€“500 scale.</p></div><Freshness value={aq} /></div>
+      {aq.status === "ok" ? <><div className="live-pollutants">{POLLUTANTS.map(([key, label, unit]) => <div className="live-pollutant" key={key}><span>{label}</span><strong>{fmt(components[key], 2)}</strong><small>{components[key] == null ? "Not supplied" : unit}</small></div>)}</div><p className="aq-footnote">Observed: {fmtTime(aq.observed_at)} Â· Age: {aq.age_minutes == null ? "unknown" : `${aq.age_minutes} minutes`} Â· Source: OpenWeather current Air Pollution API.</p></> : <div className="live-empty">{aq.error || "No timestamp-validated OpenWeather pollution observation is available. No historical value was substituted."}</div>}
     </section>
 
     <div className="live-grid-two">
       <section className="live-panel">
-        <div className="live-section-heading"><div><h2>OpenAQ sensor network</h2><p>{stations.length} nearby station records · {liveMeasurements.length} measurements meet the configured live-age limit.</p></div><span className="aq-count">{liveMeasurements.length} live</span></div>
-        <input className="aq-search" aria-label="Filter OpenAQ stations" placeholder="Filter station name or ID…" value={stationSearch} onChange={e => setStationSearch(e.target.value)} />
-        {stations.length ? <div className="live-station-list">{filteredStations.map(s => <button key={s.id} className={`live-station ${String(selectedStationId) === String(s.id) ? "selected" : ""}`} onClick={() => setSelectedStationId(s.id)}><span aria-hidden="true">●</span><span><strong>{s.name || "Unnamed station"}</strong><small>{s.locality || "Locality not provided"} · {s.latitude != null && s.longitude != null ? `${Number(s.latitude).toFixed(4)}, ${Number(s.longitude).toFixed(4)}` : "Coordinates unavailable"}</small></span><span className="station-id">#{s.id}</span></button>)}</div> : <div className="live-empty">{openaq.error || "No OpenAQ stations returned for this location. No station has been invented."}</div>}
+        <div className="live-section-heading"><div><h2>OpenAQ sensor network</h2><p>{stations.length} nearby station records Â· {liveMeasurements.length} measurements meet the configured live-age limit.</p></div><span className="aq-count">{liveMeasurements.length} live</span></div>
+        <input className="aq-search" aria-label="Filter OpenAQ stations" placeholder="Filter station name or IDâ€¦" value={stationSearch} onChange={e => setStationSearch(e.target.value)} />
+        {stations.length ? <div className="live-station-list">{filteredStations.map(s => <button key={s.id} className={`live-station ${String(selectedStationId) === String(s.id) ? "selected" : ""}`} onClick={() => setSelectedStationId(s.id)}><span aria-hidden="true">â—</span><span><strong>{s.name || "Unnamed station"}</strong><small>{s.locality || "Locality not provided"} Â· {s.latitude != null && s.longitude != null ? `${Number(s.latitude).toFixed(4)}, ${Number(s.longitude).toFixed(4)}` : "Coordinates unavailable"}</small></span><span className="station-id">#{s.id}</span></button>)}</div> : <div className="live-empty">{openaq.error || "No OpenAQ stations returned for this location. No station has been invented."}</div>}
         <p className="aq-footnote">Station presence does not mean its measurements are current. Stale values are excluded from the live summary.</p>
       </section>
       <section className="live-panel">
@@ -160,16 +160,16 @@ export default function LiveAirQuality() {
 
     <section className="live-panel">
       <div className="live-section-heading"><div><h2>{selectedStation ? selectedStation.name || `Station ${selectedStation.id}` : "Eligible OpenAQ measurements"}</h2><p>Only observations meeting the strict live-data threshold are listed here. Values retain their source units and timestamps.</p></div><span className="aq-count">OpenAQ v3</span></div>
-      <div className="live-table-wrap"><table className="live-measurement-table"><thead><tr><th>Station</th><th>Pollutant</th><th>Value</th><th>Observation time</th><th>Age</th><th>Freshness</th></tr></thead><tbody>{liveMeasurements.filter(m => !selectedStation || String(m.station_id) === String(selectedStation.id)).map((m, i) => <tr key={`${m.station_id}-${m.sensor_id}-${i}`}><td>{m.station || `Station ${m.station_id}`}<small>ID {m.station_id}</small></td><td><strong>{String(m.pollutant || "").toUpperCase()}</strong></td><td>{m.value == null ? "—" : fmt(m.value, 2)} {m.unit || ""}</td><td>{fmtTime(m.observed_at_utc)}</td><td>{m.age_minutes == null ? "Unknown" : `${m.age_minutes} min`}</td><td><Freshness value={m} /></td></tr>)}</tbody></table></div>
+      <div className="live-table-wrap"><table className="live-measurement-table"><thead><tr><th>Station</th><th>Pollutant</th><th>Value</th><th>Observation time</th><th>Age</th><th>Freshness</th></tr></thead><tbody>{liveMeasurements.filter(m => !selectedStation || String(m.station_id) === String(selectedStation.id)).map((m, i) => <tr key={`${m.station_id}-${m.sensor_id}-${i}`}><td>{m.station || `Station ${m.station_id}`}<small>ID {m.station_id}</small></td><td><strong>{String(m.pollutant || "").toUpperCase()}</strong></td><td>{m.value == null ? "â€”" : fmt(m.value, 2)} {m.unit || ""}</td><td>{fmtTime(m.observed_at_utc)}</td><td>{m.age_minutes == null ? "Unknown" : `${m.age_minutes} min`}</td><td><Freshness value={m} /></td></tr>)}</tbody></table></div>
       {!liveMeasurements.length && <div className="live-empty">{openaq.error || "No eligible OpenAQ measurements. Historical or stale readings will not be used as a fallback."}</div>}
     </section>
 
     <section className="live-panel">
       <div className="live-section-heading"><div><h2>Weather &amp; data provenance</h2><p>Source status and timestamps are shown independently; provider values are never averaged into a synthetic AQI.</p></div></div>
       <div className="live-pollutants">
-        {[{name:"OpenAQ sensors",item:openaq,time:openaq.retrieved_at,desc:`${liveMeasurements.length} eligible measurements; ${stations.length} stations`},{name:"OpenWeather pollution",item:aq,time:aq.observed_at,desc:`AQI scale: ${aq.aqi_scale || "OpenWeather 1–5"}`},{name:"OpenWeather weather",item:weather,time:weather.observed_at,desc:`${weather.condition || "Current weather"} · pressure ${weather.pressure_hpa ?? "—"} hPa`}].map(source => <article className="live-source-card" key={source.name}><strong>{source.name}</strong><p>Status: {source.item.status || "unavailable"}<br />Observation: {fmtTime(source.time)}<br />{source.desc}<br />{source.item.error || "No provider error reported."}</p></article>)}
+        {[{name:"OpenAQ sensors",item:openaq,time:openaq.retrieved_at,desc:`${liveMeasurements.length} eligible measurements; ${stations.length} stations`},{name:"OpenWeather pollution",item:aq,time:aq.observed_at,desc:`AQI scale: ${aq.aqi_scale || "OpenWeather 1â€“5"}`},{name:"OpenWeather weather",item:weather,time:weather.observed_at,desc:`${weather.condition || "Current weather"} Â· pressure ${weather.pressure_hpa ?? "â€”"} hPa`}].map(source => <article className="live-source-card" key={source.name}><strong>{source.name}</strong><p>Status: {source.item.status || "unavailable"}<br />Observation: {fmtTime(source.time)}<br />{source.desc}<br />{source.item.error || "No provider error reported."}</p></article>)}
       </div>
-      <p className="aq-footnote">Dashboard fetch: {fmtTime(lastRefresh)} · Automatic refresh: every {Math.round(REFRESH_MS / 60000)} minutes · Provider timestamps are converted to your browser's local time. “Current” means the provider timestamp passes the configured age threshold, not that the sensor updates continuously.</p>
+      <p className="aq-footnote">Dashboard fetch: {fmtTime(lastRefresh)} Â· Automatic refresh: every {Math.round(REFRESH_MS / 60000)} minutes Â· Provider timestamps are converted to your browser's local time. â€œCurrentâ€ means the provider timestamp passes the configured age threshold, not that the sensor updates continuously.</p>
     </section>
     <footer className="aq-page-footer">Live observations: OpenAQ and OpenWeather. Historical DBSCAN hotspots and XGBoost/SHAP predictions are available in their separate navigation sections and are never used to fill current cards.</footer>
   </main>;

@@ -1,4 +1,4 @@
-﻿from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException
 from pathlib import Path
 import sys
 
@@ -35,7 +35,7 @@ def get_hotspots():
                 "Historical DBSCAN station clusters. "
                 "These are not live pollution readings."
             ),
-            "source": "data/processed/pune_cpcb_features.csv",
+            "source": "data/processed/pune_cpcb_all_stations_hourly.csv",
             "count": len(hotspots),
             "hotspots": hotspots,
         }

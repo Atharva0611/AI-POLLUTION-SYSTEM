@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000").replace(/\/$/, "");
+const API_BASE = (import.meta.env.VITE_API_BASE || "http://127.0.0.1:8001").replace(/\/$/, "");
 const API_URL = API_BASE + "/api/hotspots/";
 
 function FitStations({ stations }) {
@@ -66,7 +66,7 @@ export default function Hotspots() {
       setUpdatedAt(new Date().toLocaleTimeString());
     } catch (err) {
       setError(
-        `${err.message}. Confirm that FastAPI is running at http://127.0.0.1:8000.`
+        `${err.message}. Confirm that FastAPI is running at http://127.0.0.1:8001.`
       );
     } finally {
       setLoading(false);
